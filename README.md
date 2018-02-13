@@ -3,10 +3,20 @@
 
 Epigraph:"all you need to configure - you can configure"  
   
-Why it is “simple”: You need only 2 components for the base functionality.  
-Why it is “smart”: ... :)  
-Why it is “light”: It have a few function:  
-Ligth controll  
-Dosing (peristaltic pump) controll  
-Timers  
-Cooling and heating controll)  
+1. 16 channels for controlling connected devices, each channel can perform one of 4 functions.
+
+a. manage the LED drivers on a daily schedule, for this each channel contains 16 independent "time points" and dimming values in each of these points (a total of 256 points)
+
+b. control the cooler or heater depending on the temperature sensors ds18b20, which can also be 16
+
+c. Manage the dosing pumps, independently calculating the required switching time in each cycle based on the specified pump capacity (ml / h) and the required total amount of dosing (ml / day).
+
+d. control the timer on and off based on the set switching time and duration (1 second accuracy), for each channel / timer with 24 independent switching points (total 384 points)
+
+2. Real time clock DS3231
+
+3. Temperature sensors DS18b20 - 16 pieces.
+
+4. Downloading third-party management interfaces, for this published rest-api on the controller.
+
+5. Download firmware updates "by air".
