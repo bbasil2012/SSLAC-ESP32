@@ -1,5 +1,13 @@
 # SSLAC-ESP32
-(Simple Smart Light Aquarium Controller)  
+
+In the future it is planned to rename in the SMAC16 i.e.
+- simple
+- multifunctional
+- aquarium
+- controller
+
+
+(Simple Multifunctional Aquarium Controller)  
 
 Epigraph:"all you need to configure - you can configure"  
   
