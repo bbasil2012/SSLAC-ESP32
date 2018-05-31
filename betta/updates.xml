@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
+  <app appid='nanjnakmcldieolncopkejielcecnjke'>
+    <updatecheck codebase='https://raw.githubusercontent.com/bbasil2012/SSLAC-ESP32/master/betta/SMAC16_app.crx' version=‘0.0.1’ />
+  </app>
+</gupdate>
