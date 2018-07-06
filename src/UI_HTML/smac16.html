@@ -2123,6 +2123,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq1" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2159,6 +2160,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq2" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2195,6 +2197,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq3" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2231,6 +2234,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq4" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2267,6 +2271,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq5" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2303,6 +2308,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq6" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2339,6 +2345,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq7" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2375,6 +2382,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq8" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2411,6 +2419,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq9" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2447,6 +2456,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq10" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2483,6 +2493,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq11" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2519,6 +2530,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq12" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2555,6 +2567,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq13" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2591,6 +2604,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
             </select>
           </td>
           <td><input id="freq14" oninput="ch_name(this)" min="100" max="19500" step="100"
@@ -2627,6 +2641,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               <option>Fan PWM</option>
               <option>Dosing</option>
               <option>Timer</option>
+			  <option value=255>Noting</option>
 			  
             </select>
           </td>
@@ -2758,7 +2773,7 @@ window.addEventListener('message', messageHandler, false);
 //setTimeout(alarm,500);
 setInterval(alarm,500);
 function alarm(){
-	console.log("alarm");
+	//console.log("alarm");
 	if (info.length==0) return;
 	if (Channels.length==0) return;
 	var _flag=false;
@@ -3779,7 +3794,7 @@ function alarm(){
 			var _ch=e.id.substring(11);
 			document.getElementById("const_value"+_ch).value=e.value;
 			document.getElementById("const_percent"+_ch).innerHTML=(e.value*100/4095).toFixed(2)+"%";
-			postReq("/set?","manual"+_ch+"="+e.value);
+			sendGET("/set?manual"+_ch+"="+e.value);
 			if (document.getElementById("day").checked) maxValue[_ch]=e.value;
 			else minValue[_ch]=e.value;
 			
@@ -3789,7 +3804,7 @@ function alarm(){
 			var _ch=e.id.substring(11);
 			document.getElementById("value_const"+_ch).value=e.value;
 			document.getElementById("const_percent"+_ch).innerHTML=(e.value*100/4095).toFixed(2)+"%";
-			postReq("/set?","manual"+_ch+"="+e.value);
+			sendGET("/set?manual"+_ch+"="+e.value);
 			//console.log(document.getElementById("day").checked);
 			if (document.getElementById("day").checked) maxValue[_ch]=e.value;
 			else minValue[_ch]=e.value;
@@ -3802,14 +3817,14 @@ function alarm(){
 				
 				document.getElementById("value_const"+_ch).disabled=false;
 				document.getElementById("const_value"+_ch).disabled=false;
-				postReq("/set?","manual"+_ch+"="+document.getElementById("value_const"+_ch).value);
+				sendGET("/set?manual"+_ch+"="+document.getElementById("value_const"+_ch).value);
 			} else{
 				
 				document.getElementById("value_const"+_ch).disabled=true;
 				document.getElementById("const_value"+_ch).disabled=true;
 				minValue[_ch]=-1;
 				maxValue[_ch]=-1;
-				postReq("/set?","manual"+_ch+"=-1");
+				sendGET("/set?manual"+_ch+"=-1");
 			}
 			return;
 		}
@@ -3817,7 +3832,7 @@ function alarm(){
 		if (e.id.indexOf("fan_test")==0){
 			var _ch=e.id.substring(8);
 			if (e.checked){
-				postReq("/set?","manual"+_ch+"="+document.getElementById("min_value"+_ch).value);
+				sendGET("/set?manual"+_ch+"="+document.getElementById("min_value"+_ch).value);
 				//fans[_ch].min_value=document.getElementById("min_value"+_ch).value;
 			} else
 				postReq("/set?","manual"+_ch+"=-1");
