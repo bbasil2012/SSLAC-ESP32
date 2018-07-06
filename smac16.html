@@ -1,0 +1,5563 @@
+<!DOCTYPE html>
+<html>
+<link href="data:image/x-icon;base64,
+AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAA
+AAAAAABm/2ZaZv9mWmb/Zlpm/2Za/wAA//8AAP//AAD/gICA/4CAgP//AAD//wAA//8AAP9m/2Za
+Zv9mWmb/Zlpm/2ZaZv9mWmb/Zlpm/2ZaZv9mWv8AAP+AgID//wAA/4CAgP+AgID//wAA/4CAgP//
+AAD/Zv9mWmb/Zlpm/2ZaZv9mWkCAAP8A////QIAA/0CAAP//AAD//wAA//8AAP//AAD//wAA//8A
+AP//AAD//wAA/0CAAP9AgAD/AP///0CAAP9m/2ZaZv9mWmb/Zlpm/2Za/wAA//8AAP//AAD//wAA
+//8AAP//AAD//wAA//8AAP9m/2ZaZv9mWmb/Zlpm/2ZaQIAA/wD///9AgAD/QIAA//8AAP//AAD/
+/wAA//8AAP//AAD//wAA//8AAP//AAD/QIAA/0CAAP8A////QIAA/2b/Zlpm/2ZaZv9mWmb/Zlr/
+AAD/AAD//wAA////AAD//wAA//8AAP//AAD//wAA/2b/Zlpm/2ZaZv9mWmb/ZlpAgAD/AP///0CA
+AP9AgAD//wAA/wAA//8AAP///wAA//8AAP//AAD//wAA//8AAP9AgAD/QIAA/wD///9AgAD/Zv9m
+Wmb/Zlpm/2ZaZv9mWv8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD/Zv9mWmb/Zlpm/2Za
+Zv9mWkCAAP8A////QIAA/0CAAP//AAD/gICA/4CAgP+AgID/gICA/4CAgP+AgID//wAA/0CAAP9A
+gAD/AP///0CAAP9m/2ZaZv9mWmb/Zlpm/2Za/wAA/4CAgP8AgAD/gICA/4CAgP+AgID/gICA//8A
+AP9m/2ZaZv9mWmb/Zlpm/2ZaQIAA/wD///9AgAD/QIAA//8AAP+AgID/gICA/4CAgP+AgID/gICA
+/4CAgP//AAD/QIAA/0CAAP8A////QIAA/2b/Zlpm/2ZaZv9mWmb/Zlr/AAD/gICA/4CAgP+AgID/
+gICA/4CAgP+AgID//wAA/2b/Zlpm/2ZaZv9mWmb/ZlpAgAD/AP///0CAAP9AgAD//wAA/4CAgP+A
+gID/gICA/4CAgP+AgID/gICA//8AAP9AgAD/QIAA/wD///9AgAD/Zv9mWmb/Zlpm/2ZaZv9mWv8A
+AP+AgID/gICA/4CAgP+AgID/gICA/4CAgP//AAD/Zv9mWmb/Zlpm/2ZaZv9mWkCAAP8A////QIAA
+/0CAAP//AAD/gICA/4CAgP+AgID/gICA/4CAgP+AgID//wAA/0CAAP9AgAD/AP///0CAAP9m/2Za
+Zv9mWmb/Zlpm/2Za/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP9m/2ZaZv9mWmb/Zlpm
+/2ZaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>SMAC32</title>
+	<style>
+		
+		.enabled {
+			
+		}
+		.disabled{
+			
+		}
+		
+	.button {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: #00ffff;
+	    
+	    
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
+	.button1 {
+	    background-color: #4CAF50;
+	    border: none;
+	    color: white;
+	    width: 200px;
+		height:75px;
+		
+	    
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 12px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
+	table, th, td {
+	    border: 1px solid black;
+	    
+	}
+	th, td {
+	    padding: 1px;
+		border:1px;
+	    
+	}
+	td {
+		border:1px;
+	}
+	</style>
+  </head>
+  <body style="background-color:#E0FFFF">
+	
+    
+	<div id="top" align=center>
+			<button id=c_descr onclick="show_page('esp32')" class="button">ESP32</button>
+			
+			<button id="reload" onclick="reload()" class="button">Reload</button>
+			<button class="button" onclick="postReq('/save','')">Save</button>
+			
+			
+			<button id="b_gpio" onclick="show_page('gpio_setup')" class="button">GPIO Setup</button>
+			<button id="b_group" onclick="show_page('groups_setup')" class="button">Groups</button>
+			<button id="controllers" onclick="show_page('controllers')" class="button" disabled>Swarm</button>
+			
+			<button class="button" onclick="postReq('/reboot','')">Reboot</button>
+			
+	</div>
+	<div class="pages" id="constructor" style="display:none" align="center">
+		<input id="day" name="constructor" type=radio onchange="ch_name(this)">Day (maximum value)</input>
+		<input id="nigth" name="constructor" type=radio onchange="ch_name(this)">Nigth (minimum value)</input><br>
+		<table style="width: 0px;text-align: center;" border="1">
+			<tr>
+				<td>Channels Group:</td>
+				<td>
+					<select id=const_group onchange=ch_name(this)>
+						<option value=255>All Channels</option>
+						<option value=0>Gr0</option>
+						<option value=1>Gr1</option>
+						<option value=2>Gr2</option>
+						<option value=3>Gr3</option>
+						<option value=4>Gr4</option>
+						<option value=5>Gr5</option>
+						<option value=6>Gr6</option>
+						<option value=7>Gr7</option>
+						
+					</select>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+			</tr>
+			<tr>
+				<th style="width:0px">Use</th>
+				<th style="width:0px">Name</th>
+				<th style="width:0px">Value</th>
+				<th style="width:70px"></th>
+				<th style="width: 0px;text-align: left; vertical-align:top;" id="const_span" >
+					
+						<input id="4point" name="select" value="4point" type=radio onchange="ch_name(this)">4 point schedule</input><br>
+						<input id="sinwave" name="select" value="sinwave" type=radio onchange="ch_name(this)">SinWave schedule</input><br>
+						
+					
+					<div id=input_4point style="display:none">
+					<br>
+					SunRise start at:<input id=sunrise type=time value=07:30></input><br>
+					Day start at:<input id=4pday type=time value=12:00></input><br>
+					SunSet start at:<input id=sunset type=time value=17:00></input><br>
+					Nigth start at:<input id=4pnigth type=time value=22:00></input><br>
+					
+					</div>
+					<div id=input_sinwave style="display:none">
+					<br>
+					SunRise start at:<input id=sin_sun type=time value=07:30></input><br>
+					Nigth start at:<input id=sin_nigth type=time value=22:00></input><br>
+					
+					</div>		
+					<button id=wizard disabled onclick=ligthWizard()>Make for selected channels</button><br>
+					<button id=ret_wizard onclick=ret_wizard()>Return to Light schedule Page</button>
+					
+					
+					
+				</th>
+				
+			</tr>
+			<tr id="const0">
+				<td>
+					<input id=ch_const0 type=checkbox onchange=ch_name(this) disabled>CH0
+				</td>
+				<td>
+					<div id="const_name0">
+					</div>
+				</td>
+				<td>
+					<input disabled id="value_const0" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value0" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+					
+				</td>
+				<td id="const_percent0" ></td>
+			</tr>
+			<tr id="const1">
+				<td>
+					<input id=ch_const1 type=checkbox onchange=ch_name(this) disabled>CH1
+				</td>
+				<td>
+					<div id="const_name1">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const1" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value1" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent1"></td>
+			</tr>
+			<tr id="const2">
+				<td>
+					<input id=ch_const2 type=checkbox onchange=ch_name(this) disabled>CH2
+				</td>
+				<td>
+					<div id="const_name2">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const2" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value2" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent2"></td>
+			</tr>
+			<tr id="const3">
+				<td>
+					<input id=ch_const3 type=checkbox onchange=ch_name(this) disabled>CH3
+				</td>
+				<td>
+					<div id="const_name3">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const3" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value3" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent3"></td>
+			</tr>
+			<tr id="const4">
+				<td>
+					<input id=ch_const4 type=checkbox onchange=ch_name(this) disabled>CH4
+				</td>
+				<td>
+					<div id="const_name4">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const4" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value4" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent4"></td>
+			</tr>
+			<tr id="const5">
+				<td>
+					<input id=ch_const5 type=checkbox onchange=ch_name(this) disabled>CH5
+				</td>
+				<td>
+					<div id="const_name5">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const5" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value5" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent5"></td>
+			</tr>
+			<tr id="const6">
+				<td>
+					<input id=ch_const6 type=checkbox onchange=ch_name(this) disabled>CH6
+				</td>
+				<td>
+					<div id="const_name6">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const6" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value6" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent6"></td>
+			</tr>
+			<tr id="const7">
+				<td>
+					<input id=ch_const7 type=checkbox onchange=ch_name(this) disabled>CH7
+				</td>
+				<td>
+					<div id="const_name7">
+					</div>
+				</td>
+				<td>
+					<input  disabled id="value_const7" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value7" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent7"></td>
+			</tr>
+			<tr id="const8">
+				<td>
+					<input id=ch_const8 type=checkbox onchange=ch_name(this) disabled>CH8
+				</td>
+				<td>
+					<div id="const_name8">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const8" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value8" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent8"></td>
+			</tr>
+			<tr id="const9">
+				<td>
+					<input id=ch_const9 type=checkbox onchange=ch_name(this) disabled>CH9
+				</td>
+				<td>
+					<div id="const_name9">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const9" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value9" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent9"></td>
+			</tr>
+			<tr id="const10">
+				<td>
+					<input id=ch_const10 type=checkbox onchange=ch_name(this) disabled>CH10
+				</td>
+				<td>
+					<div id="const_name10">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const10" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value10" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent10"></td>
+			</tr>
+			<tr id="const11">
+				<td>
+					<input id=ch_const11 type=checkbox onchange=ch_name(this) disabled>CH11
+				</td>
+				<td>
+					<div id="const_name11">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const11" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value11" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent11"></td>
+			</tr>
+			<tr id="const12">
+				<td>
+					<input id=ch_const12 type=checkbox onchange=ch_name(this) disabled>CH12
+				</td>
+				<td>
+					<div id="const_name12">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const12" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value12" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent12"></td>
+			</tr>
+			<tr id="const13">
+				<td>
+					<input id=ch_const13 type=checkbox onchange=ch_name(this) disabled>CH13
+				</td>
+				<td>
+					<div id="const_name13">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const13" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value13" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent13"></td>
+			</tr>
+			<tr id="const14">
+				<td>
+					<input id=ch_const14 type=checkbox onchange=ch_name(this) disabled>CH14
+				</td>
+				<td>
+					<div id="const_name14">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const14" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value14" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent14"></td>
+			</tr>
+			<tr id="const15">
+				<td>
+					<input id=ch_const15 type=checkbox onchange=ch_name(this) disabled>CH15
+				</td>
+				<td>
+					<div id="const_name15">
+					</div>
+				</td>
+				<td>
+					<input disabled  id="value_const15" type="range" min=0 max=4095 step=1 oninput=ch_name(this)><input disabled id="const_value15" type="number" min=0 max=4095 size=4 oninput=ch_name(this)>
+				</td>
+				<td id="const_percent15"></td>
+			</tr>
+			
+			
+		</table>
+	</div>	
+	<div class="pages" id="controllers" style="display:none" align="center">
+		<button class=button1 id=contr0></button>
+		<button class=button1 id=contr1></button>
+		<button class=button1 id=contr2></button>
+		<button class=button1 id=contr3></button><br>
+		<button class=button1 id=contr4></button>
+		<button class=button1 id=contr5></button>
+		<button class=button1 id=contr6></button>
+		<button class=button1 id=contr7></button><br>
+		<button class=button1 id=contr8></button>
+		<button class=button1 id=contr9></button>
+		<button class=button1 id=contr10></button>
+		<button class=button1 id=contr11></button><br>
+		<button class=button1 id=contr12></button>
+		<button class=button1 id=contr13></button>
+		<button class=button1 id=contr14></button>
+		<button class=button1 id=contr15></button><br>
+			
+	</div>	
+		
+	<div class="pages" id="sensors_page" style="display:none" align="center">
+		
+		
+		
+		
+		
+		
+		<table>
+			
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>TempC</th>
+					<th>Address</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+				
+		
+				<tr id=_sens0>
+					<td id=s_id0></td>
+					<td><input type=text id=s_name0 onchange=ch_name(this)></input></td>
+					<td id=tempc0></td>	
+					<td id=hw_addr0></td>
+					<td id=isexist0></td>
+					<td><button onclick="ch_name('ds_delete=0')">Delete</button></td>	
+						
+				</tr>
+				<tr id=_sens1>
+					<td id=s_id1></td>
+					<td><input type=text id=s_name1 onchange=ch_name(this)></input></td>
+					<td id=tempc1></td>
+					<td id=hw_addr1></td>
+					<td id=isexist1></td>
+					<td><button onclick="ch_name('ds_delete=1')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens2>
+					<td id=s_id2></td>
+					<td><input type=text id=s_name2 onchange=ch_name(this)></input></td>
+					<td id=tempc2></td>
+					<td id=hw_addr2></td>
+					<td id=isexist2></td>
+					<td><button onclick="ch_name('ds_delete=2')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens3>
+					<td id=s_id3></td>
+					<td><input type=text id=s_name3 onchange=ch_name(this)></input></td>
+					<td id=tempc3></td>
+					<td id=hw_addr3></td>
+					<td id=isexist3></td>
+					<td><button onclick="ch_name('ds_delete=3')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens4>
+					<td id=s_id4></td>
+					<td><input type=text id=s_name4 onchange=ch_name(this)>
+					<td id=tempc4></td>
+					<td id=hw_addr4></td>
+					<td id=isexist4></td>
+					<td><button onclick="ch_name('ds_delete=4')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens5>
+					<td id=s_id5></td>
+					<td><input type=text id=s_name5 onchange=ch_name(this)>
+					<td id=tempc5></td>
+					<td id=hw_addr5></td>
+					<td id=isexist5></td>
+					<td><button onclick="ch_name('ds_delete=5')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens6>
+					<td id=s_id6></td>
+					<td><input type=text id=s_name6 onchange=ch_name(this)>
+					<td id=tempc6></td>
+					<td id=hw_addr6></td>
+					<td id=isexist6></td>
+					<td><button onclick="ch_name('ds_delete=6')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens7>
+					<td id=s_id7></td>
+					<td><input type=text id=s_name7 onchange=ch_name(this)>
+					<td id=tempc7></td>
+					<td id=hw_addr7></td>
+					<td id=isexist7></td>
+					<td><button onclick="ch_name('ds_delete=7')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens8>
+					<td id=s_id8></td>
+					<td><input type=text id=s_name8 onchange=ch_name(this)>
+					<td id=tempc8></td>
+					<td id=hw_addr8></td>
+					<td id=isexist8></td>
+					<td><button onclick="ch_name('ds_delete=8')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens9>
+					<td id=s_id9></td>
+					<td><input type=text id=s_name9 onchange=ch_name(this)>
+					<td id=tempc9></td>
+					<td id=hw_addr9></td>
+					<td id=isexist9></td>
+					<td><button onclick="ch_name('ds_delete=9')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens10>
+					<td id=s_id10></td>
+					<td><input type=text id=s_name10 onchange=ch_name(this)>
+					<td id=tempc10></td>
+					<td id=hw_addr10></td>
+					<td id=isexist10></td>
+					<td><button onclick="ch_name('ds_delete=10')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens11>
+					<td id=s_id11></td>
+					<td><input type=text id=s_name11 onchange=ch_name(this)>
+					<td id=tempc11></td>
+					<td id=hw_addr11></td>
+					<td id=isexist11></td>
+					<td><button onclick="ch_name('ds_delete=11')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens12>
+					<td id=s_id12></td>
+					<td><input type=text id=s_name12 onchange=ch_name(this)>
+					<td id=tempc12></td>
+					<td id=hw_addr12></td>
+					<td id=isexist12></td>
+					<td><button onclick="ch_name('ds_delete=12')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens13>
+					<td id=s_id13></td>
+					<td><input type=text id=s_name13 onchange=ch_name(this)>
+					<td id=tempc13></td>
+					<td id=hw_addr13></td>
+					<td id=isexist13></td>
+					<td><button onclick="ch_name('ds_delete=13')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens14>
+					<td id=s_id14></td>
+					<td><input type=text id=s_name14 onchange=ch_name(this)>
+					<td id=tempc14></td>
+					<td id=hw_addr14></td>
+					<td id=isexist14></td>
+					<td><button onclick="ch_name('ds_delete=14')">Delete</button></td>	
+					
+				</tr>
+				<tr id=_sens15>
+					<td id=s_id15></td>
+					<td><input type=text id=s_name15 onchange=ch_name(this)>
+					<td id=tempc15></td>
+					<td id=hw_addr15></td>
+					<td id=isexist15></td>
+					<td><button onclick="ch_name('ds_delete=15')">Delete</button></td>	
+					
+				</tr>	
+				
+				
+			
+		</table><button onclick="postReq('/set?','ds18b20=rescan')" >Rescan</button>
+					
+	</div>
+	
+	<div class="pages" id="temperature" style="display:none" align="center">
+		<h1>-=Temperarure control Setup Page=-</h1>
+			
+		<table style="width: 800px;text-align: center;" border="1">
+	      <tbody>
+	        <tr>
+	          <td style="width: 1px;" >CH_ID/GPIO</td>
+	          <td style="width: 1px;">NAME</td>
+	          <td style="width: 1px;">T min</td>
+	          <td style="width: 1px;">T max</td>
+	          <td style="width: 1px;">Minimal value</td>
+			  <td style="width: 1px;">Manage by sensor</td>
+			  <td style="width: 1px;">Current t C</td>
+	        </tr>
+			<tr id=_fan0>
+				<td id=fan0></td>
+				<td id=fname0></td>
+				<td>
+					<input id=tmin0 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax0 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value0 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test0 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id0 onchange=ch_name(this)>
+					</select>
+				</td>
+				<td id=sens_temp0></td>
+			
+			</tr>
+			<tr id=_fan1>
+				<td id=fan1></td>
+				<td id=fname1></td>
+				<td>
+					<input id=tmin1 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax1 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value1 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test1 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id1 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp1></td>
+			</tr>
+			<tr id=_fan2>
+				<td id=fan2></td>
+				<td id=fname2></td>
+				<td>
+					<input id=tmin2 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax2 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value2 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test2 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id2 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp2></td>
+			
+			</tr>
+			<tr id=_fan3>
+				<td id=fan3></td>
+				<td id=fname3></td>
+				<td>
+					<input id=tmin3 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax3 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value3 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test3 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id3 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp3></td>
+			
+			</tr>
+			<tr id=_fan4>
+				<td id=fan4></td>
+				<td id=fname4></td>
+				<td>
+					<input id=tmin4 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax4 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value4 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test4 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id4 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp4></td>
+			
+			</tr>
+			<tr id=_fan5>
+				<td id=fan5></td>
+				<td id=fname5></td>
+				<td>
+					<input id=tmin5 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax5 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value5 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test5 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id5 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp5></td>
+			
+			</tr>
+			<tr id=_fan6>
+				<td id=fan6></td>
+				<td id=fname6></td>
+				<td>
+					<input id=tmin6 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax6 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value6 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test6 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id6 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp6></td>
+			
+			</tr>
+			<tr id=_fan7>
+				<td id=fan7></td>
+				<td id=fname7></td>
+				<td>
+					<input id=tmin7 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax7 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value7 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test7 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id7 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp7></td>
+			
+			</tr>
+			<tr id=_fan8>
+				<td id=fan8></td>
+				<td id=fname8></td>
+				<td>
+					<input id=tmin8 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax8 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value8 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test8 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id8 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp8></td>
+			
+			</tr>
+			<tr id=_fan9>
+				<td id=fan9></td>
+				<td id=fname9></td>
+				<td>
+					<input id=tmin9 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax9 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value9 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test9 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id9 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp9></td>
+			
+			</tr>
+			<tr id=_fan10>
+				<td id=fan10></td>
+				<td id=fname10></td>
+				<td>
+					<input id=tmin10 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax10 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value10 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test10 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id10 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp10></td>
+			
+			</tr>
+			<tr id=_fan11>
+				<td id=fan11></td>
+				<td id=fname11></td>
+				<td>
+					<input id=tmin11 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax11 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value11 type=number min=0 max=4095 value=1000 onchange=ch_name(this)> 
+					<input id=fan_test11 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id11 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp11></td>
+			
+			</tr>
+			<tr id=_fan12>
+				<td id=fan12></td>
+				<td id=fname12></td>
+				<td>
+					<input id=tmin12 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax12 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value12 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test12 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id12 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp12></td>
+			
+			</tr>
+			<tr id=_fan13>
+				<td id=fan13></td>
+				<td id=fname13></td>
+				<td>
+					<input id=tmin13 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax13 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value13 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test13 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id13 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp13></td>
+			
+			</tr>
+			<tr id=_fan14>
+				<td id=fan14></td>
+				<td id=fname14></td>
+				<td>
+					<input id=tmin14 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax14 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value14 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test14 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id14 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp14>14</td>
+			
+			</tr>
+			<tr id=_fan15>
+				<td id=fan15></td>
+				<td id=fname15></td>
+				<td>
+					<input id=tmin15 type=number min=-10 max=85 value=35 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=tmax15 type=number min=-10 max=85 value=55 onchange=ch_name(this)>
+				</td>
+				<td>
+					<input id=min_value15 type=number min=0 max=4095 value=1000 onchange=ch_name(this)>
+					<input id=fan_test15 type=checkbox onchange=ch_name(this)>Test it
+				</td>
+				<td>
+					<select id=sens_id15 onchange=ch_name(this)>
+					</select>	
+				</td>
+				<td id=sens_temp15>15</td>
+			
+			</tr>
+			
+			
+			
+			
+			
+			
+			
+		</tbody>
+		
+	</table>
+	
+	
+</div>
+
+	
+	<div class="pages" id="groups_setup" style="display:none" align="center">
+		<h1>-=Groups Setup Page=-</h1>
+		<table>
+			<tboby>
+				<tr>
+					<th>
+						ID/Name
+					</th>
+					<th>
+						Sensor/Current/Status
+					</th>
+					<th>
+						Temp threshold
+					</th>
+					<th>
+						Step/Time interval(sec)
+					</th>
+				</tr>
+				<tr>
+					<td>
+						0/<input type=text id=gr_name0 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens0 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh0 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						
+						<input type=number id=gr_step0 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int0 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1/<input type=text id=gr_name1 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens1 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh1 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step1 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int1 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						2/<input type=text id=gr_name2 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens2 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh2 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step2 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int2 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						3/<input type=text id=gr_name3 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens3 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh3 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step3 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int3 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						4/<input type=text id=gr_name4 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens4 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh4 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step4 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int4 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						5/<input type=text id=gr_name5 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens5 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh5 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step5 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int5 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						6/<input type=text id=gr_name6 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens6 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh6 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step6 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int6 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+				<tr>
+					<td>
+						7/<input type=text id=gr_name7 onchange="ch_name(this)" maxlength="32" size="34">
+					</td>
+					<td>
+						<select id=gr_sens7 onchange="ch_name(this)" ></select>
+					</td>
+					<td>
+						<input type=number id=gr_tresh7 min=0 max=250 oninput="ch_name(this)" ></input>
+					</td>
+					<td>
+						<input type=number id=gr_step7 min=0 max=4095 oninput="ch_name(this)" ></input>/
+						<input type=number id=gr_int7 min=0 max=9999 oninput="ch_name(this)" >
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		
+		
+		
+	</div>	
+	
+	
+	
+	<div class="pages" id="dosing" style="display:none" align="center">
+		<h1>-=Dosing pumps Setup Page=-</h1>
+		<table style="width: 800px;text-align: center;" border="1">
+	      <tbody>
+	        <tr>
+	          <th style="width: 1px;" >CH_ID/GPIO</th>
+	          <th style="width: 1px;">NAME</th>
+	          <th style="width: 1px;">Performance <br>ml/hours</th>
+	          <th style="width: 1px;">Total amount of dosing per day ml</th>
+	          <th style="width: 1px;">Bottle capacity in ml</th>
+			  <th>Testing value</th>
+				  
+	        </tr>
+			
+			<tr id="dosing0" >
+				<td id="ch_id0">
+					
+				<td id="dname0" >
+				<td><input min=0 value=1000 id="power0" type="number">	
+				<td><input min=0 value=100 id="value0" type="number">
+				<td><input min=0 value=5000 id="cap0" type="number">
+				<td><input maxlength="5" size="5"id=t_value0></input><button onclick="dosing_send('0')">Ok</button>	
+				
+			</tr>
+		
+			<tr id="dosing1" >
+				<td id="ch_id1">
+					
+				<td id="dname1" >
+				<td><input min=0 value=1000  id="power1" type="number">	
+				<td><input min=0 value=100 id="value1" type="number">
+				<td><input min=0 value=5000 id="cap1" type="number">
+				<td><input maxlength="5" size="5"id=t_value1></input><button onclick="dosing_send('1')">Ok</button>
+					
+				
+			</tr>
+			<tr id="dosing2">
+				<td id="ch_id2">
+					
+				<td id="dname2" >
+				<td><input min=0 value=1000  id="power2" type="number">
+				<td><input min=0 value=100 id="value2" type="number">
+				<td><input min=0 value=5000 id="cap2" type="number">
+				<td><input maxlength="5" size="5"id=t_value2></input><button onclick="dosing_send('2')">Ok</button>
+			</tr>
+			<tr id="dosing3">
+				<td id="ch_id3">
+					
+				<td id="dname3" >
+				<td><input min=0 value=1000  id="power3" type="number">
+				<td><input min=0 value=100 id="value3" type="number">
+				<td><input min=0 value=5000 id="cap3" type="number">
+				<td><input maxlength="5" size="5"id=t_value3></input><button onclick="dosing_send('3')">Ok</button>
+			</tr>
+			<tr id="dosing4">
+				<td id="ch_id4">
+					
+				<td id="dname4" >
+				<td><input min=0 value=1000  id="power4" type="number">
+				<td><input min=0 value=100 id="value4" type="number">
+				<td><input min=0 value=5000 id="cap4" type="number">
+				<td><input maxlength="5" size="5"id=t_value4></input><button onclick="dosing_send('4')">Ok</button>
+			</tr>
+			<tr id="dosing5">
+				<td id="ch_id5">
+					
+				<td id="dname5" >
+				<td><input min=0 value=1000  id="power5" type="number">
+				<td><input min=0 value=100 id="value5" type="number">
+				<td><input min=0 value=5000 id="cap5" type="number">
+				<td><input maxlength="5" size="5"id=t_value5></input><button onclick="dosing_send('5')">Ok</button>
+			</tr>
+			<tr id="dosing6">
+				<td id="ch_id6">
+					
+				<td id="dname6" >
+				<td><input min=0 value=1000  id="power6" type="number">
+				<td><input min=0 value=100 id="value6" type="number">
+				<td><input min=0 value=5000 id="cap6" type="number">
+				<td><input maxlength="5" size="5"id=t_value6></input><button onclick="dosing_send('6')">Ok</button>
+			</tr>
+			<tr id="dosing7">
+				<td id="ch_id7">
+					
+				<td id="dname7" >
+				<td><input  min=0 value=1000 id="power7" type="number">
+				<td><input min=0 value=100 id="value7" type="number">
+				<td><input min=0 value=5000 id="cap7" type="number">
+				<td><input maxlength="5" size="5"id=t_value7></input><button onclick="dosing_send('7')">Ok</button>
+			</tr>
+			<tr id="dosing8">
+				<td id="ch_id8">
+					
+				<td id="dname8" >
+				<td><input min=0 value=1000  id="power8" type="number">
+				<td><input min=0 value=100 id="value8" type="number">
+				<td><input min=0 value=5000 id="cap8" type="number">
+				<td><input maxlength="5" size="5"id=t_value8></input><button onclick="dosing_send('8')">Ok</button>
+			</tr>
+			<tr id="dosing9">
+				<td id="ch_id9">
+						
+				<td id="dname9" >
+				<td><input min=0 value=1000  id="power9" type="number">	
+				<td><input min=0 value=100 id="value9" type="number">
+				<td><input min=0 value=5000 id="cap9" type="number">
+				<td><input maxlength="5" size="5"id=t_value9></input><button onclick="dosing_send('9')">Ok</button>
+					
+			</tr>
+			<tr id="dosing10">
+				<td id="ch_id10">
+					
+				<td id="dname10">
+				<td><input min=0 value=1000  id="power10" type="number">
+				<td><input min=0 value=100 id="value10" type="number">
+				<td><input min=0 value=5000 id="cap10" type="number">
+				<td><input maxlength="5" size="5"id=t_value10></input><button onclick="dosing_send('10')">Ok</button>
+			</tr>
+			<tr id="dosing11">
+				<td id="ch_id11">
+					
+				<td id="dname11">
+				<td><input min=0 value=1000  id="power11" type="number">
+				<td><input min=0 value=100 id="value11" type="number">
+				<td><input min=0 value=5000 id="cap11" type="number">
+				<td><input maxlength="5" size="5"id=t_value11></input><button onclick="dosing_send('11')">Ok</button>
+			
+			</tr>
+			<tr id="dosing12">
+				<td id="ch_id12">
+					
+				<td id="dname12">
+				<td><input min=0 value=1000  id="power12" type="number">
+				<td><input min=0 value=100 id="value12" type="number">
+				<td><input min=0 value=5000 id="cap12" type="number">
+				<td><input maxlength="5" size="5"id=t_value12></input><button onclick="dosing_send('12')">Ok</button>
+			
+				
+			</tr>
+			<tr id="dosing13">
+				<td id="ch_id13">
+					
+				<td id="dname13">
+				<td><input  min=0 value=1000 id="power13" type="number">
+				<td><input min=0 value=100 id="value13" type="number">
+				<td><input min=0 value=5000 id="cap13" type="number">
+				<td><input maxlength="5" size="5"id=t_value13></input><button onclick="dosing_send('13')">Ok</button>
+				
+			</tr>
+			<tr id="dosing14">
+				<td id="ch_id14">
+					
+				<td id="dname14">
+				<td><input min=0 value=1000  id="power14" type="number">
+				<td><input min=0 value=100 id="value14" type="number">
+				<td><input min=0 value=5000 id="cap14" type="number">
+				<td><input maxlength="5" size="5"id=t_value14></input><button onclick="dosing_send('14')">Ok</button>
+				
+			</tr>
+			<tr id="dosing15">
+				<td id="ch_id15">
+						
+					
+				<td id="dname15">
+				<td><input min=0 value=1000  id="power15" type="number">
+				<td><input min=0 value=100 id="value15" type="number">
+				<td><input min=0 value=5000 id="cap15" type="number">
+				<td><input maxlength="5" size="5"id=t_value15></input><button onclick="dosing_send('15')">Ok</button>
+				
+			</tr>	
+		</tbody>
+	</table>
+	</div>
+	
+	
+	
+	
+	<div class="pages" id="timers" style="display:none" align="center">
+		<h1>-=Timers Setup Page=-</h1>
+		
+	<table><tbody><tr><td>
+			
+		
+		<table>
+			<tbody>
+				<th colspan=2 >Timer on:
+					<select id=s_timer onchange=fillTimersPoint(this[this.selectedIndex].value)></select>
+					<input id=tm_dosing type=checkbox onchange=ch_name(this)></input>is for Dosing pump
+					
+				</th>
+				<tr id=timer_id0>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp0 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr0 onchange=ch_name(this)><button onclick=tm_del(0)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id1>
+					<td>Start time:<input type=time step=1 value"00:00:00" id=tm_tp1 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr1 onchange=ch_name(this)><button onclick=tm_del(1)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id2>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp2 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr2 onchange=ch_name(this)><button onclick=tm_del(2)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id3>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp3 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr3 onchange=ch_name(this)><button onclick=tm_del(3)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id4>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp4 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr4 onchange=ch_name(this)><button onclick=tm_del(4)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id5>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp5 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr5 onchange=ch_name(this)><button onclick=tm_del(5)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id6>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp6 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr6 onchange=ch_name(this)><button onclick=tm_del(6)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id7>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp7 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr7 onchange=ch_name(this)><button onclick=tm_del(7)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id8>
+					<td>Start time:<input type=time sstep="1" value="00:00:00" id=tm_tp8 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr8 onchange=ch_name(this)><button onclick=tm_del(8)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id9>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp9 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr9 onchange=ch_name(this)><button onclick=tm_del(9)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id10>
+					<td>Start time:<input type=time sstep="1" value="00:00:00" id=tm_tp10 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr10 onchange=ch_name(this)><button onclick=tm_del(10)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id11>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp11 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr11 onchange=ch_name(this)><button onclick=tm_del(11)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id12>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp12 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr12 onchange=ch_name(this)><button onclick=tm_del(12)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id13>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp13 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr13 onchange=ch_name(this)><button onclick=tm_del(13)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id14>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp14 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr14 onchange=ch_name(this)><button onclick=tm_del(14)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id15>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp15 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr15 onchange=ch_name(this)><button onclick=tm_del(15)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id16>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp16 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr16 onchange=ch_name(this)><button onclick=tm_del(16)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id17>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp17 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr17 onchange=ch_name(this)><button onclick=tm_del(17)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id18>
+					<td>Start time:<input type=time sstep="1" value="00:00:00" id=tm_tp18 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr18 onchange=ch_name(this)><button onclick=tm_del(18)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id19>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp19 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr19 onchange=ch_name(this)><button onclick=tm_del(19)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id20>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp20 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr20 onchange=ch_name(this)><button onclick=tm_del(20)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id21>
+					<td>Start time:<input type=time sstep="1" value="00:00:00" id=tm_tp21 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr21 onchange=ch_name(this)><button onclick=tm_del(21)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id22>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp22 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr22 onchange=ch_name(this)><button onclick=tm_del(22)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr id=timer_id23>
+					<td>Start time:<input type=time step="1" value="00:00:00" id=tm_tp23 onchange=ch_name(this)></input></td><td>
+						duration:<input type=time step="1" value="00:00:00" id=tm_dr23 onchange=ch_name(this)><button onclick=tm_del(23)>Delete</button>
+					</td>
+					
+				</tr>
+				<tr>
+					
+				</tr>
+					
+			</tbody>
+		</table>
+		<td><button onclick=addTimerPoint()> Add Time Point</button></td>
+	
+	
+	
+	</td><td>
+		
+		<table id=dosing_calc>
+			<tbody>
+				<th colspan=3>Dosing calculator</th>
+				<tr><td>Pump power (ml/h) :</td><td> <input type=number min=0 value=0 id=calc_pp></td><td></td></tr>
+				<tr><td>Total amount (ml/day) :</td><td> <input type=number id=calc_ta value=0></td><td> </td></tr>
+				<tr><td>Number of time dosing  per day :</td><td><input type=number min=0 max=24 value=0 id=calc_nd></td><td></td></tr>
+				<tr><td>First dosing at:</td><td><input type=time step=1 value="00:00:00" id=calc_fd></td><td></td></tr>
+				<tr><td>Last dosing at:</td><td><input type=time step=1 value="23:00:00" id=calc_ld></td><td></td></tr>
+				<tr><td colspan=3><button onclick=dosing_calc()>Calculate TimePoint for current timer</button></tr>
+				<tr></tr>
+				<tr><td id=dosing_error></td></tr>
+				
+			</tbody>
+		</table></td></tr></tbody></table>	
+		
+		
+		
+		
+	</div>
+	
+	<div class="pages" id="schedule" style="display:none" align="center" onfocus=function {alert("onfocus")}>
+		<h1>-=Light schedule Page=-</h1>
+	    <table style="width:800px;height:4px;font-size:14px" border="0">
+	      <tbody>
+	        <tr style="height:15px">
+	          <td> <br>
+	          </td>
+	          <td> <input name="RTime" onchange="cRTime(this)" type="checkbox" class="button">RealTime
+	            editing <button id="b_constructor" onclick="show_page('constructor')" class="button">Light schedule wizard</button>
+				<button  onclick=ExportData() class="button">Export Data</button>
+				<button  onclick=ImportData() class="button">Import Data</button>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	    <table style="width:800px" border="1">
+	      <tbody>
+	        <tr>
+	          <td> <button id="_addTimePoint" onclick="addTimePoint()">Add Time
+	              Point:</button> </td>
+	          <td><br>
+	          </td>
+	          <td></td>
+	          <td>
+	            <select id="setdef" oninput="setDefault(this)">
+	              <option value="-1">Set LED value:</option>
+	              <option value="0">Default to current group</option>
+	              <option value="1">Default to current channel</option>
+	            </select>
+	          </td>
+	          <td><br>
+	          </td>
+	          <td style="text-align:right">
+	            <select id="st" onchange="timeInput(this)">
+	              <option value="-1">Current time</option>
+	              <option value="-2">PlayTime</option>
+	            </select>
+	          </td>
+	          <td style="text-align:right"><br>
+	          </td>
+	          <td style="text-align:right"><button onclick="delTimePoint()">Delete
+	              Time Point:</button></td>
+	        </tr>
+	      </tbody>
+	    </table>
+	    <table style="width:800px" border="0">
+	      <tbody>
+	        <tr>
+	          <td> Show:
+	            <select id="ch_gr" onchange="get_gr(this)" onload="fillGroup()">
+	            </select>
+	          </td>
+	          <td>
+	            <select id="sc" onchange="get_ch(this)" onload="fillme(this)">
+	            </select><input id="cc" onchange="ch_name(this)" style="width:20px" type="color">
+	          </td>
+	          <td><br>
+	          </td>
+	          <td><br>
+	          </td>
+	          <td><button id="move" onclick="addToGroup(this)">Move</button> to
+	            group:
+	            <select id="addToGroup">
+	            </select>
+	          </td>
+	          <td><br>
+	          </td>
+	          <td><br>
+	          </td>
+	          <td style="text-align:right"> <br>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	    
+	    <table style="width:800px" border="0">
+	      <tbody>
+	        <tr>
+	          <td>
+				  
+		  	    <input id="TimeSlider" name="time" min="0" max="1440" style="width:720px;left:40px;position:relative;border:2px solid green"
+		  	      value="720" oninput="timeInput(this)" ondblclick="timeDbClick()"
+		  	      type="range"> <input id="currentTime" oninput="timeInput(this)" style="width:85px;left:0px;top:0px;position:relative"
+		  	      disabled="disabled" type="time" size=7>
+				  
+				  <input min="0" max="4096" id="chValue" onchange="chRange(this)"
+				  	              style="left:47px;top:0px;position:relative" type="number">
+				  
+				  
+				  
+				  
+				  <svg id="idSVG" style="border:1px solid black;background:#E0FFFF"
+	              onmousedown="mouseDown(evt)" ondblclick="svgDbClick(evt)"
+	              onmousemove="cursorMove(evt)" preserveAspectRatio="xMaxYMax meet">
+				  
+	  			
+				  
+				  
+	              <text id="cursor1" fill="#0000ff" fill-opacity="0.9" font-size="13px"
+	                style="stroke:2"></text><text id="cursor2" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp0" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp1" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp2" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp3" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp4" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp5" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp6" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text><text id="temp7" fill="#0000ff" fill-opacity="0.9"
+	                font-size="13px"></text>
+	              <text id="cTime" fill="#0000ff" fill-opacity="0.9" font-size="13px"></text>
+	              <text id="cValue" fill="#0000ff" fill-opacity="0.9" font-size="13px"></text>
+	              <defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%"
+	                  fy="50%"><stop offset="0%" style="stop-color:red;stop-opacity:0"></stop><stop
+	                    offset="100%" style="stop-color:red;stop-opacity:1"></stop></radialGradient></defs>
+	              <line id="timeLine" x1="35" y1="0" x2="35" y2="700" style="stroke:rgb(255,0,0);stroke-width:2"
+	                fill-opacity="0.5"></line> 
+				
+	  			
+				
+				
+				
+				</svg><br>
+	          </td>
+	          <td> <input
+	              orient="vertical" style="width:10px;height:256px;-webkit-appearance:slider-vertical;writing-mode:bt-lr;background-color:#38B1D9"
+	              oninput=chRange(this) id="chValueR" min="0" max="4096" disabled="disabled"
+	              type="range"> </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	</div>
+	
+    <div class="pages" id="setup" style="display:none" align="center">
+		
+		
+    	<h1>-=WiFi Setup Page=-</h1> 
+		
+		<table style="text-align: left; width: 800px" border="0">
+			<tbody>
+				<tr>
+					<td   style="width: 50%" border="1" colspan="2">Mode
+					<select id=RunMode onchange=ch_name(this)>
+							<option value=0>Master
+							<option value=1>Slave
+							<option value=2>StandAlone
+						</select><br>
+						<div id=isMaster>
+							onFly send channels:<br>
+							<input disabled checked type=checkbox>LEDs</input><br>
+							
+							<input type=checkbox>Timers</input><br>
+							<input type=checkbox>Dosing</input><br>
+						</div>
+					
+					</td>
+					
+					<td  border="1" colspan="2">Master controller
+					
+						<select id=select_master disabled onchange=ch_name(this)>
+							<option value=255>None
+						</select><br>
+						<div id=isSlave>
+							onFly sync channels:<br>
+							<input disabled checked type=checkbox>LEDs</input><br>
+							
+							<input type=checkbox>Timers</input><br>
+							<input type=checkbox>Dosing</input><br>
+						</div>	
+					</td>
+					
+						
+				</tr>
+				<tr>
+					<th style="text-align: center; " colspan="2">WIFI Station:-><button onclick=sendWifi()>Apply</button>
+					</th>
+					<th style="text-align: center; " colspan="2">WiFi AP:-><button id=apply_ap onclick=sendAP()>Apply</button>
+					</th>	
+					
+				</tr>
+				<tr style="text-align: left; ">
+					<td>SSID:</td>
+					<td>
+						<select id=ssid>
+							<option index=-1 >Not Connected</option>
+						</select><button onclick=fillWifi() >Renew</button>
+					</td>
+					<td style="text-align: right; ">AP SSID:</td>
+					<td><input value="" id=ssid_ap></td>		
+				</tr>
+					
+				<tr>
+					<td>Password:</td>
+					<td><input id=password></td>
+					
+					<td style="text-align: right; ">AP Password:
+					<div id=ispasswdmatch>Fill Password</div>
+					
+					</td>
+					<td>
+						<input id=ap_passwd1 type=text oninput=ch_name(this)></input><br>
+						<input id=ap_passwd2 type=test oninput=ch_name(this)></input><br>
+					</td>
+				</tr>
+				<tr>
+					<td>Configure IPV4:</td>
+					<td>
+						<select id=ipv4 onchange=_dhcp(this)>
+							<option index=0>DHCP</option>
+							<option index=1>Manual</option>
+						</select>
+					</td>
+					<td style="text-align: right; ">AP IP Address:</td>
+					<td><input id=sslac_ip type=text value="192.168.32.254" pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}">	</td>	
+				</tr>
+				<tr>
+					<td>IP Address:</td>
+					<td><input id=ipaddr type=text value="0.0.0.0" disabled pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"></td>
+					<td style="text-align: right; ">AP IP netmask</td>
+					<td><input id=netmask_ap type=text value="255.255.255.0" pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"></td>	
+				</tr>
+				<tr>
+					<td>Subnet Mask:</td>
+					<td><input id=subnet type=text value="255.255.255.0"disabled pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"></td>
+					<td></td>
+					<td></td>	
+				</tr>
+				<tr>
+					<td>Router:</td>
+					<td><input id=gateway type=text value="0.0.0.0"disabled pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"></td>
+					<td></td>
+					<td></td>	
+				</tr>
+				<tr>
+					<td>DNS Server:</td>
+					<td><input id=dns type=text value="8.8.8.8"disabled pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"></td>
+					<td></td>
+					<td></td>	
+				</tr>	
+				
+				
+					
+			</tbody>
+		</table>
+		
+		
+		
+		
+		
+		<br>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	 
+  	</div>
+    
+
+  	
+	<div class="pages" id="esp32" align="center">
+		
+      <svg height="480" width="640">
+        <g>
+          <title></title>
+          <rect fill="#00007f" stroke="#000000" stroke-width="0" x="220" y="0" width="200"
+            height="400"
+            id="svg_1"
+            rx="10"
+            ry="10"></rect>
+          <rect fill="#0000ff" stroke="#000000" stroke-width="0" x="95" y="322.4"
+            width="1"
+            height="0"
+            id="svg_2"></rect>
+          <rect fill="#3f3f3f" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+            stroke-linecap="null"
+            x="255"
+            y="0"
+            width="130"
+            height="200"
+            id="svg_3"
+            rx="5"
+            ry="5"></rect>
+          <rect fill="#bfbfbf" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+            stroke-linecap="null"
+            x="256"
+            y="71"
+            width="128"
+            height="128"
+            id="svg_5"
+            rx="3"
+            ry="3"></rect>
+          <g>
+            <title> Setup </title>
+            <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+              stroke-linecap="null"
+              x="320.00001"
+              y="140"
+              font-size="24"
+              font-family="serif"
+              text-anchor="middle"
+              xml:space="preserve"
+              font-weight="bold"
+              onmouseover="cursor(0)"
+              onmouseout="cursor(1)"
+              id="show0"
+              onclick="show_page('sin')">ESP32</text>
+          </g>
+          <g fill="#ff7f00" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+            stroke-linecap="null"
+            r="4">
+            <circle cx="227" cy="20" r="4"></circle>
+            <circle cx="227" cy="40" r="4"></circle>
+            <circle cx="227" cy="60" r="4"></circle>
+            <circle cx="227" cy="80" r="4"></circle>
+            <circle cx="227" cy="100" r="4"></circle>
+            <circle cx="227" cy="120" r="4"></circle>
+            <circle cx="227" cy="140" r="4"></circle>
+            <circle cx="227" cy="160" r="4"></circle>
+            <circle cx="227" cy="180" r="4"></circle>
+            <circle cx="227" cy="200" r="4"></circle>
+            <circle cx="227" cy="220" r="4"></circle>
+            <circle cx="227" cy="240" r="4"></circle>
+            <circle cx="227" cy="260" r="4"></circle>
+            <circle cx="227" cy="280" r="4"></circle>
+            <circle cx="227" cy="300" r="4"></circle>
+            <circle cx="227" cy="320" r="4"></circle>
+            <circle cx="227" cy="340" r="4"></circle>
+            <circle cx="227" cy="360" r="4"></circle>
+            <circle cx="1227" cy="380" r="3"></circle>
+            <circle cx="227" cy="380" r="4"></circle>
+            <circle cx="413" cy="20" r="4"></circle>
+            <circle cx="413" cy="40" r="4"></circle>
+            <circle cx="413" cy="60" r="4"></circle>
+            <circle cx="413" cy="60" r="4"></circle>
+            <circle cx="413" cy="80" r="4"></circle>
+            <circle cx="413" cy="100" r="4"></circle>
+            <circle cx="413" cy="120" r="4"></circle>
+            <circle cx="413" cy="140" r="4"></circle>
+            <circle cx="413" cy="160" r="4"></circle>
+            <circle cx="413" cy="180" r="4"></circle>
+            <circle cx="413" cy="200" r="4"></circle>
+            <circle cx="413" cy="220" r="4"></circle>
+            <circle cx="413" cy="240" r="4"></circle>
+            <circle cx="413" cy="260" r="4"></circle>
+            <circle cx="413" cy="280" r="4"></circle>
+            <circle cx="413" cy="300" r="4"></circle>
+            <circle cx="413" cy="320" r="4"></circle>
+            <circle cx="413" cy="340" r="4"></circle>
+            <circle cx="413" cy="360" r="4"></circle>
+            <circle cx="413" cy="380" r="4"></circle> </g>
+          <g>
+            <title></title>
+            <circle id="pimp" r="3" cy="185" cx="270" stroke-linecap="null" stroke-linejoin="null"
+              stroke-width="0"
+              stroke="#000000"
+              fill="#000000"></circle>
+          </g>
+          <rect fill="#bfbfbf" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+            stroke-linecap="null"
+            x="304"
+            y="377"
+            width="32"
+            height="23"
+            id="svg_51"
+            rx="3"
+            ry="3"></rect>
+          
+            <rect fill="#bfbfbf" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+              stroke-linecap="null"
+              x="257"
+              y="374"
+              width="16"
+              height="26"
+              id="svg_52"></rect>
+            <circle fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+              stroke-linecap="null"
+              cx="265"
+              cy="387"
+              r="5"
+              id="svg_54"></circle>
+          
+            <rect fill="#bfbfbf" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+              stroke-linecap="null"
+              x="367"
+              y="374"
+              width="16"
+              height="26"
+              id="svg_53"></rect>
+            <circle fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null"
+              stroke-linecap="null"
+              cx="375"
+              cy="387"
+              r="5"
+              id="svg_55"></circle>
+          
+          <g font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Monospace"
+            font-size="10"
+            stroke-linecap="null"
+            stroke-linejoin="null"
+            stroke-width="0"
+            stroke="#000000"
+            fill="grey">
+            <text y="23" x="243">3V3</text>
+            <text y="43" x="243">EN</text>
+            <text y="63" x="243">SP</text>
+            <text y="83" x="243">SN</text>
+            <text y="103" x="243">G34</text>
+            <text y="123" x="243">G35</text>
+            <text y="143" x="243" fill="#00ff00">G32</text>
+            <text font-size="10" y="163" x="243" fill="#00ff00">G33</text>
+            <text y="183" x="243" fill="#00ff00">G25</text>
+            <text y="203" x="243" fill="#00ff00">G26</text>
+            <text y="223" x="243" fill="#00ff00">G27</text>
+            <text y="243" x="243" fill="#00ff00">G14</text>
+            <text y="263" x="243" fill="#00ff00">G12</text>
+            <text f="" y="283" x="243" fill="white">GND</text>
+            <text f="" y="303" x="243" fill="#00ff00">G13</text>
+            <text y="323" x="243">SD2</text>
+            <text y="343" x="243">SD3</text>
+            <text y="362" x="243">CMD</text>
+            <text y="383" x="243">V5</text>
+            <text y="23" x="396"fill="white">GND</text>
+            <text y="43" x="396" fill="#00ff00">G23</text>
+            <text y="63" x="396" fill="#00ff00">G22</text>
+            <text y="83" x="396">TXD</text>
+            <text y="103" x="396">RXD</text>
+            <text f="" y="123" x="396" fill="#00ff00">G21</text>
+            <text y="143" x="396"fill="white">GND</text>
+            <text f="" y="162" x="396" fill="#00ff00">G19</text>
+            <text y="183" x="396" fill="#00ff00">G18</text>
+            <text y="203" x="396" fill="#00ff00">G5</text>
+            <text y="223" x="396" fill="#7fff00">G17</text>
+            <text y="243" x="396" fill="#00ff00">G16</text>
+            <text y="263" x="396" fill="#00ff00">G4</text>
+            <text y="283" x="396">G0</text>
+            <text y="303" x="396" fill="#00ff00">G2</text>
+            <text y="323" x="396" fill="#00ff00">G15</text>
+            <text y="343" x="396">SD1</text>
+            <text y="363" x="396">SD0</text>
+            <text y="383" x="396">CLK</text> </g>
+          <g fill=grey stroke="#00007f" stroke-linejoin="round" onmouseover="cursor(0)"
+            onmouseout="cursor(1)" id="show1">
+			<g>
+            	<rect x="0" y="130" width="220" height="20" id="ch_0" rx="10" ry="10"></rect>
+				
+			</g>
+			<g>
+				<rect x="0" y="150" width="220" height="20" id="ch_1" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect f="" x="0" y="170" width="220" height="20" id="ch_2" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="0" y="190" width="220" height="20" id="ch_3" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="0" y="210" width="220" height="20" id="ch_4" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="0" y="230" width="220" height="20" id="ch_5" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="0" y="250" width="220" height="20" id="ch_6" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="0" y="290" width="220" height="20" id="ch_7" rx="10" ry="10"></rect>
+            </g>
+            <g>
+            	<rect x="420" y="150" width="220" height="20" id="ch_15" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="170" width="220" height="20" id="ch_14" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="190" width="220" height="20" id="ch_13" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="210" width="220" height="20" id="ch_12" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="230" width="220" height="20" id="ch_11" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="250" width="220" height="20" id="ch_10" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="290" width="220" height="20" id="ch_9" rx="10" ry="10"></rect>
+            </g>
+			<g>
+				<rect x="420" y="310" width="220" height="20" id="ch_8" rx="10" ry="10"></rect>
+			</g>
+          </g>
+		  <g fill="#aaffaa" stroke="#00007f" stroke-linejoin="round" >
+            <rect x="420" y="50" width="62" height="20" id="svg_101" rx="10" ry="10"></rect>
+            <rect x="450" y="80" width="160" height="20" name="RTC" rx="10" ry="10"></rect>
+            <rect x="420" y="110" width="62" height="20" id="svg_102" rx="10" ry="10"></rect>  
+		  </g>
+		  
+		  
+          <g fill="#000000" stroke="#000000" stroke-width="0" font-size="12" font-family="Monospace"
+            xml:space="preserve"
+            font-weight="bold"
+			onmouseover="cursor(0)"
+			onmouseout="cursor(1)"
+			
+			
+			
+			>
+            <g text-anchor="left">
+              <text x="4" y="143" id="chid0">CH0</text>
+              <text x="4" y="163" id="chid1">CH1</text>
+              <text x="4" y="183" id="chid2">CH2</text>
+              <text x="4" y="203" id="chid3">CH3</text>
+              <text x="4" y="223" id="chid4">CH4</text>
+              <text x="4" y="243" id="chid5">CH5</text>
+              <text x="3" y="263" id="chid6">CH6</text>
+              <text x="4" y="303" id="chid7">CH7</text> </g>
+            <g text-anchor="right">
+              <text x="616" y="323" id="chid8">CH8</text>
+              <text x="616" y="303" id="chid9">CH9</text>
+              <text x="610" y="263" id="chid10">CH10</text>
+              <text x="610" y="243" id="chid11">CH11</text>
+              <text x="610" y="223" id="chid12">CH12</text>
+              <text x="610" y="203" id="chid13">CH13</text>
+              <text x="610" y="183" id="chid14">CH14</text>
+              <text x="610" y="163" id="chid15">CH15</text> </g> </g>
+          <g fill="#000000" stroke="#000000" stroke-width="0" font-size="12" font-family="Monospace"
+            text-anchor="left"
+            xml:space="preserve"
+            font-weight="bold">
+            <text x="425" y="123" id="svg_127">I2C:SDA</text>
+            <text x="455" y="93" id="RTC">RTC:</text>
+            <text x="425" y="63" id="svg_128">I2C:SCL</text>
+	      </g>
+		  <g fill="#aaffaa" stroke="#00007f" stroke-linejoin="round" onmouseover="cursor(0)"
+            onmouseout="cursor(1)" id="g_sensors">
+			<rect x="420" y="30" width="83" height="20" id="svg_100" rx="10" ry="10" fill=grey></rect>
+            <text y="43" x="425" id=ds18b20 fill="#000000" stroke="#000000" stroke-width="0" font-size="12" font-family="Monospace"
+            text-anchor="left"
+            xml:space="preserve"
+            font-weight="bold"
+			
+			>DS18B20</text>
+		 </g>
+          <g fill="#000000" stroke="#000000" stroke-width="0" font-size="12" font-family="Monospace"
+            text-anchor="left"
+            xml:space="preserve"
+			onmouseover="cursor(0)"
+			onmouseout="cursor(1)"
+			
+			
+			>
+            <text x="28" y="143" id="n0"></text>
+            <text x="28" y="163" id="n1"></text>
+            <text x="28" y="183" id="n2"></text>
+            <text x="28" y="203" id="n3"></text>
+            <text x="28" y="223" id="n4"></text>
+            <text x="28" y="243" id="n5"></text>
+            <text x="28" y="263" id="n6"></text>
+            <text x="28" y="303" id="n7"></text>
+            <text x="454" y="323" id="n8"></text>
+            <text x="454" y="303" id="n9"></text>
+            <text x="454" y="263" id="n10"></text>
+            <text x="454" y="243" id="n11"></text>
+            <text x="454" y="223" id="n12"></text>
+            <text x="454" y="203" id="n13"></text>
+            <text x="454" y="183" id="n14"></text>
+            <text x="454" y="163" id="n15"></text> </g>
+          <g fill="#0066ff" stroke="#000000" stroke-width="0" font-size="12" font-family="Monospace"
+            xml:space="preserve"
+            font-weight="bold"
+			onmouseover="cursor(0)"
+			onmouseout="cursor(1)"
+			
+			>
+            <g text-anchor="righ">
+              <text x="190" y="143" id="v0"></text>
+              <text x="190" y="163" id="v1"></text>
+              <text x="190" y="183" id="v2"></text>
+              <text x="190" y="203" id="v3"></text>
+              <text x="190" y="223" id="v4"></text>
+              <text x="190" y="243" id="v5"></text>
+              <text x="190" y="263" id="v6"></text>
+              <text x="190" y="303" id="v7"></text> </g>
+            <g text-anchor="left">
+              <text x="422" y="323" id="v8"></text>
+              <text x="422" y="303" id="v9"></text>
+              <text x="422" y="263" id="v10"></text>
+              <text x="422" y="243" id="v11"></text>
+              <text x="422" y="223" id="v12"></text>
+              <text x="422" y="203" id="v13"></text>
+              <text x="422" y="183" id="v14"></text>
+              <text x="422" y="163" id="v15"></text> </g> </g>
+          <g>
+            <title>Sync time from PC</title>
+            <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Monospace"
+              font-size="16"
+              y="160"
+              x="320"
+              id="time"
+              onmouseover="cursor(0)"
+              onmouseout="cursor(1)"
+              onclick="setTime()">00:00:00</text>
+			  
+              <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Monospace"
+                font-size="16"
+                y="90"
+                x="320"
+                id="uptime"
+                >00:00:00</text>
+			  
+          </g> </g>
+		
+		
+        <g font-size="12" font-family="Monospace" text-anchor="middle" font-weight="bold">
+		  
+        <g font-size="12" font-family="Monospace" text-anchor="middle" font-weight="bold">
+			
+			
+			
+			
+          <title> Setup WiFi </title>
+          
+	  	<g font-size="12" font-family="Monospace" text-anchor="middle" font-weight="bold" onmouseover="cursor(0)"
+            onmouseout="cursor(1)" onclick="show_page('setup')">
+			<rect fill="#3f3f3f" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="255" y="0" width="130" height="72"  rx="5" ry="5"></rect>
+			<text id=RSSI x=365 y=10 fill=grey>RSSI:</text>
+            <text id="st1" x="320" y="25">SSID: None</text>
+            <text id="st2" x="320" y="40">IP: None</text>
+            <text id="st3" x="320" y="55"></text> </g>
+			
+		</g>	
+	  	<text  x=320 y=220 fill=Gainsboro>Build on:</text>
+		<text  id=stamp_d x=320 y=235 fill=Gainsboro >2018-01-01</text>
+		<text  id=stamp_t x=320 y=250 fill=Gainsboro >23-59-59</text>
+		<text  x=320 y=265 fill=Gainsboro >&copy 2018</text>
+		<text  font-size="10" x=320 y=280 fill=Gainsboro >bbasil2012@gmail.com</text>
+	  
+	  </svg>
+        </div>
+		
+		<div class="pages" id="gpio_setup" style="display:none" align="center">
+			<h1>-=GPIO Setup Page=-</h1>
+	<table style="width: 800px;text-align: center;" border="1">
+      <tbody>
+        <tr>
+          <td style="width: 1px;" >CH_ID</td>
+          <td style="width: 1px;">GPIO</td>
+          <td style="width: 1px;">NAME</td>
+          <td style="width: 1px;">TYPE</td>
+          <td style="width: 1px;">PWM_FREQ</td>
+          <td style="width: 1px;">PWM_DEPT</td>
+          <td style="width: 1px;">Color Legend</td>
+          <td style="width: 1px;">Inverted</td>
+        </tr>
+        <tr id="r0">
+          <td >0</td>
+          <td><div id=gpio0> <br></div>
+          </td>
+          <td><input id="gpio_name0" onchange="ch_name(this)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type0" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1 >Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq0" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept0" onchange="ch_name(this)" selected="4096">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color0" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv0" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r1">
+          <td >1</td>
+          <td> <div id=gpio1></div>
+          </td>
+          <td><input id="gpio_name1" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type1" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq1" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept1" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color1" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv1" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r2">
+          <td>2</td>
+          <td> <div id=gpio2></div></div>
+          </td>
+          <td><input id="gpio_name2" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type2" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq2" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept2" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color2" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv2" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r3">
+          <td>3</td>
+          <td> <div id=gpio3></div>
+          </td>
+          <td><input id="gpio_name3" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type3" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq3" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept3" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color3" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv3" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r4">
+          <td>4</td>
+          <td> <div id=gpio4></div>
+          </td>
+          <td><input id="gpio_name4" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type4" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq4" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept4" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color4" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv4" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r5">
+          <td>5</td>
+          <td> <div id=gpio5></div>
+          </td>
+          <td><input id="gpio_name5" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type5" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq5" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept5" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color5" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv5" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r6">
+          <td>6</td>
+          <td> <div id=gpio6></div>
+          </td>
+          <td><input id="gpio_name6" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type6" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq6" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept6" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color6" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv6" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r7">
+          <td>7</td>
+          <td> <div id=gpio7></div>
+          </td>
+          <td><input id="gpio_name7" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type7" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq7" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept7" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color7" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv7" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r8">
+          <td>8</td>
+          <td> <div id=gpio8></div>
+          </td>
+          <td><input id="gpio_name8" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type8" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq8" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept8" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color8" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv8" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r9">
+          <td>9</td>
+          <td> <div id=gpio9></div>
+          </td>
+          <td><input id="gpio_name9" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type9" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq9" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept9" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color9" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv9" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r10">
+          <td>10</td>
+          <td> <div id=gpio10></div>
+          </td>
+          <td><input id="gpio_name10" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type10" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq10" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept10" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color10" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv10" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r11">
+          <td>11</td>
+          <td> <div id=gpio11></div>
+          </td>
+          <td><input id="gpio_name11" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type11" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq11" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept11" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color11" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv11" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r12">
+          <td>12</td>
+          <td> <div id=gpio12></div>
+          </td>
+          <td><input id="gpio_name12" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type12" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq12" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept12" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color12" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv12" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r13">
+          <td>13</td>
+          <td> <div id=gpio13></div>
+          </td>
+          <td><input id="gpio_name13" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type13" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq13" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept13" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color13" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv13" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r14">
+          <td>14</td>
+          <td> <div id=gpio14></div>
+          </td>
+          <td><input id="gpio_name14" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type14" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+            </select>
+          </td>
+          <td><input id="freq14" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept14" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color14" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv14" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+        <tr id="r15">
+          <td>15</td>
+          <td> <div id=gpio15></div>
+          </td>
+          <td><input id="gpio_name15" onchange="ch_name(this,0)" maxlength="32" size="34"
+              type="text"></td>
+          <td>
+            <select id="type15" onchange="ch_name(this)">
+              <option value=0>LED PWM</option>
+              <option value=1>Fan PWM</option>
+              <option value=2>Dosing</option>
+              <option value=3>Timer</option>
+			  <option value=255>Noting</option>
+			  
+            </select>
+          </td>
+          <td><input id="freq15" oninput="ch_name(this)" min="100" max="19500" step="100"
+              value="19500" type="number"></td>
+          <td>
+            <select id="dept15" onchange="ch_name(this)">
+              <option>2</option>
+              <option>4</option>
+              <option>8</option>
+              <option>16</option>
+              <option>32</option>
+              <option>64</option>
+              <option>128</option>
+              <option>256</option>
+              <option>512</option>
+              <option>1024</option>
+              <option>2048</option>
+              <option selected="selected">4096</option>
+              <option>8192</option>
+            </select>
+          </td>
+          <td><input id="color15" onchange="ch_name(this)" type="color"></td>
+          <td><input id="inv15" onchange="ch_name(this)" type="checkbox"></td>
+        </tr>
+      </tbody>
+    </table>
+	</div>	
+		
+    
+  </body>
+</html>
+
+<script>
+	//document.getElementById("sin").style.display="none";
+	//document.getElementById("setup").style.display="none";
+	var _ip="";
+	_URL="https://raw.githubusercontent.com/bbasil2012/SSLAC16/main/latest/";
+	_HTML="data/index.txt";
+	_FirmWare="bin/4mb/version";
+	var offset;
+	var Current_ch=0,Current_tp=-2,Current_gr=255;
+	var SVG_w="770";
+	var SVG_h="340";
+	var shift=40;
+	var svgNS="http://www.w3.org/2000/svg";
+	var _prg=0;
+	var group;
+	var i=0;
+	var gpio=[23,22,21,19,18,5,17,16,4,2,15,13,12,14,27,26,25,33,32];
+	var options=["","","","","","","","","","","","","","","","","I2C SDA","I2C SCL","1Wire DATA"];  
+	var dosing_tp=[0,5400,10800,16200,16200,21600,27000,37800,43200,48600,54000,59400,64800,70200,75600,81000];      
+	var Channels=[];
+	var group=[];
+	var info=[];
+	var dosing=[];
+	var timers=[];
+	var fans=[];
+	var sensors=[];
+	var controllers=[];
+	var isRT=false;
+	var renew=1;
+	var alarm_flag=0;
+	
+	var canGetInfo=true;
+	var canGetSensor=true;
+	
+	
+	setInterval(getAll,1000);
+	//setTimeout(getCh,1000);
+	var url="";
+	if (_ip=="") url="";else url="http://"+_ip;
+	//console.log("url="+url);
+	var sinData=[0.00,0.21,0.41,0.59,0.74,0.87,0.95,1.00,1.00,0.95,0.87,0.74,0.59,0.41,0.21,0.00];
+	var Color=["#00FFFF","#000000","#0000FF","#FF00FF","#808080","#008000","#00FF00","#800000","#000080","#808000","#800080","#FF0000","#C0C0C0","#008080","#FFFFFF","#FFFF00"];
+	var minValue=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+	var maxValue=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+	var sender=new Event("");
+	
+	//getCh();
+	
+	//console.log("RunMode:"+document.getElementById("RunMode").value);
+	//setTime();
+	//alert("Test");
+	
+var messageHandler = function(event) {
+	
+    //console.log('Message received:');
+	//console.log(event.data[0]);
+    /*
+	try {
+	    //event.source.postMessage("Message from webpage", "*");
+    	    //console.log('message send back to get catched by webview');
+    	    //console.log(event.data);
+    	    //console.log(event);
+        } 
+        catch(error) {
+    	     //console.log("Error on postMessage back to APP" + error);
+        }
+		*/
+	sender=event;
+	console.log("sender:",event);
+	console.log("event:",event);
+	if (event.data.ip!=undefined){
+		if (event.data.ip!=""){
+			_ip=event.data.ip;
+			url="http://"+_ip;
+			reload(event);
+			console.log("window.top:",window.top);
+			/**while (info.length!=0){
+				console.log("no info");
+				event.source.postMessage("Waiting for info...", "*");
+				
+			}
+				*/
+			//return;
+		}
+	}
+	
+	if (_ip!=""){
+		if (event.source != undefined) event.source.postMessage(info, "*");
+		console.log("sended info:",info);
+	}
+	
+		
+};
+window.addEventListener('message', messageHandler, false);	
+	
+//setTimeout(alarm,500);
+setInterval(alarm,500);
+function alarm(){
+	//console.log("alarm");
+	if (info.length==0) return;
+	if (Channels.length==0) return;
+	var _flag=false;
+	for (var i=0;i<8;i++){
+		if (info.alarms[i]==1) _flag=true;
+	}
+	if (!_flag) return;
+	if (document.getElementById("svg_100").style.fill=="rgb(170, 255, 170)"){
+		
+		document.getElementById("svg_100").style.fill="#ff0000";
+		
+	} else {
+		
+		document.getElementById("svg_100").style.fill="#aaffaa";
+		
+	}
+	//console.log(group)
+	for (var i=0;i<16;i++){
+
+		if ((info.alarms[Channels[i].group]==1)& (Channels[i].type==0)){
+			console.log("fill:",document.getElementById("ch_"+i).style.fill);
+			console.log ("i:",i);
+			if (document.getElementById("ch_"+i).style.fill=="rgb(170, 255, 170)"){
+				
+				document.getElementById("ch_"+i).style.fill="#ff0000";
+				
+			} else {
+				
+				document.getElementById("ch_"+i).style.fill="#aaffaa";
+				
+			}
+		}
+	}
+}
+	
+	
+	function ret_wizard(){
+		
+		var _req="/set?";
+		for (var i=0;i<16;i++){
+	
+			if (Channels[i].type==0){
+				_req+="manual"+i+"=-1&"; 
+			}
+		}
+		_req=_req.substring(0,_req.length-1);
+		if (parseInt(Current_tp)==-2) sendGET(_req);
+		//console.log(_req);
+		//console.log(Current_tp);
+		//reload();
+		
+		show_page('schedule');
+	}
+	
+	function ImportData(){
+		alert("Not implimented yet");
+	}
+	function ExportData(){
+		alert("Not implimented yet");
+		return;
+		var _export="{";
+		for (var i=0;i<16;i++){
+			if (Channels[i].type==0){
+				_export+="\"id\":"+i+",\n";
+				_export+="\"value\":["+Channels[i].value+"],\n";
+				_export+="\"tp\":["+Channels[i].tp+"],\n";
+			}
+		}
+		_export+="}";
+		//console.log(_export)
+	}
+	function getMaxOfArray(numArray) {
+		var _ret=numArray[0];
+		
+		for (var ii=1;ii<numArray.length;ii++){
+			if (_ret<numArray[ii]) _ret=numArray[ii];
+			
+		}
+		//console.log("_ret:"+_ret)
+		return _ret;
+	}
+	
+	function getMinOfArray(numArray) {
+		var _ret=numArray[0];
+		var _ret=numArray[0];
+		
+		for (var ii=1;ii<numArray.length;ii++){
+			if ((_ret>numArray[ii])&(numArray[ii]!=-1)) _ret=numArray[ii];
+			
+		}
+		//console.log("_ret:"+_ret)
+		return _ret;
+	}
+	
+	
+	function make4point(_ch){
+		var sunrise=document.getElementById("sunrise").value;
+		var _4pday=document.getElementById("4pday").value;
+		var sunset=document.getElementById("sunset").value;
+		var _4pnigth=document.getElementById("4pnigth").value;
+		
+		
+		for (ii=0;ii<16;ii++){
+			Channels[_ch].value[ii]=-1;
+			Channels[_ch].tp[ii]=0;
+		}
+		Channels[_ch].value[0]=parseInt(minValue[_ch]);
+		Channels[_ch].value[1]=parseInt(maxValue[_ch]);
+		Channels[_ch].value[2]=Channels[_ch].value[1];
+		Channels[_ch].value[3]=Channels[_ch].value[0];
+		//console.log(Channels[_ch].value);
+		
+		Channels[_ch].tp[0]=parseInt(sunrise.split(":")[0])*3600+parseInt(sunrise.split(":")[1])*60;
+		Channels[_ch].tp[1]=parseInt(_4pday.split(":")[0])*3600+parseInt(_4pday.split(":")[1])*60;
+		Channels[_ch].tp[2]=parseInt(sunset.split(":")[0])*3600+parseInt(sunset.split(":")[1])*60;
+		Channels[_ch].tp[3]=parseInt(_4pnigth.split(":")[0])*3600+parseInt(_4pnigth.split(":")[1])*60;
+		//console.log(Channels[_ch].value);
+		//console.log(Channels[_ch].tp);
+		redrawChannel(_ch);
+		sendCh(_ch);
+		sendGET("/set?manual"+_ch+"=-1");
+		
+		
+	}
+	
+	
+	function makeSinWave(_ch){
+		//return;
+		//console.log("sinwave _ch:"+_ch);
+		var sin_sun=document.getElementById("sin_sun").value;
+		var sin_nigth=document.getElementById("sin_nigth").value;
+		//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
+		sin_sun=parseInt(sin_sun.split(":")[0])*3600+parseInt(sin_sun.split(":")[1])*60;
+		sin_nigth=parseInt(sin_nigth.split(":")[0])*3600+parseInt(sin_nigth.split(":")[1])*60;
+		//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
+		//console.log("sin_sun:"+sin_sun);
+		//console.log("sin_nigth:"+sin_nigth);
+		var delta=(sin_nigth-sin_sun)/15;
+		var deltaGr=12; // 180/15
+		var a=parseInt(minValue[_ch]);
+		
+		var b=parseInt(maxValue[_ch])-parseInt(minValue[_ch]);
+		//console.log("a:"+a);
+		//console.log("b:"+b);
+		//console.log("delta:"+delta);
+		//console.log("deltaGr:"+deltaGr);
+		//console.log("****************");
+		//console.log("ch"+_ch);
+		//console.log("a:"+a);
+		//console.log("b:"+b);
+		//console.log("deltaGr:"+deltaGr);
+		//console.log("MinValue:"+minValue[_ch]);
+		//console.log("MaxValue:"+maxValue[_ch]);
+		//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
+		//console.log("****************");
+		
+		for (var i=0;i<16;i++){
+			var _tp=parseInt(sin_sun+delta*i);
+			var _value=a+b*Math.sin(i*deltaGr * Math.PI / 180);
+			/*
+			var _ddd=Math.PI / 180;
+			//console.log("-----------"+i+"-------------")
+			//console.log("Math.PI / 180:"+_ddd);
+			_ddd=_ddd*deltaGr;
+			//console.log("_ddd*deltaGr:"+_ddd);
+			_ddd=_ddd*i;
+			//console.log("_ddd*i:"+_ddd);
+			_ddd=Math.sin(_ddd);
+			//console.log("Math.sin(_ddd):"+_ddd);
+			_ddd=b*_ddd;
+			//console.log("b*_ddd;:"+_ddd);
+			_ddd=a+_ddd;
+			//console.log("a+_ddd:"+_ddd);
+			//console.log("_value:"+_value);
+			
+			
+			
+			//console.log(deltaGr*_);
+			//console.log(i)
+			*/
+			if (_value>4095) {
+				/*
+				//console.log("value:"+_value);
+				//console.log("ch"+_ch);
+				//console.log("a:"+a);
+				//console.log("b:"+b);
+				//console.log("deltaGr:"+deltaGr);
+				//console.log("MinValue:"+minValue[_ch]);
+				//console.log("MaxValue:"+maxValue[_ch]);
+				//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
+				*/
+			}
+			Channels[_ch].tp[i]=_tp;
+			if ((i==7) || (i==8)) Channels[_ch].value[i]=maxValue[_ch];
+			else Channels[_ch].value[i]=Math.round(_value);
+			//console.log(Math.sin(i*deltaGr * Math.PI / 180));
+			//console.log("sin:"+Math.sin(i*deltaGr));
+			//console.log("point"+i+":"+_tp+"; value:"+_value);
+			//console.log("grad:"+i*deltaGr);
+			//var _value=a+b*Math.sin(i*deltaGr);
+			//console.log("value:"+_value)
+		}
+		//console.log(Channels[_ch]);
+		redrawChannel(_ch);
+		sendCh(_ch);
+		sendGET("/set?manual"+_ch+"=-1");
+	}
+	function ligthWizard(){
+		//console.log(minValue);
+		//console.log(maxValue);
+		
+		var is4point=document.getElementById("4point").checked;
+		var isSinWave=!is4point;
+		//var isSinWave=document.getElementById("sin_sun").checked
+		
+		for (var j=0;j<16;j++){
+			//console.log("_ch:"+j);
+			if (document.getElementById("ch_const"+j).checked){
+				if (is4point) {
+					//console.log("_ch:"+j+ "is checked");
+					make4point(j);
+					
+				 }
+				 if (isSinWave){
+					//console.log("_ch:"+j+ " makeSinWave");
+					makeSinWave(j);
+				}
+					
+			}
+		}
+		
+		
+	}
+	function show_controller(ip){
+		_ip=ip;
+		url="http://"+_ip;
+		reload();
+		show_page('esp32');
+		//console.log(ip);
+		//window.location.href = "http://"+_ip;
+	}
+	
+	function getControllers(){
+		//console.log("req Sensors");
+		//console.log(Channels[Current_ch].tp);
+		var xhr = new XMLHttpRequest();
+		xhr.timeout=500;
+		//console.log(url+"/get?channels=all");
+		xhr.open("GET", url+"/get?controllers=all", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	  	    controllers=JSON.parse(this.responseText);
+			if (document.getElementById("setup").style.display=="none") fillControllers();
+			//console.log(controllers);
+			document.getElementById("controllers").disabled=false;
+			//document.getElementById("g_sensors").onclick=function (){show_page('sensors_page')}
+			//console.log(document.getElementById("button_t").onclick);
+			//document.getElementById("button_t").setAttribute( "onClick","window.location.href = 'http:/192.168.32.254';");
+			//document.getElementById("button_t").innerHTML="Click me";
+			
+			for (var i=0;i<16;i++){
+				if (controllers[i].id=="") {
+					document.getElementById("contr"+i).style.display="none";
+					
+				}
+				
+				else {
+					//console.log(controllers);
+					document.getElementById("contr"+i).style.display="";
+					document.getElementById("contr"+i).innerHTML=controllers[i].c_descr+"<br>";
+					document.getElementById("contr"+i).innerHTML+="ID:"+controllers[i].id+"<br>";
+					if (controllers[i].RunMode==0) document.getElementById("contr"+i).innerHTML+="Mode: Master<br>";
+					if (controllers[i].RunMode==1) document.getElementById("contr"+i).innerHTML+="Mode: Slave<br>";
+					if (controllers[i].RunMode==2) document.getElementById("contr"+i).innerHTML+="Mode: Standalone<br>";
+					if (controllers[i].isAlive==0) document.getElementById("contr"+i).disabled=true; else document.getElementById("contr"+i).disabled=false;
+					var _onclick=controllers[i].ip;
+					document.getElementById("contr"+i).onclick=function() { show_controller(_onclick);};
+					document.getElementById("select_master");
+					
+					/*
+					if (controllers[i].isAlive==0) {
+						document.getElementById("c_status"+i).innerHTML="Status: Off line";
+						document.getElementById("c_td"+i).style.backgroundColor="grey";
+						//console.log(controllers[i]);
+					}
+					if (controllers[i].isAlive==1) {
+						document.getElementById("c_status"+i).innerHTML="Status: On line";
+						document.getElementById("c_td"+i).style.backgroundColor="#E0FFFF";
+					}
+					if (controllers[i].isAlive==255) document.getElementById("c_status"+i).innerHTML="Status: Alarm !!!";
+					document.getElementById("c_ref"+i).innerHTML=controllers[i].c_descr
+					document.getElementById("c_ref"+i).href="http://"+controllers[i].ip;
+					//console.log(document.getElementById("c_ref"+i).innerHTML);
+					//console.log(document.getElementById("c_ref"+i).href);
+					//document.getElementById().innerHTML=controllers[i].c_descr;
+					//document.getElementById().innerHTML=controllers[i].ip;
+					*/
+				}
+			}
+			
+		} 
+	}
+	
+	
+	
+	function reload(){
+		document.getElementById("svg_100").setAttribute("style","fill:grey");
+		document.getElementById("ssid_ap").value="";
+		for (var i=0;i<16;i++){
+			document.getElementById("ch_"+i).setAttribute("style","fill:grey");
+		}
+		document.getElementById("controllers").disabled=true;
+		controllers=[];
+		Channels=[];
+		group=[];
+		info=[];
+		dosing=[];
+		timers=[];
+		fans=[];
+		sensors=[];
+		getAll();
+		
+	}
+	setInterval(getSensors,3000);
+	setInterval(getControllers,5000);
+	function recalcDosing(){
+		var _tm=parseInt(document.getElementById("s_timer").value);
+		var _pp=parseInt(document.getElementById("calc_pp").value);
+		var _ta=parseInt(document.getElementById("calc_ta").value);
+		var _total=0;
+		for (var i=0;i<timers[_tm].duration.length;i++){
+			_total+=parseInt(timers[_tm].duration[i]);
+		}
+		_total=_total*_pp/3600;
+		//var _error=
+		document.getElementById("dosing_error").innerHTML="Total:"+Math.round10(_total,-1)+"(ml/day)";
+	}
+	function retSeconds(value){
+		//console.log("value:"+value);
+		if (value.split(":").length==2) return parseInt(value.split(":")[0])*3600+parseInt(value.split(":")[1])*60;
+		if (value.split(":").length==3) return parseInt(value.split(":")[0])*3600+parseInt(value.split(":")[1])*60+parseInt(value.split(":")[2]);
+	}
+	function dosing_calc(){
+		var new_tp=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+		var new_dr=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		var _tm=parseInt(document.getElementById("s_timer").value);
+		var _pp=parseInt(document.getElementById("calc_pp").value);
+		var _ta=parseInt(document.getElementById("calc_ta").value);
+		var _ta=parseInt(document.getElementById("calc_ta").value);
+		var _nd=parseInt(document.getElementById("calc_nd").value);
+		document.getElementById("power"+_tm).value=_pp;
+		document.getElementById("value"+_tm).value=_ta;
+		dosing_send(_tm);
+		//dosing[_tm].power=_pp;
+		//dosing[_tm].mg_day=_ta;
+		var calc_fd=retSeconds(document.getElementById("calc_fd").value);
+		var calc_ld=retSeconds(document.getElementById("calc_ld").value);
+		if ((calc_ld==86399) || (calc_ld==0) || (calc_ld==calc_fd)) calc_ld=86400;
+		
+		//console.log("calc_fd:"+calc_fd);
+		//console.log("calc_ld:"+calc_ld);
+		
+		var _interval=(calc_ld-calc_fd)/parseInt(_nd);
+		_interval=Math.round(_interval); //dosing each second
+		var _per_dosing=Math.round(_ta/_nd); //ml for one time dosing
+		var _per_time=_per_dosing*3600/_pp; //second for one time dosing
+		
+		
+		
+		
+		var _total=_per_time*_nd*_pp/3600; //total rounded
+		var _error=Math.round((_ta-_total)/_ta*100); //error percent
+		
+		
+		//console.log("dosing each second="+_interval);
+		//console.log("ml for one time dosing="+_per_dosing);
+		//console.log("stotal rounded="+_total);
+		//console.log("error percent="+_error);
+		
+		var _tp=0;
+		for (var i=0;i<_nd;i++){
+			new_tp[i]=calc_fd+_interval*i;
+			
+		}
+		//console.log("new_tp",new_tp);
+		
+		for (var i=0;i<_nd;i++){
+			new_dr[i]=_per_time;
+		}
+		
+		
+		timers[_tm].tp=new_tp;
+		timers[_tm].duration=new_dr;
+		//console.log(timers[_tm]);
+		fillTimersPoint(_tm);
+		
+		sendTimers(_tm);
+		document.getElementById("dosing_error").innerHTML="Total:"+Math.round10(_total,-1)+"(ml/day)";
+		
+		
+		
+	}
+	
+	function tm_del(_tp){
+		var _tm=document.getElementById("s_timer").value;
+		timers[_tm].tp.splice(_tp,1);
+		timers[_tm].duration.splice(_tp,1);
+		timers[_tm].tp.splice(timers[_tm].tp.length,0,-1);
+		timers[_tm].duration.splice(timers[_tm].duration.length,0,0);
+		fillTimersPoint(_tm);
+		recalcDosing();
+		sendTimers(_tm);
+		
+	}
+	function sendTimers(_tm){
+		var _req="tm="+_tm;
+		for (var i=0;i<timers[_tm].tp.length;i++){
+			_req+="&t"+i+"="+timers[_tm].tp[i]+"&v"+i+"="+timers[_tm].duration[i];
+		}
+		postReq("/set?",_req);
+	}
+	function addToArray(array,index,value){
+		//console.log("array:"+array);
+		//console.log(array);
+		var _ret=[];
+		_ret=array;
+		
+		_ret[index]=value;
+		for (var i=0;i<index;i++) _ret[i]=array[i];
+		
+		for (j=index;j<array.length-1;j++) {
+			_ret[j+1]=array[j];
+			//console.log("j="+j);
+			//console.log("array[j]="+array[j]);
+		}
+		//console.log("_ret:");
+		//console.log(_ret);
+		return _ret;
+		
+	}
+	function delFromArray(array,index,zero){
+		var _ret=[];
+		for(var i=0;i<index;i++) _ret[i]=array[i];
+		for(var i=index+1;i<array.length;i++) _ret[i-1]=array[i];
+		_ret[array.length-1]=zero;
+		return _ret;
+	}
+	
+	function getArrayIndex(array,value,zero){
+		/*if (zero!=undefined){
+			if (array[0]==zero) return 0;
+			//console.log("array[0]="+zerro+":"+array[0]);
+		}*/
+		if (value<array[0]) return 0;
+		for (var i=0;i<array.length-1;i++){
+			//console.log("array["+i+"]="+array[i]);
+			if ((value>array[i])&(value<array[i+1])) return i+1;
+			if (zero!=undefined){
+				if (array[i]==zero) {
+					return i;
+					//console.log("array["+i+"]="+array[i]+":"+zero);
+				}
+				
+			}
+		}
+		return array.length;
+	}
+	function addTimerPoint() {
+		var _select=document.getElementById("s_timer");
+		_timer=_select[_select.selectedIndex].value
+		for (var i=0;i<timers[_timer].tp.length;i++){
+			if (timers[_timer].tp[i]==-1) {
+				timers[_timer].tp[i]=0;
+				fillTimersPoint(_timer);
+				//console.log(timers);
+				return;
+			} 
+		}
+		
+	}
+	
+	
+	
+	function fillTimersPoint(_timer){
+		var isPump;
+		document.getElementById("calc_fd").value=getTime(0);
+		document.getElementById("calc_ld").value=getTime(0);
+		//console.log(timers[_timer]);
+		if (timers[_timer].dosing==1){
+			console.log("is pump");
+			document.getElementById("tm_dosing").checked = true;
+			isPump=true;
+			document.getElementById("calc_pp").value=dosing[_timer].power;
+			document.getElementById("calc_ta").value=dosing[_timer].value;
+			//document.getElementById("calc_fd").disabled=false;
+			//document.getElementById("calc_ld").disabled=false;
+		}else{
+			console.log("is timer");
+			document.getElementById("tm_dosing").checked = false;
+			isPump=false;
+			//document.getElementById("calc_pp").disabled=true;
+			//document.getElementById("calc_la").disabled=true;
+			//document.getElementById("calc_fd").disabled=true;
+			//document.getElementById("calc_ld").disabled=true;
+		}
+		var tp_count=0
+		for (var i=0;i<24;i++){
+			document.getElementById("timer_id"+i).style.display='none';
+			if (timers[_timer].tp[i]!=-1){
+				if (i==0) document.getElementById("calc_fd").value=getTime(timers[_timer].tp[i]*1000);
+				
+				
+				tp_count++;
+				document.getElementById("timer_id"+i).style.display='';
+				//document.getElementById("tm_tp"+i).onchange=function(){console.log("Timer:"+_timer+"->"+this.value)}
+				document.getElementById("tm_tp"+i).value=getTime(timers[_timer].tp[i]*1000);
+				//console.log("tp:"+getTime(timers[_timer].tp[i]*1000));
+				//console.log("duration:"+getTime(timers[_timer].duration[i]*1000));
+				document.getElementById("tm_dr"+i).value=getTime(timers[_timer].duration[i]*1000);
+			}
+		}
+		var delta=timers[_timer].tp[tp_count-1]-timers[_timer].tp[tp_count-2];
+		console.log("delta:",delta);
+		document.getElementById("calc_ld").value=getTime(0);
+		
+		document.getElementById("calc_nd").value=tp_count;
+		if (isPump){
+			
+			document.getElementById("calc_pp").style.display="";
+			document.getElementById("calc_ta").style.display="";
+			document.getElementById("calc_nd").style.display="";
+			document.getElementById("calc_fd").style.display="";
+			document.getElementById("calc_ld").style.display="";
+			document.getElementById("dosing_calc").style.display="";
+			var _total=0;
+			for (var i=0; i<24;i++){
+				_total=_total+timers[_timer].duration[i];
+			}
+			_total=_total*dosing[_timer].power/3600;
+			document.getElementById("dosing_error").innerHTML="Total:"+Math.round10(_total,-1)+"ml/day";
+			
+		}else{
+			document.getElementById("calc_pp").style.display="none";
+			document.getElementById("calc_ta").style.display="none";
+			document.getElementById("calc_nd").style.display="none";
+			document.getElementById("calc_fd").style.display="none";
+			document.getElementById("calc_ld").style.display="none";
+			document.getElementById("dosing_calc").style.display="none";
+			document.getElementById("dosing_error").innerHTML="";
+			
+		}
+		
+	}
+	
+	function fillTimers(){
+		if (Channels.length!=16) {
+			alert("Channels data not yet retrived");
+			return;
+		}
+		if (timers.length!=16) {
+			alert("Timers data not yet retrived");
+			return;
+		}
+		var _select=document.getElementById("s_timer");
+        while(_select.length!=0){
+          _select.remove(_select.lengt)
+        }
+		for (var i=0;i<Channels.length;i++){
+			if (Channels[i].type==3){
+				var _option=document.createElement("option");
+				_option.text=Channels[i].name;
+				_option.value=i
+				_select.add(_option);
+			}
+		}
+		fillTimersPoint(_select[_select.selectedIndex].value);
+		
+		
+		
+	}
+	
+	function getTimers(){
+			//console.log()
+			//console.log("req channels");
+			var xhr = new XMLHttpRequest();
+			xhr.timeout=500;
+		
+			xhr.open("GET", url+"/get?timers=all", true);
+			xhr.send();
+			xhr.onreadystatechange = function() {
+				if (this.readyState != 4) return;
+		  	  	if (this.status != 200) {
+		    		return;
+		  	  	}
+			
+	  	    
+		  	  	timers=JSON.parse(this.responseText);
+				fillTimers;
+				//console.log(timers);
+			}
+	}
+				
+				
+				
+	function findTP(ms,_ch){
+		//console.log("ms:"+ms);
+		var _ret=-1;
+		if (Channels[_ch].tp[0]>=ms) return 0;
+		else {
+			for(var i=0;i<15;i++){
+				if ((ms>=Channels[_ch].tp[i]) & (ms<=Channels[_ch].tp[i+1])) _ret=i+1;
+				//console.log("findTP _ret:"+_ret);
+				//console.log("ms:"+ms);
+				//console.log ("Chanels["+_ch+"].tp["+i+"]="+Channels[_ch].tp[i])
+				
+			}
+			
+		}
+		return _ret;
+		
+	}
+	
+	
+	
+	function isFullTp(_ch){
+		for (var i=1;i<16;i++){
+			if (Channels[_ch].tp[i]==0) return i;
+		}
+		return false;
+	}
+	function sendCh(_ch){
+		var _req="ch="+_ch;
+		for (var i=0;i<16;i++){
+			_req+="&t"+i+"="+Channels[_ch].tp[i]+"&v"+i+"="+Channels[_ch].value[i];
+		}
+		//console.log(_req);
+		postReq("/set?",_req);
+		
+	}
+	
+	
+	function addTimePoint(){
+		
+		if (Current_tp!=-1){
+			alert("You need to activate \"PlayTime\" function !!! ")
+			return;
+		}
+		
+		
+		if (!isFullTp(Current_ch)) {
+			alert("TimePoint array is full for:"+Channels[Current_ch].name);
+			return;
+		}
+		var _currentTime=document.getElementById("TimeSlider").value;
+		_currentTime=_currentTime*60;
+		_newIndex=getArrayIndex(Channels[Current_ch].tp,_currentTime,0);
+		_newValue=getPWM(Current_ch,_currentTime);
+		Channels[Current_ch].tp.splice(_newIndex,0,parseInt(_currentTime));
+		Channels[Current_ch].value.splice(_newIndex,0,parseInt(_newValue));
+		Channels[Current_ch].tp.splice(Channels[Current_ch].tp.length-1,1);
+		Channels[Current_ch].value.splice(Channels[Current_ch].value.length-1,1);
+		sendCh(Current_ch);
+		fillTime(Current_ch);
+	}
+	
+	function delTimePoint(){
+		//console.log("Current_tp"+Current_tp);
+		
+		if (Current_tp<0){
+			alert("You need to select Time point !!! ")
+		}
+		var _tp=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		var _val=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+		var j=0;
+		//console.log(Channels[Current_ch].tp);
+		//console.log(Channels[Current_ch].value);
+		/*
+		var _req="/set?ch="+Current_ch;
+		for (var i=0;i<16;i++){
+			if (i!=Current_tp){
+				_tp[j]=Channels[Current_ch].tp[i];
+				_val[j]=Channels[Current_ch].value[i];
+				j++;
+				
+			}
+		}
+		for (var i=0;i<16;i++)
+			_req+="&t"+i+"="+_tp[i]+"&v"+i+"="+_val[i];
+		*/
+		//console.log("before:");
+		//console.log(Channels[Current_ch].tp);
+		//console.log(Channels[Current_ch].value);
+		Channels[Current_ch].tp.splice(Current_tp,1);
+		Channels[Current_ch].value.splice(Current_tp,1);
+		Channels[Current_ch].tp.splice(Channels[Current_ch].tp.length,0,0);
+		Channels[Current_ch].value.splice(Channels[Current_ch].value.length,0,-1);
+		//console.log("after:");
+		//console.log(Channels[Current_ch].tp);
+		//console.log(Channels[Current_ch].value);
+		
+		
+		
+		//sendCh(Current_ch);
+		
+		
+		//console.log(_req);
+		//Channels[Current_ch].tp=_tp;
+		//Channels[Current_ch].value=_val;
+		
+		//console.log(_tp);
+		Current_tp--;
+		
+		fillTime(Current_ch);
+		redrawChannel();
+		sendCh(Current_ch);
+		//console.log(Channels[Current_ch].tp);
+		//console.log(Channels[Current_ch].value);
+		
+	}
+	
+	function sendAP(){
+		var ip_ap=document.getElementById("sslac_ip").value;
+		var netmask_ap=document.getElementById("netmask_ap").value;
+		var ap_password=document.getElementById("ap_passwd1").value;
+		var ssid_ap=document.getElementById("ssid_ap").value;
+		if (ap_password!=""){
+			postReq("/set?","c_descr="+ssid_ap+"&password_ap="+ap_password+"&ip_ap="+ip_ap+"&netmask_ap="+netmask_ap);
+		}
+		else {
+			postReq("/set?","c_descr="+ssid_ap+"&ip_ap="+ip_ap+"&netmask_ap="+netmask_ap);
+		}
+		
+	}
+	
+	function sendWifi(){
+		var ipaddr=document.getElementById("ipaddr").value;
+		
+		var gateway=document.getElementById("gateway").value;
+		var subnet=document.getElementById("subnet").value;
+		var password=document.getElementById("password").value;
+		var dns=document.getElementById("dns").value;
+		var ipv4=document.getElementById("ipv4").selectedIndex;
+		var ssid=document.getElementById("ssid").value;
+		//console.log(ssid);
+		//console.log(ipaddr);
+		//console.log(gateway);
+		//console.log(password);
+		//console.log(dns);
+		if ((ssid!=info.SSID) & (info.isConnected==0))
+			sendGET("/wifi?ssid="+ssid+"&passwd="+password+"&local_IP="+ipaddr+"&gateway="+gateway+"&subnet="+subnet+"&primaryDNS="+dns+"&type="+ipv4);
+		else
+			sendGET("/wifi?&local_IP="+ipaddr+"&gateway="+gateway+"&subnet="+subnet+"&primaryDNS="+dns+"&type="+ipv4);
+		
+	}
+	function _dhcp(e){
+		//console.log(e.selectedIndex);
+		if (e.selectedIndex==0) {
+			document.getElementById("ipaddr").disabled=true;
+			document.getElementById("gateway").disabled=true;
+			document.getElementById("subnet").disabled=true;
+			document.getElementById("dns").disabled=true;
+		} else {
+			document.getElementById("ipaddr").disabled=false;
+			document.getElementById("gateway").disabled=false;
+			document.getElementById("subnet").disabled=false;
+			document.getElementById("dns").disabled=false;
+		}
+	}
+	function fillControllers(){
+		var a=document.getElementById("select_master");
+		//console.log(a);
+		//console.log(a.length);
+        while(a.length!=0){
+          a.remove(a.lengt)
+        }
+		var b=document.createElement("option");
+        b.text="None";
+        b.value=255;
+		if ((info.master_id=="192.168.4.1") || (info.master_id=="")) b.selected=true;
+		a.add(b);
+		for (var i=0;i<16;i++){
+			
+			if ((controllers[i].c_descr!="") & (controllers[i].RunMode==0)){
+				b=document.createElement("option");
+				b.text=controllers[i].c_descr+" / "+controllers[i].id;
+				if (info.master_id==controllers[i].id) b.selected=true;
+				if (controllers[i].isAlive==0) b.disabled=true;
+				b.value=i;
+				a.add(b);	
+			}
+			
+			//b=document.createElement("option");
+			//b.text=info.networks[i];
+			//if (info.networks[i]==info.SSID) b.selected=true;
+			a.add(b);
+		}
+	}
+	function fillWifi() {
+		var a=document.getElementById("ssid");
+		//console.log(a);
+		//console.log(a.length);
+        while(a.length!=0){
+          a.remove(a.lengt)
+        }
+		var b=document.createElement("option");
+        b.text="Not Connected";
+        b.value=-1;
+		if (info.isConnected==0) b.selected=true;
+		a.add(b);
+		for (var i=0;i<info.networks.length;i++){
+			b=document.createElement("option");
+			b.text=info.networks[i];
+			if (info.networks[i]==info.SSID) b.selected=true;
+			a.add(b);
+		}
+		//document.getElementById("sslac_ip").value=info.master_ip;
+		//document.getElementById("ipaddr").value=info.selfIP;
+		
+	}
+	function postReq(_url,_body){
+	        var xhr = new XMLHttpRequest();
+			xhr.open("POST", url+_url, true)
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+			xhr.onreadystatechange = function() {
+				
+	  			if (this.readyState != 4) return;
+	  			if (this.status != 200) {
+	    			setTimeout (function() { postReq(_url,_body) }, 500);
+	    			return;
+	  			}
+	  			//console.log(url+_url+","+_body);
+			} 
+			xhr.send(_body);
+	}
+    function fillGPIO(){
+      //console.log(Channels);
+      
+      for (var i=0;i<16;i++){
+		    
+        	document.getElementById("gpio_name"+i).value=Channels[i].name;
+        	document.getElementById("freq"+i).value=Channels[i].freq;
+			//console.log(Channels[i].freq);
+			//console.log(Channels[i].type);
+        	document.getElementById("gpio"+i).innerHTML=Channels[i].gpio;
+			document.getElementById("type"+i).selectedIndex=Channels[i].type;
+			document.getElementById("dept"+i).disabled=true;
+			if (Channels[i].type>1){
+				document.getElementById("freq"+i).disabled=true;
+				
+			}
+			if (Channels[i].inv==1){
+				document.getElementById("inv"+i).checked=true;
+			}
+			if (Channels[i].s_color!="") {
+				Color[i]="#"+Channels[i].s_color;
+				
+			}
+			
+				document.getElementById("color"+i).value=Color[i];
+				//document.getElementById("cc"+i).value=Color[i];
+			
+      }
+	  //document.getElementById("gpio_name1").innerHTML="44444";
+    }
+    function ch_name(e,ch){
+		//console.log(e);
+		if (e.id==undefined) {
+			if (e.indexOf("ds_delete")==0)
+				sendGET("/set?"+e,true);
+				//console.log(e);	
+			return;
+		}
+		
+		if (e.id.indexOf("gr_step")==0){
+			console.log("e.id:",e.id," value:",e.value);
+			postReq("/set?",e.id+"="+e.value);
+			return;
+		}
+		
+		if (e.id.indexOf("gr_sens")==0){
+			console.log("e.id:",e.id," value:",e.value);
+			postReq("/set?",e.id+"="+e.value);
+			return;
+		}
+		if (e.id.indexOf("gr_tresh")==0){
+			console.log("e.id:",e.id," value:",e.value);
+			postReq("/set?",e.id+"="+e.value);
+			return;
+		}
+		if (e.id.indexOf("gr_int")==0){
+			console.log("e.id:",e.id," value:",e.value);
+			postReq("/set?",e.id+"="+e.value);
+			return;
+		}
+		
+		
+		if (e.id=="tm_dosing"){
+			var _tm=document.getElementById("s_timer").value;
+			if (e.checked){
+				timers[_tm].dosing=1;
+				
+				console.log("dosing checked:",timers[_tm]);
+				
+			}else{
+				timers[_tm].dosing=0;
+				console.log("timer checked:",timers[_tm]);
+			}
+			postReq("/set?","tm_dosing"+_tm+"="+timers[_tm].dosing);
+			fillTimersPoint(_tm);
+			return;
+		}
+		if (e.id=="select_master"){
+			//console.log("select_master value:"+e.value);
+			//console.log("select_master desr:"+controllers[e.value].c_descr);
+			if (e.value!=255) postReq("/set?","master_id="+controllers[e.value].id); else postReq("/set?","master_id=''");
+			return;
+		}
+		if (e.id=="const_group"){
+			//console.log(e.id+":"+e.value);
+			for (var i=0;i<16;i++){
+				//document.getElementById("const"+i).style.display="none";
+				if (Channels[i].type==0){
+					if ((Channels[i].group==e.value) || (e.value==255)){
+						document.getElementById("const"+i).style.display="";
+					} else document.getElementById("const"+i).style.display="none";
+				}
+			}
+			
+			
+			return;
+		}
+		if (e.id=="RunMode"){
+			//console.log(e.id+":"+e.value);
+			if (e.value==1){
+				document.getElementById("select_master").disabled=false;
+			} else {
+				document.getElementById("select_master").disabled=true;
+			}
+			//console.log("master:"+document.getElementById("select_master").value);
+			postReq("/set?","runmode="+e.value);
+			return;
+		}
+		if ((e.id=="ap_passwd1") || (e.id=="ap_passwd2")){
+			
+			if (document.getElementById("ap_passwd1").value!=document.getElementById("ap_passwd2").value){
+				//console.log("password dosn't match");
+				document.getElementById("ispasswdmatch").innerHTML="Password dosn't match";
+				document.getElementById("apply_ap").disabled=true;
+				return;
+			} else {
+				//console.log("password correct");
+				if (e.value.length<8) {
+					document.getElementById("ispasswdmatch").innerHTML="Password to short!!!"
+					document.getElementById("apply_ap").disabled=true;
+					//console.log("password to short!!!");
+				} else {
+					document.getElementById("ispasswdmatch").innerHTML="Password is Ok!!!"
+					document.getElementById("apply_ap").disabled=false;
+				}
+				
+			}
+			return;
+		}
+		if (e.id=="day"){
+			//console.log(e.checked);
+			for (var i=0;i<16;i++){
+				if (Channels[i].type==0){
+					if (document.getElementById("ch_const"+i).checked){
+						sendGET("/set?manual"+i+"="+maxValue[i]);
+					}
+					document.getElementById("ch_const"+i).disabled=false;
+					if (maxValue[i]!=-1) {
+						document.getElementById("value_const"+i).value=maxValue[i];
+						document.getElementById("const_value"+i).value=maxValue[i];
+						document.getElementById("const_percent"+i).innerHTML=(maxValue[i]*100/4095).toFixed(2)+"%";
+					}
+				}
+			}
+			return;
+		}
+		if (e.id=="nigth"){
+			//console.log(e.checked);
+			for (var i=0;i<16;i++){
+				if (Channels[i].type==0){
+					if (document.getElementById("ch_const"+i).checked){
+						sendGET("/set?manual"+i+"="+minValue[i]);
+					}
+					document.getElementById("ch_const"+i).disabled=false;
+					if (minValue[i]!=-1) {
+						document.getElementById("value_const"+i).value=minValue[i];
+						document.getElementById("const_value"+i).value=minValue[i];
+						document.getElementById("const_percent"+i).innerHTML=(minValue[i]*100/4095).toFixed(2)+"%";
+					}
+				}
+			}
+			return;
+		}
+		if (e.id=="sinwave"){
+			document.getElementById("input_sinwave").style.display='';
+			document.getElementById("input_4point").style.display='none';
+			document.getElementById("wizard").disabled=false;
+			//console.log(e.id);
+			return;
+		}
+		if (e.id=="4point"){
+			document.getElementById("input_sinwave").style.display='none';
+			document.getElementById("input_4point").style.display='';
+			document.getElementById("wizard").disabled=false;
+			//console.log(e.id);
+			return;
+		}
+		if (e.id.indexOf("value_const")==0){
+			var _ch=e.id.substring(11);
+			document.getElementById("const_value"+_ch).value=e.value;
+			document.getElementById("const_percent"+_ch).innerHTML=(e.value*100/4095).toFixed(2)+"%";
+			sendGET("/set?manual"+_ch+"="+e.value);
+			if (document.getElementById("day").checked) maxValue[_ch]=e.value;
+			else minValue[_ch]=e.value;
+			
+			return;
+		}
+		if (e.id.indexOf("const_value")==0){
+			var _ch=e.id.substring(11);
+			document.getElementById("value_const"+_ch).value=e.value;
+			document.getElementById("const_percent"+_ch).innerHTML=(e.value*100/4095).toFixed(2)+"%";
+			sendGET("/set?manual"+_ch+"="+e.value);
+			//console.log(document.getElementById("day").checked);
+			if (document.getElementById("day").checked) maxValue[_ch]=e.value;
+			else minValue[_ch]=e.value;
+			return;
+		}
+		if (e.id.indexOf("ch_const")==0){
+			var _ch=e.id.substring(8)
+			
+			if (e.checked==true){
+				
+				document.getElementById("value_const"+_ch).disabled=false;
+				document.getElementById("const_value"+_ch).disabled=false;
+				sendGET("/set?manual"+_ch+"="+document.getElementById("value_const"+_ch).value);
+			} else{
+				
+				document.getElementById("value_const"+_ch).disabled=true;
+				document.getElementById("const_value"+_ch).disabled=true;
+				minValue[_ch]=-1;
+				maxValue[_ch]=-1;
+				sendGET("/set?manual"+_ch+"=-1");
+			}
+			return;
+		}
+		
+		if (e.id.indexOf("fan_test")==0){
+			var _ch=e.id.substring(8);
+			if (e.checked){
+				sendGET("/set?manual"+_ch+"="+document.getElementById("min_value"+_ch).value);
+				//fans[_ch].min_value=document.getElementById("min_value"+_ch).value;
+			} else
+				postReq("/set?","manual"+_ch+"=-1");
+			return;
+			//var _min_value=
+		}	
+		
+		
+		
+		if (e.id.indexOf("tm_tp")==0){
+			var _tm=document.getElementById("s_timer").value;
+			var _tp=e.id.substring(5);
+			var _value=parseInt(e.value.split(":")[0])*3600+parseInt(e.value.split(":")[1])*60;
+			if (e.value.split(":")[2]!=undefined) _value+=parseInt(e.value.split(":")[2]);
+			timers[_tm].tp[_tp]=_value;
+			//console.log("Time point->"+_tp+"<- for timer:"+_tm);
+			//console.log("/set?"+"tm="+_tm+"&t"+_tp+"="+_value);
+			postReq("/set?","tm="+_tm+"&t"+_tp+"="+_value);
+			return;
+		}
+		if (e.id.indexOf("tm_dr")==0){
+			var _tm=document.getElementById("s_timer").value;
+			var _dr=e.id.substring(5);
+			var _value=parseInt(e.value.split(":")[0])*3600+parseInt(e.value.split(":")[1])*60;
+			if (e.value.split(":")[2]!=undefined) _value+=parseInt(e.value.split(":")[2]);
+			timers[_tm].duration[_dr]=_value;
+			//console.log("[2]---"+e.value.split(":")[2]);
+			//console.log("Duration->"+_dr+"<- for timer:"+_tm);
+			//console.log("="+_value);
+			postReq("/set?","tm="+_tm+"&v"+_dr+"="+_value);
+			if (document.getElementById("dosing_error").innerHTML!="") {
+				//console.log("need recalc");
+				recalcDosing();
+			
+			} 
+			return;
+		}
+		if (e.id.indexOf("sens_id")==0){
+			//console.log("sens_id="+e.value);
+			var _ch=e.id.substring(7);
+			postReq("/set?","fn_dsid"+_ch+"="+e.value);
+			fans[_ch].ds_id=e.value;
+			fillFanTemp();
+			return;
+		}
+		if (e.id.indexOf("tmin")==0){
+			//console.log("sens_id="+e.value);
+			var _ch=e.id.substring(4);
+			postReq("/set?","min_temp"+_ch+"="+e.value);
+			fans[_ch].min_temp=e.value;
+			return;
+		}
+		if (e.id.indexOf("min_value")==0){
+			//console.log("sens_id="+e.value);
+			var _ch=e.id.substring(9);
+			postReq("/set?","min_value"+_ch+"="+e.value);
+			fans[_ch].min_value=e.value;
+			if (document.getElementById("fan_test"+_ch).checked)
+				postReq("/set?","manual"+_ch+"="+e.value);
+			return;
+		}
+		if (e.id.indexOf("tmax")==0){
+			//console.log("sens_id="+e.value);
+			var _ch=e.id.substring(4);
+			postReq("/set?","max_temp"+_ch+"="+e.value);
+			fans[_ch].max_temp=e.value;
+			return;
+		}
+		if (e.id.indexOf("s_name")==0){
+			var _ch=e.id.substring(6);
+			var s_name=e.value;
+			//console.log("s_name:"+s_name);
+			postReq("/set?","ds_name"+_ch+"="+e.value);
+			sensors[_ch].name=e.value;
+			return;
+		}
+		
+		if (e.id.indexOf("color")==0){
+			var _ch=e.id.substring(5);
+			var s_color=e.value.substring(1);
+			//console.log(s_color);
+			postReq("/set?","s_color"+_ch+"="+s_color);
+			Channels[_ch].s_color=s_color;
+			Color[_ch]="#"+s_color;
+			return;
+			
+		}
+		
+		
+		
+		if (e.id.indexOf("inv")==0){
+			//console.log(e.id);
+  		  	var _ch=e.id.substring(3);
+			
+			if (e.checked) Channels[_ch].inv=1;
+			else Channels[_ch].inv=0;
+			
+		  	postReq("/set?","inv"+_ch+"="+Channels[_ch].inv);
+  		  	//postReq("/set?","name"+_ch+"="+document.getElementById("gpio_name"+_ch).value);
+  		  	//Channels[_ch].inv=document.getElementById("inv"+_ch).checked;
+		  	return;
+			
+		}
+		
+		
+		
+		if (e.id.indexOf("freq")==0){
+			//console.log(e.id);
+  		  	var _ch=e.id.substring(4);
+		  	postReq("/set?","freq"+_ch+"="+e.value);
+  		  	//postReq("/set?","name"+_ch+"="+document.getElementById("gpio_name"+_ch).value);
+  		  	Channels[_ch].freq=e.value;
+		  	return;
+			
+		}
+		
+		
+		
+		if (e.id.indexOf("gr_name")==0) {
+			//console.log(e.id);
+  		  var _ch=e.id.substring(7);
+		  //console.log("/set?gr_name"+_ch+"="+e.value);
+  		  postReq("/set?","gr_name"+_ch+"="+e.value);
+  		  group[_ch].name=e.value;
+		  return;
+	  	
+  	  	}
+		if (e.id.indexOf("gpio_name")==0) {
+  		  var _ch=e.id.substring(9);
+		  //console.log("/set?","name"+_ch+"="+e.value);
+  		  postReq("/set?","name"+_ch+"="+e.value);
+  		  Channels[_ch].name=e.value;
+		  return;
+	  	
+  	  	}
+        
+      //console.log(e.value);
+      //console.log(e.id);
+      if (e.id.indexOf("type")==0) {
+          var _ch=parseInt(e.id.substring(4));
+    		postReq("/set?","type"+_ch+"="+e.value);
+    		Channels[_ch].type=e.value;		
+           //console.log(e.selectedIndex);
+        	//console.log(e.id.substring(4));
+        
+        
+			if ((e.value!=0) & (e.value!=1)) {
+          
+            //console.log(_ch);
+            	document.getElementById("freq"+e.id.substring(4)).disabled=true;
+            	document.getElementById("dept"+e.id.substring(4)).disabled=true;
+				postReq("/set?","group"+_ch+"=255");
+				Channels[_ch].group=255;
+          	} else {
+            	document.getElementById("freq"+e.id.substring(4)).disabled=false;
+            	document.getElementById("dept"+e.id.substring(4)).disabled=true;
+          	}
+		  
+		  if ((Channels[_ch].type==2)&(e.value!=2)){
+		  	postReq("/set?","dp_chid"+_ch+"=-1");
+			//dosing[_ch].ch_id=-1;  
+		  }
+		  if (e.value==2){
+		  	postReq("/set?","dp_chid"+_ch+"="+_ch);
+			//dosing[_ch].ch_id=_ch;
+		  }
+		  if (e.value==1){
+			  postReq("/set?","fn_chid"+_ch+"="+_ch);
+			  //fans[_ch].ch_id=_ch;
+		   
+		  }
+		  if ((Channels[_ch].type==1)&(e.value!=1)){
+			  postReq("/set?","fn_chid"+_ch+"=255");
+			  //fans[_ch].ch_id=255;
+		  }
+		  
+      }
+  	  if (e.id.indexOf("gpio_name")==0) {
+		  var _ch=e.id.substring(9);
+		  postReq("/set?","name"+_ch+"="+e.value);
+		  Channels[_ch].name=e.value;
+	  	
+	  }
+	  
+	  
+	  
+    
+    }
+	function dosing_send(_ch){
+		//var ch_id=parseInt(document.getElementById("ch_id"+_ch).selectedIndex)-1;
+		//var dname=document.getElementById("dname"+_ch).value;
+		var power=document.getElementById("power"+_ch).value;
+		var value=document.getElementById("value"+_ch).value;
+		var cap=document.getElementById("cap"+_ch).value;
+		//var volume=document.getElementById("volume"+_ch).value;
+		//console.log(ch_id);
+		//console.log(dname);
+		//console.log(power);
+		//console.log(value);
+		//console.log(cap);
+		postReq("/set?","dp_power"+_ch+"="+power+"&dp_value"+_ch+"="+value+"&dp_volume"+_ch+"="+cap);
+		dosing[_ch].power=power;
+		dosing[_ch].value=value;
+		dosing[_ch].volume=cap;
+		var t_value=parseInt(document.getElementById("t_value"+_ch).value);
+		var currentDate = new Date().getFullYear()+"-"+parseInt(new Date().getMonth()+1) +"-"+new Date().getDate();
+		if (parseInt(t_value)!=NaN){
+			//console.log(currentDate);
+		}
+		//dosing[_ch].volume=;
+		
+		
+		/*
+				<td><select id="ch_id0">
+						<option value=-1>None</option>
+						<option value=0>Channel 0</option>
+						<option value=1>Channel 1</option>
+						<option value=2>Channel 2</option>
+						<option value=3>Channel 3</option>
+						<option value=4>Channel 4</option>
+						<option value=5>Channel 5</option>
+						<option value=6>Channel 6</option>
+						<option value=7>Channel 7</option>
+						<option value=8>Channel 8</option>
+						<option value=9>Channel 9</option>
+						<option value=10>Channel 10</option>
+						<option value=11>Channel 11</option>
+						<option value=12>Channel 12</option>
+						<option value=13>Channel 13</option>
+						<option value=14>Channel 14</option>
+						<option value=15>Channel 15</option>
+					</select>
+				<td><input id="dname0" type="text" size="32">
+				<td><input min=0 value=1000 id="power0" type="number">	
+				<td><input min=0 value=100 id="value0" type="number">
+				<td><input min=0 value=5000 id="cap0" type="number">
+		
+		*/
+	}
+	function addToGroup(d){
+  					
+	            var c=document.getElementById("sc");
+	            var a=c.value;
+	            //var b=d.value;
+	            d=document.getElementById("addToGroup");
+  						
+  					
+	  					//console.log("add to group:"+d.value);
+	  					//console.log("Channel:"+Current_ch);
+							//return;
+	  //get_gr();
+	            //if(d.value!=-2){
+	            //  Channels[a].group=d.value
+	            //}
+	            //console.log("a="+a);
+	            //console.log("d="+d.value);
+	            sendGET("/set?group"+Current_ch+"="+d.value);
+	  					Channels[Current_ch].group=d.value;
+	  					fillChannel(Current_gr);
+	            //redrawChannel(a,b);
+	            //setChannels();
+	            //fillTime(a);
+	            //changeGroup(b);
+	            //d.value=-2
+	}
+	function cRTime(e){
+	  isRT=e.checked;
+	}
+	function fillTime(c){
+	  					//console.log("c="+c);
+	  					//console.log(Channels);
+	  					//Channels[c]=get_rest("c="+c,_ip);
+	  					//console.log(Channels[c]);
+	            var a=document.getElementById("st");
+	            while(a.length!=0){
+	              a.remove(a.lengt)
+	            }
+	            var b=document.createElement("option");
+	            b.text="Current time";
+	            b.value=-2;
+	            if(Current_tp==-2){
+	              b.selected=true
+	            }
+	            a.add(b);
+	            b=document.createElement("option");
+	            b.text="Play time";
+	            b.value=-1;
+	            if(Current_tp==-1){
+	              b.selected=true
+	            }
+	            a.add(b);
+	            for(var i=0;i<16;i++){
+	              if(Channels[c].tp[i]!=undefined){
+	                if(Channels[c].tp[i]!=0){
+	                  var b=document.createElement("option");
+	                  b.text=returnDate(Channels[c].tp[i]);
+	                  b.value=i;
+	                  if(i+1==Current_tp){
+	                    b.selected=true}
+	                  a.add(b)
+	                }
+	              }
+	            }
+	            lastTp=a.length-3
+	}
+	function fillGroup(){
+            
+	            //group=(get_rest("groups=all",_ip));
+            
+	            var a=document.getElementById("ch_gr");
+	            while(a.length!=0){
+	              a.remove(a.lengt)
+	            }
+	  					var b=document.createElement("option");
+	  					b.text="All Channels";
+	  					b.value=255;
+	  					a.add(b);
+	  					for (var i=0;i<8;i++){
+	              var b=document.createElement("option");
+	              b.value=i;
+	              if (group[i].name!="") 
+	                b.text=group[i].name;
+	              else
+	                b.text="Group "+i;
+	              a.add(b);
+              	
+	            }
+	  					//console.log(a);
+	  					//for (var i=8;i=0;i--) a.remove(i);	
+  
+  
+	           // var b=document.createElement("option");
+	           // for(var i=0;i<group.length;i++){
+	           //   if(group[i].name=="") 
+	            //    group[i].name="Group "+i;
+	            //  var b=document.createElement("option");
+	           //   b.text=group[i].name;
+	           //   b.value=i;
+	           //   a.add(b)
+              
+	            //}
+	            a=document.getElementById("addToGroup");
+	  					while(a.length!=0){
+	              a.remove(a.lengt);
+	            }
+	            //b=document.createElement("option");
+	            //b.text="Remove from group";
+	            //b.value=250;
+	            //a.add(b);
+	            console.log
+				for(var i=0;i<group.length;i++){
+	              //console.log(i);
+	              if(group[i].name=="") group[i].name="Group "+i;
+				  document.getElementById("gr_name"+i).value=group[i].name;
+				  document.getElementById("gr_step"+i).value=group[i].step;
+				  document.getElementById("gr_int"+i).value=group[i].interval;
+				  document.getElementById("gr_tresh"+i).value=group[i].temp;
+				  //console.log(group[i].name);
+	              var b=document.createElement("option");
+	              b.text=group[i].name;
+	              b.value=i;
+	              a.add(b);
+              
+	            }
+	  					b.text="Remove from group";
+	            b.value=255;
+	  					//console.log(b);
+	            a.add(b);
+	  					a.value=Current_gr;
+				
+	}
+	function fillChannel(a){
+	  					//console.log("fillCh a="+a);
+	  					if (a==undefined) a=255;
+	  					//console.log(Channels);
+	            var b=document.getElementById("sc");
+	            while(b.length!=0){
+	              b.remove(b.lengt)
+	            }
+  					
+	  					for (var i=0;i<16;i++){
+	              var c=document.createElement("option");
+	              c.value=i;
+	              c.text=Channels[i].name;
+	              //console.log(Channels);
+	              if (Channels[i].group==255){
+					   
+	                if (Channels[i].type==0) c.text+="/ no group";
+                	if (Channels[i].type==1) c.text+=" - Fan PWM";
+	                if (Channels[i].type==2) c.text+=" - Dosing pump";
+				  } 	
+	              else {
+					  c.text+="/ "+group[Channels[i].group].name;
+				  }
+	              if (Channels[i].type!=0) c.disabled=true;
+              
+	              if (a==255) {
+	                b.add(c);
+	              } else {
+	                if (Channels[i].group==a) {
+	                  //console.log(Channels[i].group);
+	                  b.add(c);
+	                }
+	              }
+              
+	              //b.add(c);
+	            }
+	  					return; //sslac32
+  
+  
+  
+	            if(Channels[Current_ch].group!=Current_gr){
+	              for(var i=0;i<16;i++){
+	                if(Channels[i].group==a){
+	                  Current_ch=i;
+	                  break;
+	                }
+	              }
+	            }
+	            for(var i=0;i<16;i++){
+	              if((a==0)||(Channels[i].group==a)){
+	                if(a==0){
+	                  Current_ch=0
+	                }
+	                var c=document.createElement("option");
+	                //console.log("c="+c);
+	                c.text=i+")"+Channels[i].name;
+                
+	                if(Channels[i].group !=255){
+                
+	                  //console.log("group name="+group[Channels[i].group].name);
+	                  c.text+="/"+group[Channels[i].group].name;
+	                }
+	                c.value=i;
+	                if (i==Current_ch){
+	                    c.selected=true
+	                }
+	                if(Channels[i].type !=0){
+	                  c.text+=" Fan ";
+	                  c.disabled=true
+	                }
+	                b.add(c)
+	              }
+	            }
+				//console.log(".selectedIndex:"+b.selectedIndex);
+	}
+	function get_ch(b){
+	            Current_ch=parseInt(b.value);
+	            isCurrentTime=true;
+	            var d=parseInt(Channels[Current_ch].group);
+	            //if(parseInt(d)!=parseInt(Current_gr)){
+	            //  Current_gr=d;
+	            //  changeGroup(Current_gr)
+	            //}
+	            setColor(b.value);
+	            fillTime(b.value);
+	            var c=document.getElementById("idSVG");
+	            var a=c.getElementById("ch"+b.value);
+	            for(var i=0;i<16;i++){
+	              a=c.getElementById("ch"+i);
+	              if(a!=null){
+	                //a.setAttribute("style","fill:none;stroke-width:1;stroke:"+Channels[i].color)
+	                a.setAttribute("style","fill:none;stroke-width:1;stroke:"+Color[i])
+	              }
+	            }
+	            a=c.getElementById("ch"+b.value);
+	            if(a!=null){
+	              //a.setAttribute("style","fill:none;stroke-width:5;stroke:"+Channels[b.value].color)
+	              a.setAttribute("style","fill:none;stroke-width:5;stroke:"+Color[b.value])
+	            }
+	}
+	function changeGroup(a){
+	            Current_gr=a;
+	            fillChannel(Current_gr);
+	            for(var i=0;i<16;i++){
+	              redrawChannel(i,Current_gr)
+	            }
+	            //if(Current_tp!=0){
+	            //  set_rest("playTime="+Current_gr,_ip)
+	            //}
+	}
+	function setColor(b){
+	            var a=document.getElementById("cc");
+	            a.value=Color[b]
+	}
+	
+	function show_page(e,elem){
+		renew=1;
+		/*
+		if (elem!=undefined){
+			
+			
+			
+			if (elem.id.indexOf("chid"==0))	{
+				//console.log("elem.id:"+elem.id);
+				//console.log("chid substring:"+elem.id.substring(4));
+				Current_ch=elem.id.substring(4);
+			}
+			
+			if (elem.id.indexOf("ch_"==0)) {
+				//console.log("elem.id:"+elem.id);
+				//console.log("ch_ substring:"+elem.id.substring(3));
+				Current_ch=parseInt(elem.id.substring(3));
+				
+			}
+			
+			if (elem.id.indexOf("n"==0)) {
+				//console.log("elem.id:"+elem.id);
+				//console.log("n substring:"+elem.id.substring(1));
+				Current_ch=elem.id.substring(1);
+				
+			}
+			if (elem.id.indexOf("v"==0)){
+				//console.log("elem.id:"+elem.id);
+				//console.log("v substring:"+elem.id.substring(1));
+				Current_ch=elem.id.substring(1);
+			}
+			
+			
+			//console.log("Current_ch:"+Current_ch);
+
+
+		} 
+		*/
+		
+		var x = document.getElementsByClassName("pages");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		    //console.log("x.id:"+x[i].id+" -> e:"+e);
+			if (x[i].id==e) {
+				//console.log("class id:"+x[i].id+"-> block");
+				
+				x[i].style.display ='block';
+				if (x[i].id=="schedule") {
+					
+					
+					
+					
+					getCh();
+					getGr();
+		            fillGroup();
+		            fillTime(Current_ch);
+		        	fillChannel();
+					createGrid();
+					//console.log(".selectedIndex="+document.getElementById("sc").selectedIndex);
+					//Current_ch=document.getElementById("sc").selectedIndex;
+					//console.log("schedule:"+x[i].id)
+					redrawChannel();
+					
+				}
+				if (x[i].id=="timers") {
+					if (Channels.length!=16){
+						alert("Chnnels data not retriver\n Try latter");
+						x[i].style.display ='none';
+						return;
+					}
+					if (timers.length!=16){
+						alert("Timers data not retriver\n Try latter");
+						x[i].style.display ='none';
+						return;
+					}
+					for (j=0;j<16;j++){
+						if (Channels[j].type==3) fillTimers(j);
+					}
+				}
+				if (x[i].id=="gpio_setup"){
+					getCh();
+					fillGPIO();
+				}
+				if (x[i].id=="temperature"){
+					//console.log("temperature")
+					getFans();
+					getSensors();
+					setFans();
+				}
+				if (x[i].id=="groups_setup"){
+					fillGroup();
+				}
+				if (x[i].id=="dosing"){
+					getDosing();
+					setDosing();
+				}
+				
+				if (x[i].id=="sensors_page"){
+					//console.log("sensors_length:"+sensors.length);
+					
+					for (j=0;j<sensors.length;j++){
+						//console.log(sensors[j].addr);
+						var _sensors="";
+						if (JSON.stringify(sensors[j].addr) !=JSON.stringify([0,0,0,0,0,0,0,0])) {
+							document.getElementById("_sens"+j).style.display='';
+							//console.log(sensors[j].name);
+							
+							if (sensors[j].isExist==0){ 
+								document.getElementById("isexist"+j).innerHTML="FAIL";
+								document.getElementById("isexist"+j).style.color = "red";
+							}
+							else{
+								document.getElementById("isexist"+j).innerHTML="OK";
+								document.getElementById("isexist"+j).style.color = "green";
+								
+							}
+							document.getElementById("tempc"+j).innerHTML=sensors[j].tempC;
+							document.getElementById("s_id"+j).innerHTML=j;
+							document.getElementById("hw_addr"+j).innerHTML=addrHex(sensors[j].addr);
+							document.getElementById("s_name"+j).value=sensors[j].name;
+							
+								
+							
+							
+							
+							
+							
+							
+							
+						} else document.getElementById("_sens"+j).style.display='none';
+					}
+					
+					
+				}
+			} else { 
+				//console.log("class id:"+x[i].id+"-> none");
+				x[i].style.display ='none';
+			}
+		}
+	}
+	function addrHex(addr){
+		var _ret="";
+		for (var i=0;i<8;i++){
+			_ret+=addr[i].toString(16);
+			if (i!=7) _ret+=".";	
+		} 
+		return  _ret;
+	}
+	function createGrid(){
+	            var b=document.getElementById("idSVG");
+				//console.log(idSVG);
+	            b.setAttributeNS(null,"width",SVG_w);
+	            b.setAttributeNS(null,"height",SVG_h);
+	            for(var i=0;i<17;i++){
+	              var a=document.createElementNS(svgNS,"line");
+	              a.setAttributeNS(null,"x1",shift-5);
+	              a.setAttributeNS(null,"x2",725+shift);
+	              a.setAttributeNS(null,"y1",i*16+shift);
+	              a.setAttributeNS(null,"y2",i*16+shift);
+	              a.setAttributeNS(null,"style","stroke:#b3b3b3;stroke-width:1");
+	              b.appendChild(a);
+	              a=document.createElementNS(svgNS,"line");
+	              a.setAttributeNS(null,"x1",(i*45)+shift);
+	              a.setAttributeNS(null,"x2",(i*45)+shift);
+	              a.setAttributeNS(null,"y1",shift-5);
+	              a.setAttributeNS(null,"y2",260+shift);
+	              a.setAttributeNS(null,"style","stroke:#b3b3b3;stroke-width:1");
+	              b.appendChild(a);
+	              a=document.createElementNS(svgNS,"text");
+	              a.setAttributeNS(null,"x",shift/2);
+	              a.setAttributeNS(null,"y",i*16+shift);
+	              a.textContent=(256-i*16)/256*100+"%";
+	              a.setAttributeNS(null,"text-anchor","middle");
+	              a.setAttributeNS(null,"alignment-baseline","middle");
+	              a.setAttributeNS(null,"style","stroke:#0086b3;stroke-width:1");
+	              a.setAttributeNS(null,"font-size","10px");
+	              b.appendChild(a);
+	              a=document.createElementNS(svgNS,"text");
+	              a.setAttributeNS(null,"x",i*45+shift);
+	              a.setAttributeNS(null,"y",256+16+shift);
+	              a.textContent=returnDate((i*45)*120);
+	              a.setAttributeNS(null,"text-anchor","middle");
+	              a.setAttributeNS(null,"alignment-baseline","middle");
+	              a.setAttributeNS(null,"style","stroke:#4d4d4d;stroke-width:1");
+	              b.appendChild(a)
+	            }
+	            offset=b.getClientRects()[0];
+				//console.log(offset);
+	            offset.top=Math.round(offset.top);
+	            offset.left=Math.round(offset.left);
+	            // get_info();
+				
+				var b=document.getElementById("currentTime");
+	            b=document.getElementById("TimeSlider");
+	            if(Current_tp==-2){
+	              b.value=getTime(info.cMillis).substring(0,5);
+	              b.disabled=false;
+	              //b.value=info[2][0]*60+info[2][1];
+	              b.value=info.cMillis/1000;
+	              b.disabled=true
+	            }
+				
+				
+	            getChannelsData();
+	            fillTime(Current_ch);
+	            fillGroup(Current_ch);
+	            //req_temp(); sslac32
+	            //setInterval(req_temp,5000) sslac32
+	} 
+	function getChannelsData(){
+	            //var e=document.getElementById("idSVG");
+	            //var c=e.getElementsByTagName("*");
+	            //var b=(get_rest("info=",_ip));
+	            //Channels=get_rest("channels=all",_ip);
+	            //console.log(d);
+	            for(a=0;a<16;a++){
+	               redrawChannel(a)
+	            }
+	}
+	function get_gr(a){
+	  					//console.log("get_gr a="+a.value);
+	            if(a!=null){
+	              changeGroup(a.value)
+	            }
+	}
+	function redrawChannel(b,c){
+	  					//console.log("redraw b:"+b+" c="+c);
+	  					//console.log(Channels);
+	  					//console.log("start redraw");
+	            if(c==undefined){
+	              c=Current_gr
+	            }
+	            if(b==undefined){
+	              b=Current_ch
+	            }
+	            if(Channels[b].type!=0){
+	              //console.log("exit");
+	              return;
+	            }
+	            var d=document.getElementById("idSVG");
+	            var a=d.getElementById("ch"+b);
+	            if(a!=null){
+	              d.removeChild(a)
+	            }
+	  					//console.log("redraw 1");
+	            if((Channels[b].group==c)||(c==255)){
+	              //console.log(Channels[b].value[0]/4096);
+	              a=document.createElementNS(svgNS,"polyline");
+	              a.setAttributeNS(null,"id","ch"+b);
+	              _points="";
+	              _points+=shift+",";
+	              _points+=Math.round(shift+256-256*Channels[b].value[0]/4096);
+	              _points+=" "+Math.round(shift+Channels[b].tp[0]/120)+",";
+	              _points+=Math.round(shift+256-256*Channels[b].value[0]/4096);
+	              for(j=1;j<16;j++){
+					  
+	                if(Channels[b].tp[j]!=0){
+                   
+	                  _points+=" "+Math.round(shift+Channels[b].tp[j]/120)+",";
+	                  _points+=Math.round(shift+256-256*Channels[b].value[j]/4096);
+					  //console.log("points="+_points);
+					   
+						    //console.log("0b="+b);
+					  	 	//console.log("0point="+_points);
+	 					    //console.log("0tp="+Channels[b].tp);
+	 					    //console.log("0value="+Channels[b].value);
+							
+						
+	                }else{
+	                  //console.log(shift+256-256*Channels[b].value[j-1]/4096);	
+	                  _points+=" "+(shift+720)+",";
+					  //console.log("--- "+(shift+720)+",")
+					  //console.log("j="+j);
+					  //console.log("value: "+Math.round(shift+256-256*Channels[b].value[j-1]/4096));
+					  
+	                  _points+=Math.round(shift+256-256*Channels[b].value[j-1]/4096);
+				   
+					  break;
+	                }
+	              }
+	              //console.log(_points);
+				  //console.log("b="+b);
+	              a.setAttributeNS(null,"points",_points);
+	              if(b==Current_ch){
+	                //console.log("color="+Color[b]);
+	                a.setAttributeNS(null,"style","fill:none;stroke:"+Color[b]+";stroke-width:5")
+	              }else{
+	                //console.log("color="+Color[b]);
+	                a.setAttributeNS(null,"style","fill:none;stroke:"+Color[b]+";stroke-width:1")
+	              }
+	              d.appendChild(a)
+	            }
+	}
+	function getGr(){
+		//console.log("req group");
+		/*
+		if ((Channels.length==16) & (renew==0)){
+			getInfo();
+			return;
+		}
+		*/
+	 	var xhr = new XMLHttpRequest();
+		xhr.timeout=500;
+		//console.log(url+"/get?channels=all");
+		xhr.open("GET", url+"/get?groups=all", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	  	    group=JSON.parse(this.responseText);
+			//renew=0;
+		} 
+	}
+	function setDosing(){
+		//console.log(dosing.length);
+		for (var i=0;i<16;i++){
+			//console.log("Set dosing value");
+			document.getElementById("ch_id"+i).innerHTML=i+"/"+Channels[i].gpio;
+			//console.log(document.getElementById("dname"+i));
+			//console.log(Channels[i].name);
+			document.getElementById("dname"+i).innerHTML=Channels[i].name;
+			//if (dosing[i].ch_id>-1){
+				//document.getElementById("dosing"+i).style.display="none";
+			//	console.log(Channels[dosing[i].ch_id].name);
+			//	document.getElementById("dname"+i).value=Channels[dosing[i].ch_id].name;
+			//}
+			//console.log("style:"+document.getElementById("dosing"+i).style.display);
+			if (Channels[i].type!=2) 
+				document.getElementById("dosing"+i).style.display="none";
+			else
+				document.getElementById("dosing"+i).style.display=""
+			document.getElementById("power"+i).value=dosing[i].power;
+			document.getElementById("value"+i).value=dosing[i].value;
+			document.getElementById("cap"+i).value=dosing[i].volume;
+			
+  
+				
+		}
+		
+	}
+	function getDosing(){
+		//console.log("req dosing");
+		var xhr = new XMLHttpRequest();
+		xhr.timeout=500;
+		//console.log(url+"/get?channels=all");
+		xhr.open("GET", url+"/get?dosing=all", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	  	    dosing=JSON.parse(this.responseText);
+			//console.log(dosing);
+		} 
+	}
+	function fillFanTemp(){
+		for (var j=0;j<16;j++){
+			if (Channels[j].type==1){
+				//console.log ("Channel"+j+" is Fan");
+				var sensor_id=fans[j].ds_id;
+				if (sensor_id!=255) document.getElementById("sens_temp"+j).innerHTML=sensors[sensor_id].tempC+"&deg";
+			}
+		}
+	}
+	
+	function getSensors(){
+		//console.log("req Sensors");
+		//console.log(Channels[Current_ch].tp);
+		var xhr = new XMLHttpRequest();
+		xhr.timeout=500;
+		//console.log(url+"/get?channels=all");
+		xhr.open("GET", url+"/get?ds18b20=all", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	  	    sensors=JSON.parse(this.responseText);
+			document.getElementById("g_sensors").onclick=function (){show_page('sensors_page')}
+			document.getElementById("svg_100").setAttributeNS(null,"style","fill:#aaffaa");
+			if (group.length!=0){
+				for (var i=0;i<group.length;i++){
+					fillSense("gr_sens"+i);
+				}
+			}
+			
+			
+			
+			for (var i=0;i<sensors.length;i++){
+				var a=document.getElementById("tempc"+i);
+				if (sensors[i].isExist==1) {
+					//var a=document.getElementById("tempc"+i);
+					if (a!=null) a.innerHTML=sensors[i].tempC+"&deg";
+					//a=document.getElementById("s_name"+i);
+					//if (a!=null) a.disabled=false;
+				} else {
+					if (a!=null) a.innerHTML="-127.00&deg";
+				}
+				//else document.getElementById("s_name"+i).disabled=true;
+				fillFanTemp();
+			}
+			//console.log(dosing);
+		} 
+	}
+	
+	function fillSense(select_id){
+		var a=document.getElementById(select_id);
+		//console.log(a);
+		//console.log(a.length);
+        while(a.length!=0){
+          a.remove(a.lengt)
+        }
+      	for (j=0;j<sensors.length;j++) {
+			
+			if (sensors[j].name!="") {
+				var b=document.createElement("option");
+      			b.text=sensors[j].name;
+				b.value=j;
+      			if (sensors[j].isExist==0) b.disabled=true;
+				a.add(b);
+			}
+				
+		}
+		var b=document.createElement("option");
+  		b.text="No sensor";
+  		b.value=255;
+  		a.add(b);
+		
+	}
+	
+	function setFans(){
+		//console.log(dosing.length);
+		
+		
+		
+		
+		for (var i=0;i<16;i++){
+			document.getElementById("fan"+i).innerHTML=i+"/"+Channels[i].gpio;
+			document.getElementById("fname"+i).innerHTML=Channels[i].name;
+			if (Channels[i].type!=1) 
+				document.getElementById("_fan"+i).style.display="none";
+			else {
+				document.getElementById("_fan"+i).style.display="";
+				fillSense("sens_id"+i);
+				
+				// удалить все select для датчиков у данного канала
+/******************************************************************************				
+				var a=document.getElementById("sens_id"+i);
+				//console.log(a);
+				//console.log(a.length);
+		        while(a.length!=0){
+		          a.remove(a.lengt)
+		        }
+              	for (j=0;j<sensors.length;j++) {
+					
+					if (sensors[j].name!="") {
+						var b=document.createElement("option");
+              			b.text=sensors[j].name;
+						b.value=j;
+              			if (sensors[j].isExist==0) b.disabled=true;
+						a.add(b);
+					}
+						
+				}
+******************************************************************************/
+				
+				
+				document.getElementById("tmin"+i).value=fans[i].min_temp;
+				document.getElementById("tmax"+i).value=fans[i].max_temp;
+				document.getElementById("min_value"+i).value=fans[i].min_value;
+/*				
+				var b=document.createElement("option");
+          		b.text="No sensor";
+          		b.value=255;
+          		a.add(b);
+				
+*/				
+				var a=document.getElementById("sens_id"+i);
+				if (fans[i].ds_id!=255) a.selectedIndex=fans[i].ds_id; else a.selectedIndex=a.length-1;
+			}
+			
+			
+				
+		}
+		
+	}
+	function getFans(){
+		//console.log("req fans");
+		var xhr = new XMLHttpRequest();
+		xhr.timeout=500;
+		//console.log(url+"/get?channels=all");
+		xhr.open("GET", url+"/get?fans=all", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	  	    fans=JSON.parse(this.responseText);
+			//console.log(dosing);
+		} 
+	}
+	function getCh(){
+		//console.log()
+		//console.log("req channels");
+		var xhr = new XMLHttpRequest();
+		xhr.timeout=500;
+		
+		xhr.open("GET", url+"/get?channels=all", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+			
+	  	    
+	  	  	Channels=JSON.parse(this.responseText);
+			
+			renew=0;
+	  	  	
+			var _span=1;
+	    	for (var i=0;i<16;i++){
+				
+				//maxValue[i]=getMaxOfArray(Channels[i].value);
+				//minValue[i]=getMinOfArray(Channels[i].value);
+				
+	        	if (Channels[i].s_color!="") Color[i]="#"+Channels[i].s_color;
+	      		if (Channels[i].name=="") Channels[i].name="no name"; 
+				document.getElementById("n"+i).textContent="\""+Channels[i].name+"\"";
+				document.getElementById("const"+i).style.display='none';
+				
+				if (Channels[i].type==0){
+					
+					document.getElementById("ch_"+i).onclick=function() {show_page('schedule')};
+					document.getElementById("v"+i).onclick=function() {show_page('schedule')};
+					document.getElementById("n"+i).onclick=function() {show_page('schedule')};
+					document.getElementById("chid"+i).onclick=function() {show_page('schedule')};
+					document.getElementById("const"+i).style.display="";
+					document.getElementById("const_name"+i).innerHTML=Channels[i].name;
+					_span++;
+					//console.log("_span:"+_span);
+					document.getElementById("const_span").rowSpan = _span;
+					//maxValue[i]=getMaxOfArray([1,2,3,4,5,6,7]);
+					maxValue[i]=getMaxOfArray(Channels[i].value);
+					minValue[i]=getMinOfArray(Channels[i].value);
+					
+				}
+				if (Channels[i].type==1){
+					document.getElementById("ch_"+i).onclick=function() {show_page('temperature')};
+					document.getElementById("v"+i).onclick=function() {show_page('temperature')};
+					document.getElementById("n"+i).onclick=function() {show_page('temperature')};
+					
+					
+				}
+				if (Channels[i].type==2){
+					document.getElementById("ch_"+i).onclick=function() {show_page('dosing')};
+					document.getElementById("v"+i).onclick=function() {show_page('dosing')};
+					document.getElementById("n"+i).onclick=function() {show_page('dosing')};
+					
+				}
+				if (Channels[i].type==3){
+					document.getElementById("ch_"+i).onclick=function() {show_page('timers')};
+					document.getElementById("v"+i).onclick=function() {show_page('timers')};
+					document.getElementById("n"+i).onclick=function() {show_page('timers')};
+					
+				}
+				if (Channels[i].type==255){
+					document.getElementById("ch_"+i).onclick=function() {show_page('gpio_setup')};
+					document.getElementById("v"+i).onclick=function() {show_page('gpio_setup')};
+					document.getElementById("n"+i).onclick=function() {show_page('gpio_setup')};
+					
+				}
+        
+	    	}
+    
+	  		
+    
+    
+		} 
+		
+	}
+	function getPWM(g,d){
+	  					//g - chanell ID
+	  					//d - current time in second
+	            var e=0,c=0,f;
+	            f=Channels[g].value[0];
+	            for(var i=0;i<Channels[g].tp.length-1;i++){
+	              if(d==Channels[g].tp[i]){
+	                f=Channels[g].value[i]
+	              }
+	              if((d>Channels[g].tp[i])&(d<Channels[g].tp[i+1])){
+	                e=(Channels[g].value[i+1]-Channels[g].value[i])/(Channels[g].tp[i+1]-Channels[g].tp[i]);
+	                c=Channels[g].value[i]-Channels[g].tp[i]*e;
+	                f=Math.round(e*d+c)
+	              }
+	            }
+	            return f
+	}
+	function disableTimeSlider(){
+		var timeLine=document.getElementById("timeLine");
+  		if (Current_tp==-2){
+			timeLine.setAttributeNS(null,"x1",shift+info.cMillis/1000/120);
+	        timeLine.setAttributeNS(null,"x2",shift+info.cMillis/1000/120);
+	        var a=document.getElementById("TimeSlider");
+            a.disabled=false;
+	        a.value=parseInt(info.cMillis)/1000/60;
+	        a.disabled=true;
+	    	a=document.getElementById("chValueR");
+	    	a.disabled=false;
+	    	a.value=info.cValue[Current_ch];
+	    	a.disabled=true;
+			a=document.getElementById("chValue");
+	    	a.disabled=false;
+	    	a.value=info.cValue[Current_ch];
+	    	a.disabled=true;
+	    	a=document.getElementById("currentTime");
+	    	a.disabled=false;
+	    	a.value=getTime(info.cMillis);
+	    	a.disabled=true;
+			
+			moveInput("from disable timeslider----");
+	  }
+	  if (info.RunMode==1){
+		  //console.log("slave runmode");
+		  document.getElementById("b_constructor").disabled=true;
+		  document.getElementById("_addTimePoint").disabled=true;
+		  document.getElementById("setdef").disabled=true;
+		  document.getElementById("st").disabled=true;
+		  document.getElementById("ch_gr").disabled=true;
+		  document.getElementById("sc").disabled=true;
+		  document.getElementById("cc").disabled=true;
+		  document.getElementById("move").disabled=true;
+		  document.getElementById("addToGroup").disabled=true;
+		  document.getElementById("TimeSlider").disabled=true;
+		  document.getElementById("currentTime").disabled=true;
+		  document.getElementById("chValue").disabled=true;
+		  document.getElementById("chValueR").disabled=true;
+	  } else {
+		  document.getElementById("b_constructor").disabled=false;
+		  document.getElementById("_addTimePoint").disabled=false;
+		  document.getElementById("setdef").disabled=false;
+		  document.getElementById("st").disabled=false;
+		  document.getElementById("ch_gr").disabled=false;
+		  document.getElementById("sc").disabled=false;
+		  document.getElementById("cc").disabled=false;
+		  document.getElementById("move").disabled=false;
+		  document.getElementById("addToGroup").disabled=false;
+		  //document.getElementById("TimeSlider").disabled=false;
+		  document.getElementById("currentTime").disabled=false;
+		  document.getElementById("chValue").disabled=false;
+		  //document.getElementById("chValueR").disabled=false;
+	  }
+            
+	}
+	function chRange(a){
+		var _add="";
+		
+        if(a.id=="chValueR"){
+          document.getElementById("chValue").value=a.value
+        }else{
+          document.getElementById("chValueR").value=a.value
+        }
+        Channels[Current_ch].value[Current_tp]=a.value;
+		if (Current_tp==0) {
+			Channels[Current_ch].value[lastTp]=a.value;
+			_add="&v"+lastTp+"="+a.value;
+		}
+		if (Current_tp==lastTp) {
+			Channels[Current_ch].value[0]=a.value;
+			_add="&v0="+a.value;
+		}
+		//console.log("Current_tp:"+Current_tp);
+		//console.log("lastTP:"+lastTp);
+		redrawChannel(Current_ch);
+		sendGET("/set?ch="+Current_ch+"&v"+(Current_tp)+"="+a.value+_add);
+		if (isRT) sendGET("/set?manual"+Current_ch+"="+a.value);
+		return;
+		
+		
+	            if(Current_tp>-1){
+					//console.log("lastTp:"+lastTp);	
+	              if(Current_tp==lastTp){
+	                Channels[Current_ch].value[0]=a.value;
+					redrawChannel(Current_ch);
+	                if (isRT) sendGet("/set?manual"+Current_ch+"="+a.value);
+					sendGET("/set?ch="+Current_ch+"&v"+(0)+"="+a.value)
+	              }
+	              if(Current_tp==1){
+	                Channels[Current_ch].value[Current_tp]=a.value;
+					if (isRT) sendGet("/set?manual"+Current_ch+"="+a.value);
+	                sendGET("/set?ch="+Current_ch+"&v"+(Current_tp)+"="+a.value)
+	              }
+	              
+	              Channels[Current_ch].value[Current_tp]=a.value;
+				  //redrawChannel(Current_ch);
+	              //if (chRange.caller.name=="onchange"){ 
+				  if (isRT) sendGet("/set?manual"+Current_ch+"="+a.value);
+					  sendGET("/set?ch="+Current_ch+"&v"+(Current_tp)+"="+a.value);
+				//	  console.log("onchamge method");
+					  //}
+				  redrawChannel(Current_ch);	  
+	            }
+				
+	}
+	function getAllPWM(c,b){
+            var a="/set?";
+            for(j=0;j<16;j++){
+              if((Current_gr==255)&(Channels[j].type==0)){
+                //console.log("PWM+"+getPWM(j,c));
+                a+="manual"+j+"="+getPWM(j,c)+"&";
+                //console.log("a="+a);
+                // Channels[j].pwm[j]=getPWM(j,c); //sslac32
+              }else{
+                if((Channels[j].group==Current_gr)&(Channels[j].type==0)){
+                  a+="manual"+j+"="+getPWM(j,c)+"&";
+                  //console.log("a="+a);
+                  //Channels.pwm[j]=getPWM(j,c)
+                }
+              }
+            }
+            //console.log("a="+a);
+            sendGET(a);
+	}
+	function timeInput(c){
+		
+		
+		
+		
+		Current_tp=document.getElementById("st").value;
+  		//console.log("c.id="+c.id);
+		var timeLine=document.getElementById("timeLine");
+		var cTime=document.getElementById("cTime");
+		var cValue=document.getElementById("cValue");
+		if (Current_tp>-2) {
+			document.getElementById("TimeSlider").disabled=false;
+        }
+	  	if ((Current_tp>-1)&(c.id=="st")){
+			
+			if (isRT){
+				//console.log("Need manual mode activated");
+			}
+			
+			
+	    //	console.log(c.id);
+	        document.getElementById("TimeSlider").disabled=false;
+	        document.getElementById("chValue").disabled=false;
+	        document.getElementById("chValueR").disabled=false;
+	        document.getElementById("chValueR").value=Channels[Current_ch].value[Current_tp];
+	        document.getElementById("chValue").value=Channels[Current_ch].value[Current_tp];
+	        document.getElementById("currentTime").disabled=false;
+	        //console.log(Channels[Current_ch].tp[Current_tp]);
+	    	document.getElementById("currentTime").value=getTime(Channels[Current_ch].tp[Current_tp]*1000);
+	    	if (c.id=="st") { 
+	        	document.getElementById("TimeSlider").value=Channels[Current_ch].tp[Current_tp]/60;
+	        }
+		}
+	  	if (Current_tp==-2){
+	    	document.getElementById("TimeSlider").disabled=true;
+	        document.getElementById("chValue").readOnly=true;
+	        document.getElementById("chValueR").disabled=true;
+	        var a="";
+	        for (var i=0;i<16;i++) {
+	        	a+="manual"+i+"=-1&";
+	        }
+	        postReq("/set?",a);
+		}
+	  	if(c.id=="TimeSlider"){
+	    	document.getElementById("currentTime").value=returnDate(c.value*60);
+	        if (Current_tp!=-1) Channels[Current_ch].tp[Current_tp]=c.value*60;
+	        redrawChannel(Current_ch);
+            if(Current_tp>-1){
+				if (isRT)
+					getAllPWM(c.value*60);
+				sendGET("/set?ch="+Current_ch+"&t"+(Current_tp)+"="+c.value*60);
+			}
+	        if (Current_tp==-1){
+	        	//console.log("Play Time="+c.value*60);
+	            document.getElementById("chValue").value=getPWM(Current_ch,c.value*60);
+	            getAllPWM(c.value*60);
+	        }
+                
+                
+	              // getAllPWM(c.value*60,Current_gr); //sslac 32
+		}
+	    if(c.id=="currentTime"){
+	    	//console.log("c.value="+c.value);
+	        var e=new Date("Jan 1, 1971 "+c.value);
+	        var a=(e.getHours()*60+e.getMinutes())*60;
+	        //console.log("a="+a);
+	        if (Current_tp!=-1) Channels[Current_ch].tp[Current_tp]=a;
+	        redrawChannel(Current_ch);
+	        if(Current_tp>-1){
+	        	sendGET("/set?ch="+Current_ch+"&t"+(Current_tp)+"="+a)
+	        }
+		}
+		timeLine.setAttributeNS(null,"x1",shift-0+document.getElementById("TimeSlider").value/2);
+        timeLine.setAttributeNS(null,"x2",shift-0+document.getElementById("TimeSlider").value/2);
+		moveInput("from time input---"); //тут работает
+		
+  	}
+	function moveInput(sss){
+		//console.log(sss)
+		//console.log("TimeLine:"+document.getElementById("TimeSlider").value);
+		//console.log("Channels[Current_ch].tp[Current_tp]/120:"+Channels[Current_ch].tp[Current_tp]/120);
+		var a=document.getElementById("chValue");
+		a.style.left=shift-90+document.getElementById("TimeSlider").value/2+"px";
+		a=document.getElementById("currentTime");
+		a.style.left=-10-shift+document.getElementById("TimeSlider").value/2+"px";
+	}
+	function asyncGET (req) {
+		var xhr = new XMLHttpRequest();
+		//xhr.timeout=500;
+		
+		xhr.open("GET", url+req, false);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			//console.log("readyState:"+this.readyState+" - this.status:"+this.status);
+			if ((this.readyState == 4)&(this.status == 0)) {
+				//console.log("req:"+req);
+				//sendGET(req);
+			}
+	  	  	if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	 	} 
+	}
+	function sendGET(req,flag){
+	
+		
+		var xhr = new XMLHttpRequest();
+		//xhr.timeout=500;
+		
+		xhr.open("GET", url+req, false);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			//console.log("readyState:"+this.readyState+" - this.status:"+this.status);
+			if ((this.readyState == 4)&(this.status == 0)) {
+				//console.log("req:"+req);
+				//console.log("flag:"+flag);
+				if (flag) sendGET(req);
+			}
+	  	  	if (this.readyState != 4) return;
+	  	  	if (this.status != 200) {
+	    		return;
+	  	  	}
+	 	} 
+	}
+	function returnDate(c){
+	            var a=new Date(c*1000);
+	            var b;
+	            if(a.getUTCHours()<10){
+	              b="0"+a.getUTCHours()+":"
+	            }else{
+	              b=a.getUTCHours()+":"
+	            }
+	            if(a.getUTCMinutes()<10){
+	              b+="0"+a.getUTCMinutes()
+	            }else{
+	              b+=a.getUTCMinutes()
+	            }
+	            return b
+	}
+	function getTime(ms){
+	        var _ret="";
+	        s=Math.floor((ms/1000)%60);
+			m=Math.floor((ms/(1000*60))%60);
+			h=Math.floor((ms/(1000*60*60))%24);
+	        if (h<10) _ret+="0"+h+":"; else _ret+=h+":";
+	        if (m<10) _ret+="0"+m+":"; else _ret+=m+":";
+	        if (s<10) _ret+="0"+s; else _ret+=s;
+	        return _ret;
+    }
+	function cursor(x) {
+	  	if (x==0) document.body.style.cursor = "pointer";
+	  	if (x==1) document.body.style.cursor = "default";
+	}
+	function cursorMove(a){
+	            mouse_x=a.clientX-offset.left;
+	            mouse_y=a.clientY-offset.top;
+	            var c=(mouse_x-shift-9)*120;
+	            var b=(4096-(mouse_y-shift)*16);
+	            var e=document.getElementById("cursor1");
+	            e.setAttributeNS(null,"x",mouse_x);
+	            e.setAttributeNS(null,"y",mouse_y);
+	  					//console.log((mouse_x-shift)*120);
+	            var d=returnDate((mouse_x-shift)*120);
+	            if((c>0)&(c<1440*60+1)){
+	              e.textContent=d
+	            }
+	            e=document.getElementById("cursor2");
+	            e.setAttributeNS(null,"x",mouse_x+10);
+	            e.setAttributeNS(null,"y",mouse_y+10);
+	            d=(4096-(mouse_y-shift)*16).toString();
+	            if((b>-1)&(b<4097)){
+	              e.textContent=d
+	            }
+	}
+	function disableElem(id,colorE,colorD,flag){
+		var e=document.getElementById(id);
+		if (flag){
+			e.disabled=true;
+			e.style.background=colorD;
+		} else{
+			e.disabled=false;
+			e.style.background=colorE;
+		}
+		
+	}
+	function getAll(){
+		setTimeout(getInfo,250);
+		//console.log("Channels.length:"+Channels.length);
+		//console.log("group.length:"+group.length);
+		//console.log("dosing.length:"+dosing.length);
+		
+		if (Channels.length==0) {
+			//disableElem("b_ligth",'#4CAF50','#808080',true);
+			//disableElem("b_dosing",'#4CAF50','#808080',true);
+			disableElem("b_gpio",'#4CAF50','#808080',true);
+			disableElem("b_group",'#4CAF50','#808080',true);
+			//disableElem("b_fans",'#4CAF50','#808080',true);
+			getCh();
+			return;
+		} else disableElem("b_gpio",'#4CAF50','#808080',false);
+		
+		if (group.length==0) {
+			//document.getElementById("b_ligth").disabled=true;
+			
+			getGr();
+			return;
+		} else disableElem("b_group",'#4CAF50','#808080',false);
+		
+		if ((Channels.length==16)&(group.length==8)){
+			
+			//disableElem("b_ligth",'#4CAF50','#808080',false);
+					
+		}else 
+			//disableElem("b_ligth",'#4CAF50','#808080',true);
+		
+		if ((Channels.length==16)&(fans.length==16)&(sensors.length==16)){
+			
+				//disableElem("b_fans",'#4CAF50','#808080',false);
+					
+		}else 
+				//disableElem("b_fans",'#4CAF50','#808080',true);
+		
+		
+		if (sensors.length!=16) getSensors();
+		if (fans.length!=16) getFans();
+		
+		if (dosing.length==0){
+			//disableElem("b_dosing",'#4CAF50','#808080',true);
+			
+			getDosing();
+			
+		} else { 
+					//disableElem("b_dosing",'#4CAF50','#808080',false);
+		}
+		if (timers.length!=16) getTimers();
+		
+	}
+	function setTime(){
+	 		var d= new Date();
+			
+	    	var _s=d.getHours()*3600+d.getMinutes()*60+d.getSeconds()+"&yy="+d.getFullYear()+"&mm="+parseInt(d.getMonth()+1)+"&dd="+d.getDate();
+			//console.log(_s);
+	    	postReq("/set?","time="+_s); 
+	  		//console.log(d.getFullYear());
+	  		//console.log(d.getMonth());
+	  		//console.log(d.getDate());
+			//kkkkkkk
+	  		//setURL("/set?yy="+d.getFullYear()+"&mm="+d.getMonth()+"&dd="+d.getDate());
+	}
+	function getInfo(){
+		if (!canGetInfo) return;
+		//console.log(document.getElementById("setup").style.display)
+		//console.log(upTime(info.uptime));
+		var xhr = new XMLHttpRequest();
+		setPimp("red");
+		xhr.timeout=500;
+	  	xhr.open("GET", url+"/get?info=", true);
+	  	xhr.send();
+		/*
+		if ((info.selfIP!=_ip) & (info.length!=0)& (info.selfIP!="0.0.0.0")) {
+			_ip=info.selfIP;
+			url="http://"+_ip;
+			
+		}*/
+	  	xhr.onreadystatechange = function (){
+	  		if (this.readyState != 4) return;
+	    	if (this.status != 200) {
+	      		return;
+	    	}
+	    	//console.log(this.responseText);
+	    	info=JSON.parse(this.responseText);
+			//alarm();
+			//console.log ("sender:",sender.source);
+			//alarm();
+			if (sender.source!=undefined) sender.source.postMessage(info, "*");
+			setPimp("green");
+			//console.log("block:"+document.getElementById("setup").style.display);
+			
+			
+			//console.log("RSSI:"+info.isConnected);
+			document.getElementById("c_descr").innerHTML=info.c_descr;
+			if (info.RunMode==0){
+				document.getElementById("isMaster").style.display="none";
+				document.getElementById("isSlave").style.display="none";
+			}
+			if (info.RunMode==1){
+				document.getElementById("isMaster").style.display="none";
+				document.getElementById("isSlave").style.display="none";
+				document.getElementById("select_master").disabled=false;
+				
+			}
+			if (info.RunMode==2){
+				document.getElementById("isMaster").style.display="none";
+				document.getElementById("isSlave").style.display="none";
+			}
+			if (document.getElementById("setup").style.display!="block") {
+				document.getElementById("ssid_ap").value=info.c_descr;
+				document.getElementById("sslac_ip").value=info.ip_ap;
+				document.getElementById("netmask_ap").value=info.netmask_ap;
+				document.getElementById("RunMode").value=info.RunMode
+				
+				document.getElementById("ipaddr").value=info.selfIP;
+				document.getElementById("gateway").value=info.gw_sta;
+				document.getElementById("subnet").value=info.netmask_sta;
+				//var password=document.getElementById("password").value;
+				//document.getElementById("dns").value;
+				
+				if (info.IPV4_type=="dhcp") document.getElementById("ipv4").value="DHCP";
+				else{ 
+					document.getElementById("ipv4").value="Manual";
+					document.getElementById("ipaddr").disabled=false;
+					document.getElementById("gateway").disabled=false;
+					document.getElementById("subnet").disabled=false;
+					document.getElementById("dns").disabled=false;
+				}
+					
+				document.getElementById("ssid").value=info.SSID;
+				
+				
+				
+			}
+			
+			document.getElementById("RSSI").textContent=info.RSSI+"dB";
+			if (info.isConnected) document.getElementById("RSSI").style.fill="lime";
+			disableTimeSlider();
+			for (var i=0;i<16;i++){
+				document.getElementById("v"+i).textContent=info.cValue[i];
+			}
+			//console.log(info.cvalue.length);
+			//console.log(info);
+	        //console.log(resp);
+	      	if (info["isRTC"]!=0){
+	        	document.getElementById("RTC").textContent="RTC: Present";
+	        	document.getElementById("RTC").setAttribute("fill", "black");
+	      	} else {
+	        	document.getElementById("RTC").textContent="RTC: Not present";
+	        	document.getElementById("RTC").setAttribute("fill", "red");
+	      	}
+	    	if (info["isTime"]==0)
+				setTime();
+	      	else {
+	      		var cMillis=info["cMillis"];
+	      		document.getElementById("time").textContent=getTime(cMillis);
+				
+	      	}
+			var uptime=upTime(info.uptime);
+      		document.getElementById("uptime").textContent=uptime.d+":"+uptime.h+":"+uptime.m+":"+uptime.s;
+			var stamp_d=info.TimeStamp[0]+"-";
+			if (info.TimeStamp[1]<10) stamp_d+="0";
+			stamp_d+=info.TimeStamp[1]+"-"
+			if (info.TimeStamp[2]<10) stamp_d+="0";
+			stamp_d+=info.TimeStamp[2];
+			//console.log(stamp_d);
+			var stamp_t="";
+			if (info.TimeStamp[3]!="Stable"){
+				if (info.TimeStamp[3]<10) stamp_t+="0";
+				stamp_t+=info.TimeStamp[3]+":"; 
+				if (info.TimeStamp[4]<10) stamp_t+="0";
+				stamp_t+=info.TimeStamp[4]+":";
+				if (info.TimeStamp[5]<10) stamp_t+="0";
+				stamp_t+=info.TimeStamp[5];
+			} else stamp_t=info.TimeStamp[3];
+			document.getElementById("stamp_d").textContent=stamp_d;
+			document.getElementById("stamp_t").textContent=stamp_t;
+	    	var a=document.getElementById("st1");
+	    	if (info["isConnected"]==0){ 
+	  			a.textContent="No connection";
+	        	a.setAttribute("fill", "grey");
+	        	document.getElementById("pimp").setAttribute("fill", "red");
+	        	a=document.getElementById("st2");
+	    		a.textContent="IP: None";
+	        	a.setAttribute("fill", "grey");
+	        	a=document.getElementById("st3");
+	        	a.setAttribute("fill", "red");
+	        //console.log(resp["master_ip"]);
+	        	/*
+				if (info["master_ip"].indexOf("255")!=-1) {
+	          	  	a.textContent="";
+	        		a.setAttribute("fill", "green");
+	        	} else {  
+	        		a.textContent="SSLAC16 master:"+info["master_ip"];
+	        		a.setAttribute("fill", "red");
+	        	}
+      	  		*/
+      
+	        //a.textContent="SSLAC16 master:"+resp["master_ip"];
+	      }else {
+	  			a.textContent=info["SSID"];
+	        	a.setAttribute("fill", "white");
+	    		a=document.getElementById("st2");
+	    		a.textContent=info["selfIP"];
+	        	a.setAttribute("fill", "white");
+	        	a=document.getElementById("st3");
+	        //console.log(resp["master_ip"]);
+	        	
+	      }
+		  if (info.length!=0){
+			  var uniqueItems = Array.from(new Set(info.networks));
+			  info.networks=uniqueItems;
+		  	
+		  }
+		  if ((document.getElementById("setup").style.display=="none")&(info.length!=0)){
+			  
+			  fillWifi();
+		  }
+		  if (Channels.length!=0){
+			  for (var i=0;i<16;i++){
+				  if (Channels[i].type==1){
+				  	document.getElementById("ch_"+i).style.fill = '#ccffff';
+				  }
+				  if (Channels[i].type==2){
+				  	document.getElementById("ch_"+i).style.fill = '#e6ccff';
+				  }
+				  if (Channels[i].type==0){
+				  	document.getElementById("ch_"+i).style.fill = "#aaffaa";
+				  }
+				  if (Channels[i].type==3){
+					  document.getElementById("ch_"+i).style.fill = "#ffe6cc";
+				  }
+			  }
+		  }
+	
+	}
+	function setPimp(_color){
+		document.getElementById("pimp").style.fill=_color;
+	}
+	function upTime(ms) {
+	  var d, h, m, s;
+	  s = Math.floor(ms / 1000);
+	  m = Math.floor(s / 60);
+	  s = s % 60;
+	  h = Math.floor(m / 60);
+	  m = m % 60;
+	  d = Math.floor(h / 24);
+	  h = h % 24;
+	  return { d: d, h: h, m: m, s: s };
+	}
+
+	
+	function csvJSON(csv){
+	  var lines=csv.split("\n");
+	  var result = [];
+	  var headers=lines[0].split(",");
+	  for(var i=1;i<lines.length;i++){
+		  var obj = {};
+		  var currentline=lines[i].split(",");
+		  for(var j=0;j<headers.length;j++){
+			  obj[headers[j]] = currentline[j];
+		  }
+		  result.push(obj);
+	  }
+  
+	  
+	  return JSON.stringify(result); //JSON
+	}
+	
+	
+	(function() {
+	  /**
+	   * Корректировка округления десятичных дробей.
+	   *
+	   * @param {String}  type  Тип корректировки.
+	   * @param {Number}  value Число.
+	   * @param {Integer} exp   Показатель степени (десятичный логарифм основания корректировки).
+	   * @returns {Number} Скорректированное значение.
+	   */
+	  function decimalAdjust(type, value, exp) {
+	    // Если степень не определена, либо равна нулю...
+	    if (typeof exp === 'undefined' || +exp === 0) {
+	      return Math[type](value);
+	    }
+	    value = +value;
+	    exp = +exp;
+	    // Если значение не является числом, либо степень не является целым числом...
+	    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+	      return NaN;
+	    }
+	    // Сдвиг разрядов
+	    value = value.toString().split('e');
+	    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+	    // Обратный сдвиг
+	    value = value.toString().split('e');
+	    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+	  }
+
+	  // Десятичное округление к ближайшему
+	  if (!Math.round10) {
+	    Math.round10 = function(value, exp) {
+	      return decimalAdjust('round', value, exp);
+	    };
+	  }
+	  // Десятичное округление вниз
+	  if (!Math.floor10) {
+	    Math.floor10 = function(value, exp) {
+	      return decimalAdjust('floor', value, exp);
+	  };
+	  }
+	  // Десятичное округление вверх
+	  if (!Math.ceil10) {
+	    Math.ceil10 = function(value, exp) {
+	      return decimalAdjust('ceil', value, exp);
+	    };
+	  }
+	})();
+	
+	
+	
+}
+</script>
+
