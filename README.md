@@ -27,4 +27,4 @@ d. control the timer on and off based on the set switching time and duration (1 
 
 4. Downloading third-party management interfaces, for this published rest-api on the controller.
 
-5. Download firmware updates "by air".
+5. Download firmware and user interface updates "by air".
