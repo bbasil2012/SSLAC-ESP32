@@ -91,6 +91,86 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			<button class="button" onclick="postReq('/reboot','')">Reboot</button>
 			
 	</div>
+	<div class="pages" id="single_setup" style="display:none" align="center">
+		<br>
+		<div id=single_ch></div>
+		<table style="width: 0px;text-align: center;" border="1">
+			<tbody>
+				<tr>
+					<td>Name:
+					</td>
+					<td><input id="single_name" onchange="ch_name(this)" maxlength="32" size="34" type="text">
+					</td>
+					
+				</tr>
+				<tr>
+					<td>Group
+					</td>
+					<td>select froup
+					</td>
+				</tr>
+				<tr>
+					<td>Type
+					</td>
+					<td>
+						<select id="single_type" onchange="ch_name(this)">
+							<option value=0>LED PWM</option>
+              		  		<option value=1 >Fan PWM</option>
+              		  		<option value=2>Dosing</option>
+              		  		<option value=3>Timer</option>
+			  		  		<option value=255>Noting</option>
+            			</select>
+					</td>
+				</tr>
+				<tr>
+					<td>PWM Freq
+					</td>
+					<td>
+						<input id="single_freq" oninput="ch_name(this)" min="100" max="19500" step="100"value="19500" type="number">
+					</td>
+				</tr>
+				<tr>
+					<td>PWM Dept
+					</td>
+					<td>
+			            <select id="single_dept" onchange="ch_name(this)" selected="4096">
+							<option>2</option>
+			              	<option>4</option>
+			              	<option>8</option>
+			              	<option>16</option>
+			              	<option>32</option>
+			              	<option>64</option>
+			              	<option>128</option>
+			              	<option>256</option>
+			              	<option>512</option>
+			              	<option>1024</option>
+			              	<option>2048</option>
+			              	<option selected="selected">4096</option>
+			              	<option>8192</option>
+			            </select>
+					</td>
+				</tr>
+				<tr>
+					<td>is Inverted
+					</td>
+					<td>
+						<input id="single_inv" onchange="ch_name(this)" type="checkbox">
+					</td>
+				</tr>
+				<tr>
+					<td>Color legend
+					</td>
+					<td>
+						<input id="single_color" onchange="ch_name(this)" type="color">
+					</td>
+				</tr>
+				
+				
+				
+					
+			</tbody>
+		</table>
+	</div>
 	<div class="pages" id="constructor" style="display:none" align="center">
 		<input id="day" name="constructor" type=radio onchange="ch_name(this)">Day (maximum value)</input>
 		<input id="nigth" name="constructor" type=radio onchange="ch_name(this)">Nigth (minimum value)</input><br>
@@ -363,22 +443,22 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 		</table>
 	</div>	
 	<div class="pages" id="controllers" style="display:none" align="center">
-		<button class=button1 id=contr0></button>
-		<button class=button1 id=contr1></button>
-		<button class=button1 id=contr2></button>
-		<button class=button1 id=contr3></button><br>
-		<button class=button1 id=contr4></button>
-		<button class=button1 id=contr5></button>
-		<button class=button1 id=contr6></button>
-		<button class=button1 id=contr7></button><br>
-		<button class=button1 id=contr8></button>
-		<button class=button1 id=contr9></button>
-		<button class=button1 id=contr10></button>
-		<button class=button1 id=contr11></button><br>
-		<button class=button1 id=contr12></button>
-		<button class=button1 id=contr13></button>
-		<button class=button1 id=contr14></button>
-		<button class=button1 id=contr15></button><br>
+		<button class=button1 id=contr0 onclick=show_controller(this)></button>
+		<button class=button1 id=contr1 onclick=show_controller(this)></button>
+		<button class=button1 id=contr2 onclick=show_controller(this)></button>
+		<button class=button1 id=contr3 onclick=show_controller(this)></button><br>
+		<button class=button1 id=contr4 onclick=show_controller(this)></button>
+		<button class=button1 id=contr5 onclick=show_controller(this)></button>
+		<button class=button1 id=contr6 onclick=show_controller(this)></button>
+		<button class=button1 id=contr7 onclick=show_controller(this)></button><br>
+		<button class=button1 id=contr8 onclick=show_controller(this)></button>
+		<button class=button1 id=contr9 onclick=show_controller(this)></button>
+		<button class=button1 id=contr10 onclick=show_controller(this)></button>
+		<button class=button1 id=contr11 onclick=show_controller(this)></button><br>
+		<button class=button1 id=contr12 onclick=show_controller(this)></button>
+		<button class=button1 id=contr13 onclick=show_controller(this)></button>
+		<button class=button1 id=contr14 onclick=show_controller(this)></button>
+		<button class=button1 id=contr15 onclick=show_controller(this)></button><br>
 			
 	</div>	
 		
@@ -1421,7 +1501,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 	        <tr style="height:15px">
 	          <td> <br>
 	          </td>
-	          <td> <input name="RTime" onchange="cRTime(this)" type="checkbox" class="button">RealTime
+	          <td> <input id="RTime" onchange="cRTime(this)" type="checkbox" class="button">RealTime
 	            editing <button id="b_constructor" onclick="show_page('constructor')" class="button">Light schedule wizard</button>
 				<button  onclick=ExportData() class="button">Export Data</button>
 				<button  onclick=ImportData() class="button">Import Data</button>
@@ -1454,7 +1534,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 	          </td>
 	          <td style="text-align:right"><br>
 	          </td>
-	          <td style="text-align:right"><button onclick="delTimePoint()">Delete
+	          <td style="text-align:right"><button id="delTimePoint" onclick="delTimePoint()">Delete
 	              Time Point:</button></td>
 	        </tr>
 	      </tbody>
@@ -1714,8 +1794,8 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
             <title> Setup </title>
             <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null"
               stroke-linecap="null"
-              x="320.00001"
-              y="140"
+              x="320"
+              y="130"
               font-size="24"
               font-family="serif"
               text-anchor="middle"
@@ -1724,7 +1804,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
               onmouseover="cursor(0)"
               onmouseout="cursor(1)"
               id="show0"
-              onclick="show_page('sin')">ESP32</text>
+              onclick="show_page('setup')"></text>
           </g>
           <g fill="#ff7f00" stroke="#000000" stroke-width="0" stroke-linejoin="null"
             stroke-linecap="null"
@@ -2069,12 +2149,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td style="width: 1px;">GPIO</td>
           <td style="width: 1px;">NAME</td>
           <td style="width: 1px;">TYPE</td>
+		  <td style="width: 1px;">Sync</td>
           <td style="width: 1px;">PWM_FREQ</td>
           <td style="width: 1px;">PWM_DEPT</td>
           <td style="width: 1px;">Color Legend</td>
           <td style="width: 1px;">Inverted</td>
         </tr>
-        <tr id="r0">
+        <tr id="r0" onmouseover=cursor(0,this,'#ff99ff') onmouseout=cursor(1,this,'#E0FFFF')>
           <td >0</td>
           <td><div id=gpio0> <br></div>
           </td>
@@ -2089,6 +2170,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels0" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq0" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2111,7 +2199,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color0" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv0" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r1">
+        <tr id="r1" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td >1</td>
           <td> <div id=gpio1></div>
           </td>
@@ -2126,6 +2214,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels1" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq1" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2148,7 +2243,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color1" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv1" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r2">
+        <tr id="r2" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>2</td>
           <td> <div id=gpio2></div></div>
           </td>
@@ -2163,6 +2258,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels2" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq2" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2185,7 +2287,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color2" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv2" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r3">
+        <tr id="r3" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>3</td>
           <td> <div id=gpio3></div>
           </td>
@@ -2200,6 +2302,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels3" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq3" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2222,7 +2331,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color3" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv3" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r4">
+        <tr id="r4" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>4</td>
           <td> <div id=gpio4></div>
           </td>
@@ -2237,6 +2346,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels4" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq4" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2259,7 +2375,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color4" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv4" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r5">
+        <tr id="r5" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>5</td>
           <td> <div id=gpio5></div>
           </td>
@@ -2274,6 +2390,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels5" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq5" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2296,7 +2419,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color5" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv5" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r6">
+        <tr id="r6" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>6</td>
           <td> <div id=gpio6></div>
           </td>
@@ -2311,6 +2434,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels6" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq6" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2333,7 +2463,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color6" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv6" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r7">
+        <tr id="r7" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>7</td>
           <td> <div id=gpio7></div>
           </td>
@@ -2348,6 +2478,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels7" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq7" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2370,7 +2507,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color7" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv7" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r8">
+        <tr id="r8" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>8</td>
           <td> <div id=gpio8></div>
           </td>
@@ -2385,6 +2522,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels8" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq8" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2407,7 +2551,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color8" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv8" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r9">
+        <tr id="r9" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>9</td>
           <td> <div id=gpio9></div>
           </td>
@@ -2422,6 +2566,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels9" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq9" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2444,7 +2595,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color9" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv9" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r10">
+        <tr id="r10" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>10</td>
           <td> <div id=gpio10></div>
           </td>
@@ -2459,6 +2610,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels10" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq10" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2481,7 +2639,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color10" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv10" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r11">
+        <tr id="r11" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>11</td>
           <td> <div id=gpio11></div>
           </td>
@@ -2496,6 +2654,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels11" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq11" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2518,7 +2683,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color11" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv11" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r12">
+        <tr id="r12" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>12</td>
           <td> <div id=gpio12></div>
           </td>
@@ -2533,6 +2698,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels12" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq12" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2555,7 +2727,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color12" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv12" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r13">
+        <tr id="r13" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>13</td>
           <td> <div id=gpio13></div>
           </td>
@@ -2570,6 +2742,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels13" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq13" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2592,7 +2771,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color13" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv13" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r14">
+        <tr id="r14" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>14</td>
           <td> <div id=gpio14></div>
           </td>
@@ -2607,6 +2786,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  <option value=255>Noting</option>
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels14" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq14" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2629,7 +2815,7 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
           <td><input id="color14" onchange="ch_name(this)" type="color"></td>
           <td><input id="inv14" onchange="ch_name(this)" type="checkbox"></td>
         </tr>
-        <tr id="r15">
+        <tr id="r15" onmouseover="cursor(0)"onmouseout="cursor(1)">
           <td>15</td>
           <td> <div id=gpio15></div>
           </td>
@@ -2645,6 +2831,13 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 			  
             </select>
           </td>
+		  <td> 
+			  <select id="sync_channels15" onchange="ch_name(this)">
+			  	<option value=0>No sync</option>
+			  	<option value=1>ONLine sync</option>
+			  	<option value=2>OFFLine sync</option>
+		  	</select>
+		  </td>
           <td><input id="freq15" oninput="ch_name(this)" min="100" max="19500" step="100"
               value="19500" type="number"></td>
           <td>
@@ -2720,59 +2913,35 @@ AAAAAAAAAAAAAA==" rel="icon" type="image/x-icon" />
 	var maxValue=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 	var sender=new Event("");
 	
-	//getCh();
 	
-	//console.log("RunMode:"+document.getElementById("RunMode").value);
-	//setTime();
-	//alert("Test");
 	
 var messageHandler = function(event) {
 	
-    //console.log('Message received:');
-	//console.log(event.data[0]);
-    /*
-	try {
-	    //event.source.postMessage("Message from webpage", "*");
-    	    //console.log('message send back to get catched by webview');
-    	    //console.log(event.data);
-    	    //console.log(event);
-        } 
-        catch(error) {
-    	     //console.log("Error on postMessage back to APP" + error);
-        }
-		*/
+    
 	sender=event;
-	//console.log("sender:",event);
-	//console.log("event:",event);
+	
 	if (event.data.ip!=undefined){
 		if (event.data.ip!=""){
 			_ip=event.data.ip;
 			url="http://"+_ip;
 			reload(event);
-			//console.log("window.top:",window.top);
-			/**while (info.length!=0){
-				console.log("no info");
-				event.source.postMessage("Waiting for info...", "*");
-				
-			}
-				*/
-			//return;
+			
 		}
 	}
 	
 	if (_ip!=""){
 		if (event.source != undefined) event.source.postMessage(info, "*");
-		//console.log("sended info:",info);
+		
 	}
 	
 		
 };
 window.addEventListener('message', messageHandler, false);	
 	
-//setTimeout(alarm,500);
+
 setInterval(alarm,500);
 function alarm(){
-	//console.log("alarm");
+	
 	if (info.length==0) return;
 	if (Channels.length==0) return;
 	var _flag=false;
@@ -2789,7 +2958,7 @@ function alarm(){
 		document.getElementById("svg_100").style.fill="#aaffaa";
 		
 	}
-	//console.log(group)
+	
 	for (var i=0;i<16;i++){
 
 		if ((info.alarms[Channels[i].group]==1)& (Channels[i].type==0)){
@@ -2820,9 +2989,7 @@ function alarm(){
 		}
 		_req=_req.substring(0,_req.length-1);
 		if (parseInt(Current_tp)==-2) sendGET(_req);
-		//console.log(_req);
-		//console.log(Current_tp);
-		//reload();
+		
 		
 		show_page('schedule');
 	}
@@ -2842,7 +3009,7 @@ function alarm(){
 			}
 		}
 		_export+="}";
-		//console.log(_export)
+		
 	}
 	function getMaxOfArray(numArray) {
 		var _ret=numArray[0];
@@ -2851,7 +3018,7 @@ function alarm(){
 			if (_ret<numArray[ii]) _ret=numArray[ii];
 			
 		}
-		//console.log("_ret:"+_ret)
+		
 		return _ret;
 	}
 	
@@ -2863,7 +3030,7 @@ function alarm(){
 			if ((_ret>numArray[ii])&(numArray[ii]!=-1)) _ret=numArray[ii];
 			
 		}
-		//console.log("_ret:"+_ret)
+		
 		return _ret;
 	}
 	
@@ -2883,14 +3050,13 @@ function alarm(){
 		Channels[_ch].value[1]=parseInt(maxValue[_ch]);
 		Channels[_ch].value[2]=Channels[_ch].value[1];
 		Channels[_ch].value[3]=Channels[_ch].value[0];
-		//console.log(Channels[_ch].value);
+		
 		
 		Channels[_ch].tp[0]=parseInt(sunrise.split(":")[0])*3600+parseInt(sunrise.split(":")[1])*60;
 		Channels[_ch].tp[1]=parseInt(_4pday.split(":")[0])*3600+parseInt(_4pday.split(":")[1])*60;
 		Channels[_ch].tp[2]=parseInt(sunset.split(":")[0])*3600+parseInt(sunset.split(":")[1])*60;
 		Channels[_ch].tp[3]=parseInt(_4pnigth.split(":")[0])*3600+parseInt(_4pnigth.split(":")[1])*60;
-		//console.log(Channels[_ch].value);
-		//console.log(Channels[_ch].tp);
+		
 		redrawChannel(_ch);
 		sendCh(_ch);
 		sendGET("/set?manual"+_ch+"=-1");
@@ -2900,104 +3066,51 @@ function alarm(){
 	
 	
 	function makeSinWave(_ch){
-		//return;
-		//console.log("sinwave _ch:"+_ch);
+		
 		var sin_sun=document.getElementById("sin_sun").value;
 		var sin_nigth=document.getElementById("sin_nigth").value;
-		//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
+		
 		sin_sun=parseInt(sin_sun.split(":")[0])*3600+parseInt(sin_sun.split(":")[1])*60;
 		sin_nigth=parseInt(sin_nigth.split(":")[0])*3600+parseInt(sin_nigth.split(":")[1])*60;
-		//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
-		//console.log("sin_sun:"+sin_sun);
-		//console.log("sin_nigth:"+sin_nigth);
+		
 		var delta=(sin_nigth-sin_sun)/15;
 		var deltaGr=12; // 180/15
 		var a=parseInt(minValue[_ch]);
 		
 		var b=parseInt(maxValue[_ch])-parseInt(minValue[_ch]);
-		//console.log("a:"+a);
-		//console.log("b:"+b);
-		//console.log("delta:"+delta);
-		//console.log("deltaGr:"+deltaGr);
-		//console.log("****************");
-		//console.log("ch"+_ch);
-		//console.log("a:"+a);
-		//console.log("b:"+b);
-		//console.log("deltaGr:"+deltaGr);
-		//console.log("MinValue:"+minValue[_ch]);
-		//console.log("MaxValue:"+maxValue[_ch]);
-		//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
-		//console.log("****************");
+		
 		
 		for (var i=0;i<16;i++){
 			var _tp=parseInt(sin_sun+delta*i);
 			var _value=a+b*Math.sin(i*deltaGr * Math.PI / 180);
-			/*
-			var _ddd=Math.PI / 180;
-			//console.log("-----------"+i+"-------------")
-			//console.log("Math.PI / 180:"+_ddd);
-			_ddd=_ddd*deltaGr;
-			//console.log("_ddd*deltaGr:"+_ddd);
-			_ddd=_ddd*i;
-			//console.log("_ddd*i:"+_ddd);
-			_ddd=Math.sin(_ddd);
-			//console.log("Math.sin(_ddd):"+_ddd);
-			_ddd=b*_ddd;
-			//console.log("b*_ddd;:"+_ddd);
-			_ddd=a+_ddd;
-			//console.log("a+_ddd:"+_ddd);
-			//console.log("_value:"+_value);
 			
-			
-			
-			//console.log(deltaGr*_);
-			//console.log(i)
-			*/
-			if (_value>4095) {
-				/*
-				//console.log("value:"+_value);
-				//console.log("ch"+_ch);
-				//console.log("a:"+a);
-				//console.log("b:"+b);
-				//console.log("deltaGr:"+deltaGr);
-				//console.log("MinValue:"+minValue[_ch]);
-				//console.log("MaxValue:"+maxValue[_ch]);
-				//console.log("ch:"+_ch+"; sin_sun:"+sin_sun+"; sin_nigth:"+sin_nigth);
-				*/
-			}
 			Channels[_ch].tp[i]=_tp;
 			if ((i==7) || (i==8)) Channels[_ch].value[i]=maxValue[_ch];
 			else Channels[_ch].value[i]=Math.round(_value);
-			//console.log(Math.sin(i*deltaGr * Math.PI / 180));
-			//console.log("sin:"+Math.sin(i*deltaGr));
-			//console.log("point"+i+":"+_tp+"; value:"+_value);
-			//console.log("grad:"+i*deltaGr);
-			//var _value=a+b*Math.sin(i*deltaGr);
-			//console.log("value:"+_value)
+			
 		}
-		//console.log(Channels[_ch]);
+		
 		redrawChannel(_ch);
 		sendCh(_ch);
 		sendGET("/set?manual"+_ch+"=-1");
 	}
 	function ligthWizard(){
-		//console.log(minValue);
-		//console.log(maxValue);
+		
 		
 		var is4point=document.getElementById("4point").checked;
 		var isSinWave=!is4point;
-		//var isSinWave=document.getElementById("sin_sun").checked
+		
 		
 		for (var j=0;j<16;j++){
-			//console.log("_ch:"+j);
+			
 			if (document.getElementById("ch_const"+j).checked){
 				if (is4point) {
-					//console.log("_ch:"+j+ "is checked");
+					
 					make4point(j);
 					
 				 }
 				 if (isSinWave){
-					//console.log("_ch:"+j+ " makeSinWave");
+					
 					makeSinWave(j);
 				}
 					
@@ -3006,38 +3119,32 @@ function alarm(){
 		
 		
 	}
-	function show_controller(ip){
-		_ip=ip;
+	
+	function show_controller(e){
+		
+		var _ch=e.id.substring(5);
+		
+		_ip=controllers[_ch].ip;
 		url="http://"+_ip;
 		reload();
 		show_page('esp32');
-		//console.log(ip);
-		//window.location.href = "http://"+_ip;
-	}
+		
+	}	
 	
 	function getControllers(){
-		//console.log("req Sensors");
-		//console.log(Channels[Current_ch].tp);
+		
 		var xhr = new XMLHttpRequest();
 		xhr.timeout=500;
-		//console.log(url+"/get?channels=all");
 		xhr.open("GET", url+"/get?controllers=all", true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
 			if (this.readyState != 4) return;
 	  	  	if (this.status != 200) {
 	    		return;
 	  	  	}
-	  	    controllers=JSON.parse(this.responseText);
+			controllers=JSON.parse(this.responseText);
 			if (document.getElementById("setup").style.display=="none") fillControllers();
-			//console.log(controllers);
-			document.getElementById("controllers").disabled=false;
-			//document.getElementById("g_sensors").onclick=function (){show_page('sensors_page')}
-			//console.log(document.getElementById("button_t").onclick);
-			//document.getElementById("button_t").setAttribute( "onClick","window.location.href = 'http:/192.168.32.254';");
-			//document.getElementById("button_t").innerHTML="Click me";
-			
+			enableElement("controllers");
 			for (var i=0;i<16;i++){
 				if (controllers[i].id=="") {
 					document.getElementById("contr"+i).style.display="none";
@@ -3045,36 +3152,32 @@ function alarm(){
 				}
 				
 				else {
-					//console.log(controllers);
 					document.getElementById("contr"+i).style.display="";
 					document.getElementById("contr"+i).innerHTML=controllers[i].c_descr+"<br>";
 					document.getElementById("contr"+i).innerHTML+="ID:"+controllers[i].id+"<br>";
-					if (controllers[i].RunMode==0) document.getElementById("contr"+i).innerHTML+="Mode: Master<br>";
-					if (controllers[i].RunMode==1) document.getElementById("contr"+i).innerHTML+="Mode: Slave<br>";
-					if (controllers[i].RunMode==2) document.getElementById("contr"+i).innerHTML+="Mode: Standalone<br>";
-					if (controllers[i].isAlive==0) document.getElementById("contr"+i).disabled=true; else document.getElementById("contr"+i).disabled=false;
+					if (controllers[i].RunMode==0) {
+						document.getElementById("contr"+i).innerHTML+="Mode: Master<br>";
+						document.getElementById("contr"+i).style.backgroundColor="green"
+					}
+					if (controllers[i].RunMode==1) {
+						document.getElementById("contr"+i).innerHTML+="Mode: Slave<br>";
+						document.getElementById("contr"+i).style.backgroundColor="#d2a679";
+					}
+					if (controllers[i].RunMode==2) {
+						document.getElementById("contr"+i).innerHTML+="Mode: Standalone<br>";
+						document.getElementById("contr"+i).style.backgroundColor="blue";
+					}
+					if (controllers[i].isAlive==0) {
+						document.getElementById("contr"+i).innerHTML+="Status: OFF Line<br>";
+						disableElement("contr"+i);
+						document.getElementById("contr"+i).style.backgroundColor="grey";
+					} else {
+						document.getElementById("contr"+i).innerHTML+="Status: ON Line<br>";
+						enableElement("contr"+i);
+					}
 					var _onclick=controllers[i].ip;
-					document.getElementById("contr"+i).onclick=function() { show_controller(_onclick);};
 					document.getElementById("select_master");
 					
-					/*
-					if (controllers[i].isAlive==0) {
-						document.getElementById("c_status"+i).innerHTML="Status: Off line";
-						document.getElementById("c_td"+i).style.backgroundColor="grey";
-						//console.log(controllers[i]);
-					}
-					if (controllers[i].isAlive==1) {
-						document.getElementById("c_status"+i).innerHTML="Status: On line";
-						document.getElementById("c_td"+i).style.backgroundColor="#E0FFFF";
-					}
-					if (controllers[i].isAlive==255) document.getElementById("c_status"+i).innerHTML="Status: Alarm !!!";
-					document.getElementById("c_ref"+i).innerHTML=controllers[i].c_descr
-					document.getElementById("c_ref"+i).href="http://"+controllers[i].ip;
-					//console.log(document.getElementById("c_ref"+i).innerHTML);
-					//console.log(document.getElementById("c_ref"+i).href);
-					//document.getElementById().innerHTML=controllers[i].c_descr;
-					//document.getElementById().innerHTML=controllers[i].ip;
-					*/
 				}
 			}
 			
@@ -3089,7 +3192,7 @@ function alarm(){
 		for (var i=0;i<16;i++){
 			document.getElementById("ch_"+i).setAttribute("style","fill:grey");
 		}
-		document.getElementById("controllers").disabled=true;
+		disableElement("controllers");
 		controllers=[];
 		Channels=[];
 		group=[];
@@ -3112,11 +3215,9 @@ function alarm(){
 			_total+=parseInt(timers[_tm].duration[i]);
 		}
 		_total=_total*_pp/3600;
-		//var _error=
 		document.getElementById("dosing_error").innerHTML="Total:"+Math.round10(_total,-1)+"(ml/day)";
 	}
 	function retSeconds(value){
-		//console.log("value:"+value);
 		if (value.split(":").length==2) return parseInt(value.split(":")[0])*3600+parseInt(value.split(":")[1])*60;
 		if (value.split(":").length==3) return parseInt(value.split(":")[0])*3600+parseInt(value.split(":")[1])*60+parseInt(value.split(":")[2]);
 	}
@@ -3131,15 +3232,9 @@ function alarm(){
 		document.getElementById("power"+_tm).value=_pp;
 		document.getElementById("value"+_tm).value=_ta;
 		dosing_send(_tm);
-		//dosing[_tm].power=_pp;
-		//dosing[_tm].mg_day=_ta;
 		var calc_fd=retSeconds(document.getElementById("calc_fd").value);
 		var calc_ld=retSeconds(document.getElementById("calc_ld").value);
 		if ((calc_ld==86399) || (calc_ld==0) || (calc_ld==calc_fd)) calc_ld=86400;
-		
-		//console.log("calc_fd:"+calc_fd);
-		//console.log("calc_ld:"+calc_ld);
-		
 		var _interval=(calc_ld-calc_fd)/parseInt(_nd);
 		_interval=Math.round(_interval); //dosing each second
 		var _per_dosing=Math.round(_ta/_nd); //ml for one time dosing
@@ -3150,19 +3245,12 @@ function alarm(){
 		
 		var _total=_per_time*_nd*_pp/3600; //total rounded
 		var _error=Math.round((_ta-_total)/_ta*100); //error percent
-		
-		
-		//console.log("dosing each second="+_interval);
-		//console.log("ml for one time dosing="+_per_dosing);
-		//console.log("stotal rounded="+_total);
-		//console.log("error percent="+_error);
-		
 		var _tp=0;
 		for (var i=0;i<_nd;i++){
 			new_tp[i]=calc_fd+_interval*i;
 			
 		}
-		//console.log("new_tp",new_tp);
+		
 		
 		for (var i=0;i<_nd;i++){
 			new_dr[i]=_per_time;
@@ -3171,7 +3259,6 @@ function alarm(){
 		
 		timers[_tm].tp=new_tp;
 		timers[_tm].duration=new_dr;
-		//console.log(timers[_tm]);
 		fillTimersPoint(_tm);
 		
 		sendTimers(_tm);
@@ -3200,8 +3287,6 @@ function alarm(){
 		postReq("/set?",_req);
 	}
 	function addToArray(array,index,value){
-		//console.log("array:"+array);
-		//console.log(array);
 		var _ret=[];
 		_ret=array;
 		
@@ -3210,11 +3295,7 @@ function alarm(){
 		
 		for (j=index;j<array.length-1;j++) {
 			_ret[j+1]=array[j];
-			//console.log("j="+j);
-			//console.log("array[j]="+array[j]);
 		}
-		//console.log("_ret:");
-		//console.log(_ret);
 		return _ret;
 		
 	}
@@ -3227,18 +3308,12 @@ function alarm(){
 	}
 	
 	function getArrayIndex(array,value,zero){
-		/*if (zero!=undefined){
-			if (array[0]==zero) return 0;
-			//console.log("array[0]="+zerro+":"+array[0]);
-		}*/
 		if (value<array[0]) return 0;
 		for (var i=0;i<array.length-1;i++){
-			//console.log("array["+i+"]="+array[i]);
 			if ((value>array[i])&(value<array[i+1])) return i+1;
 			if (zero!=undefined){
 				if (array[i]==zero) {
 					return i;
-					//console.log("array["+i+"]="+array[i]+":"+zero);
 				}
 				
 			}
@@ -3252,7 +3327,6 @@ function alarm(){
 			if (timers[_timer].tp[i]==-1) {
 				timers[_timer].tp[i]=0;
 				fillTimersPoint(_timer);
-				//console.log(timers);
 				return;
 			} 
 		}
@@ -3265,23 +3339,16 @@ function alarm(){
 		var isPump;
 		document.getElementById("calc_fd").value=getTime(0);
 		document.getElementById("calc_ld").value=getTime(0);
-		//console.log(timers[_timer]);
 		if (timers[_timer].dosing==1){
 			console.log("is pump");
 			document.getElementById("tm_dosing").checked = true;
 			isPump=true;
 			document.getElementById("calc_pp").value=dosing[_timer].power;
 			document.getElementById("calc_ta").value=dosing[_timer].value;
-			//document.getElementById("calc_fd").disabled=false;
-			//document.getElementById("calc_ld").disabled=false;
 		}else{
 			console.log("is timer");
 			document.getElementById("tm_dosing").checked = false;
 			isPump=false;
-			//document.getElementById("calc_pp").disabled=true;
-			//document.getElementById("calc_la").disabled=true;
-			//document.getElementById("calc_fd").disabled=true;
-			//document.getElementById("calc_ld").disabled=true;
 		}
 		var tp_count=0
 		for (var i=0;i<24;i++){
@@ -3292,10 +3359,7 @@ function alarm(){
 				
 				tp_count++;
 				document.getElementById("timer_id"+i).style.display='';
-				//document.getElementById("tm_tp"+i).onchange=function(){console.log("Timer:"+_timer+"->"+this.value)}
 				document.getElementById("tm_tp"+i).value=getTime(timers[_timer].tp[i]*1000);
-				//console.log("tp:"+getTime(timers[_timer].tp[i]*1000));
-				//console.log("duration:"+getTime(timers[_timer].duration[i]*1000));
 				document.getElementById("tm_dr"+i).value=getTime(timers[_timer].duration[i]*1000);
 			}
 		}
@@ -3331,7 +3395,12 @@ function alarm(){
 		}
 		
 	}
-	
+	function clearSelect(elem){
+		if (elem==undefined) return;
+        while(elem.length!=0){
+          elem.remove(elem.lengt)
+        }
+	}
 	function fillTimers(){
 		if (Channels.length!=16) {
 			alert("Channels data not yet retrived");
@@ -3341,11 +3410,9 @@ function alarm(){
 			alert("Timers data not yet retrived");
 			return;
 		}
-		var _select=document.getElementById("s_timer");
-        while(_select.length!=0){
-          _select.remove(_select.lengt)
-        }
-		for (var i=0;i<Channels.length;i++){
+		var _select=document.getElementByID("s_timer");
+		clearSelect(_select);
+        for (var i=0;i<Channels.length;i++){
 			if (Channels[i].type==3){
 				var _option=document.createElement("option");
 				_option.text=Channels[i].name;
@@ -3360,8 +3427,6 @@ function alarm(){
 	}
 	
 	function getTimers(){
-			//console.log()
-			//console.log("req channels");
 			var xhr = new XMLHttpRequest();
 			xhr.timeout=500;
 		
@@ -3375,24 +3440,17 @@ function alarm(){
 			
 	  	    
 		  	  	timers=JSON.parse(this.responseText);
-				fillTimers;
-				//console.log(timers);
 			}
 	}
 				
 				
 				
 	function findTP(ms,_ch){
-		//console.log("ms:"+ms);
 		var _ret=-1;
 		if (Channels[_ch].tp[0]>=ms) return 0;
 		else {
 			for(var i=0;i<15;i++){
 				if ((ms>=Channels[_ch].tp[i]) & (ms<=Channels[_ch].tp[i+1])) _ret=i+1;
-				//console.log("findTP _ret:"+_ret);
-				//console.log("ms:"+ms);
-				//console.log ("Chanels["+_ch+"].tp["+i+"]="+Channels[_ch].tp[i])
-				
 			}
 			
 		}
@@ -3413,7 +3471,6 @@ function alarm(){
 		for (var i=0;i<16;i++){
 			_req+="&t"+i+"="+Channels[_ch].tp[i]+"&v"+i+"="+Channels[_ch].value[i];
 		}
-		//console.log(_req);
 		postReq("/set?",_req);
 		
 	}
@@ -3444,57 +3501,21 @@ function alarm(){
 	}
 	
 	function delTimePoint(){
-		//console.log("Current_tp"+Current_tp);
-		
 		if (Current_tp<0){
 			alert("You need to select Time point !!! ")
 		}
 		var _tp=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 		var _val=[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 		var j=0;
-		//console.log(Channels[Current_ch].tp);
-		//console.log(Channels[Current_ch].value);
-		/*
-		var _req="/set?ch="+Current_ch;
-		for (var i=0;i<16;i++){
-			if (i!=Current_tp){
-				_tp[j]=Channels[Current_ch].tp[i];
-				_val[j]=Channels[Current_ch].value[i];
-				j++;
-				
-			}
-		}
-		for (var i=0;i<16;i++)
-			_req+="&t"+i+"="+_tp[i]+"&v"+i+"="+_val[i];
-		*/
-		//console.log("before:");
-		//console.log(Channels[Current_ch].tp);
-		//console.log(Channels[Current_ch].value);
 		Channels[Current_ch].tp.splice(Current_tp,1);
 		Channels[Current_ch].value.splice(Current_tp,1);
 		Channels[Current_ch].tp.splice(Channels[Current_ch].tp.length,0,0);
 		Channels[Current_ch].value.splice(Channels[Current_ch].value.length,0,-1);
-		//console.log("after:");
-		//console.log(Channels[Current_ch].tp);
-		//console.log(Channels[Current_ch].value);
-		
-		
-		
-		//sendCh(Current_ch);
-		
-		
-		//console.log(_req);
-		//Channels[Current_ch].tp=_tp;
-		//Channels[Current_ch].value=_val;
-		
-		//console.log(_tp);
 		Current_tp--;
-		
 		fillTime(Current_ch);
 		redrawChannel();
 		sendCh(Current_ch);
-		//console.log(Channels[Current_ch].tp);
-		//console.log(Channels[Current_ch].value);
+		
 		
 	}
 	
@@ -3521,38 +3542,31 @@ function alarm(){
 		var dns=document.getElementById("dns").value;
 		var ipv4=document.getElementById("ipv4").selectedIndex;
 		var ssid=document.getElementById("ssid").value;
-		//console.log(ssid);
-		//console.log(ipaddr);
-		//console.log(gateway);
-		//console.log(password);
-		//console.log(dns);
-		if ((ssid!=info.SSID) & (info.isConnected==0))
+		if ((ssid!=info.SSID) || (info.isConnected==0)){
 			sendGET("/wifi?ssid="+ssid+"&passwd="+password+"&local_IP="+ipaddr+"&gateway="+gateway+"&subnet="+subnet+"&primaryDNS="+dns+"&type="+ipv4);
-		else
+			console.log("type 1");
+		}
+		else {
 			sendGET("/wifi?&local_IP="+ipaddr+"&gateway="+gateway+"&subnet="+subnet+"&primaryDNS="+dns+"&type="+ipv4);
+		}
 		
 	}
 	function _dhcp(e){
-		//console.log(e.selectedIndex);
 		if (e.selectedIndex==0) {
-			document.getElementById("ipaddr").disabled=true;
-			document.getElementById("gateway").disabled=true;
-			document.getElementById("subnet").disabled=true;
-			document.getElementById("dns").disabled=true;
+			disableElement("ipaddr");
+			disableElement("gateway");
+			disableElement("subnet");
+			disableElement("dns");
 		} else {
-			document.getElementById("ipaddr").disabled=false;
-			document.getElementById("gateway").disabled=false;
-			document.getElementById("subnet").disabled=false;
-			document.getElementById("dns").disabled=false;
+			enableElement("ipaddr");
+			enableElement("gateway");
+			enableElement("subnet");
+			enableElement("dns");
 		}
 	}
 	function fillControllers(){
 		var a=document.getElementById("select_master");
-		//console.log(a);
-		//console.log(a.length);
-        while(a.length!=0){
-          a.remove(a.lengt)
-        }
+		clearSelect(a);
 		var b=document.createElement("option");
         b.text="None";
         b.value=255;
@@ -3568,20 +3582,12 @@ function alarm(){
 				b.value=i;
 				a.add(b);	
 			}
-			
-			//b=document.createElement("option");
-			//b.text=info.networks[i];
-			//if (info.networks[i]==info.SSID) b.selected=true;
 			a.add(b);
 		}
 	}
 	function fillWifi() {
 		var a=document.getElementById("ssid");
-		//console.log(a);
-		//console.log(a.length);
-        while(a.length!=0){
-          a.remove(a.lengt)
-        }
+		clearSelect(a);
 		var b=document.createElement("option");
         b.text="Not Connected";
         b.value=-1;
@@ -3593,8 +3599,6 @@ function alarm(){
 			if (info.networks[i]==info.SSID) b.selected=true;
 			a.add(b);
 		}
-		//document.getElementById("sslac_ip").value=info.master_ip;
-		//document.getElementById("ipaddr").value=info.selfIP;
 		
 	}
 	function postReq(_url,_body){
@@ -3608,28 +3612,26 @@ function alarm(){
 	    			setTimeout (function() { postReq(_url,_body) }, 500);
 	    			return;
 	  			}
-	  			//console.log(url+_url+","+_body);
+	  			
 			} 
 			xhr.send(_body);
 	}
     function fillGPIO(){
-      //console.log(Channels);
+     
       
       for (var i=0;i<16;i++){
 		    
         	document.getElementById("gpio_name"+i).value=Channels[i].name;
         	document.getElementById("freq"+i).value=Channels[i].freq;
-			//console.log(Channels[i].freq);
-			//console.log(Channels[i].type);
-        	document.getElementById("gpio"+i).innerHTML=Channels[i].gpio;
+			document.getElementById("gpio"+i).innerHTML=Channels[i].gpio;
 			document.getElementById("type"+i).value=Channels[i].type;
-			document.getElementById("dept"+i).disabled=true;
+			disableElement("dept"+i);
 			if (Channels[i].type>1){
-				document.getElementById("freq"+i).disabled=true;
+				disableElement("freq"+i);
 				
 			}
 			if (Channels[i].inv==1){
-				document.getElementById("inv"+i).checked=true;
+				disableElement("inv"+i);
 			}
 			if (Channels[i].s_color!="") {
 				Color[i]="#"+Channels[i].s_color;
@@ -3637,24 +3639,23 @@ function alarm(){
 			}
 			
 				document.getElementById("color"+i).value=Color[i];
-				//document.getElementById("cc"+i).value=Color[i];
+				
 			
       }
-	  //document.getElementById("gpio_name1").innerHTML="44444";
+	  
     }
     function ch_name(e,ch){
-		//console.log(e);
 		if (e.id==undefined) {
 			if (e.indexOf("ds_delete")==0)
 				sendGET("/set?"+e,true);
-				//console.log(e);	
-			return;
+				return;
 		}
-		
+		if (e.id.indexOf("sync_channels")==0){
+			postReq("/set?",e.id+"="+e.value);
+		}
 		if (e.id.indexOf("gr_step")==0){
 			var _ch=e.id.substring(7);
 			group[_ch].step=e.value;
-			//console.log("e.id:",e.id," value:",e.value);
 			postReq("/set?",e.id+"="+e.value);
 			return;
 		}
@@ -3662,23 +3663,18 @@ function alarm(){
 		if (e.id.indexOf("gr_sens")==0){
 			var _ch=e.id.substring(7);
 			group[_ch].alarmIndex=e.value;
-			//console.log("e.id:",e.id," value:",e.value);
 			postReq("/set?",e.id+"="+e.value);
 			return;
 		}
 		if (e.id.indexOf("gr_tresh")==0){
 			var _ch=e.id.substring(8);
 			group[_ch].temp=e.value;
-			
-			//console.log("e.id:",e.id," value:",e.value);
 			postReq("/set?",e.id+"="+e.value);
 			return;
 		}
 		if (e.id.indexOf("gr_int")==0){
 			var _ch=e.id.substring(6);
 			group[_ch].interval=e.value;
-			
-			//console.log("e.id:",e.id," value:",e.value);
 			postReq("/set?",e.id+"="+e.value);
 			return;
 		}
@@ -3688,27 +3684,19 @@ function alarm(){
 			var _tm=document.getElementById("s_timer").value;
 			if (e.checked){
 				timers[_tm].dosing=1;
-				
-				//console.log("dosing checked:",timers[_tm]);
-				
 			}else{
 				timers[_tm].dosing=0;
-				//console.log("timer checked:",timers[_tm]);
 			}
 			postReq("/set?","tm_dosing"+_tm+"="+timers[_tm].dosing);
 			fillTimersPoint(_tm);
 			return;
 		}
 		if (e.id=="select_master"){
-			//console.log("select_master value:"+e.value);
-			//console.log("select_master desr:"+controllers[e.value].c_descr);
 			if (e.value!=255) postReq("/set?","master_id="+controllers[e.value].id); else postReq("/set?","master_id=''");
 			return;
 		}
 		if (e.id=="const_group"){
-			//console.log(e.id+":"+e.value);
 			for (var i=0;i<16;i++){
-				//document.getElementById("const"+i).style.display="none";
 				if (Channels[i].type==0){
 					if ((Channels[i].group==e.value) || (e.value==255)){
 						document.getElementById("const"+i).style.display="";
@@ -3720,45 +3708,39 @@ function alarm(){
 			return;
 		}
 		if (e.id=="RunMode"){
-			//console.log(e.id+":"+e.value);
 			if (e.value==1){
-				document.getElementById("select_master").disabled=false;
+				enableElement("select_master");
 			} else {
-				document.getElementById("select_master").disabled=true;
+				disableElement("select_master");
 			}
-			//console.log("master:"+document.getElementById("select_master").value);
 			postReq("/set?","runmode="+e.value);
 			return;
 		}
 		if ((e.id=="ap_passwd1") || (e.id=="ap_passwd2")){
 			
 			if (document.getElementById("ap_passwd1").value!=document.getElementById("ap_passwd2").value){
-				//console.log("password dosn't match");
 				document.getElementById("ispasswdmatch").innerHTML="Password dosn't match";
-				document.getElementById("apply_ap").disabled=true;
+				disableElement("apply_ap");
 				return;
 			} else {
-				//console.log("password correct");
 				if (e.value.length<8) {
 					document.getElementById("ispasswdmatch").innerHTML="Password to short!!!"
-					document.getElementById("apply_ap").disabled=true;
-					//console.log("password to short!!!");
+					disableElement("apply_ap");
 				} else {
 					document.getElementById("ispasswdmatch").innerHTML="Password is Ok!!!"
-					document.getElementById("apply_ap").disabled=false;
+					enableElement("apply_ap");
 				}
 				
 			}
 			return;
 		}
 		if (e.id=="day"){
-			//console.log(e.checked);
 			for (var i=0;i<16;i++){
 				if (Channels[i].type==0){
 					if (document.getElementById("ch_const"+i).checked){
 						sendGET("/set?manual"+i+"="+maxValue[i]);
 					}
-					document.getElementById("ch_const"+i).disabled=false;
+					enableElement("ch_const"+i);
 					if (maxValue[i]!=-1) {
 						document.getElementById("value_const"+i).value=maxValue[i];
 						document.getElementById("const_value"+i).value=maxValue[i];
@@ -3769,13 +3751,12 @@ function alarm(){
 			return;
 		}
 		if (e.id=="nigth"){
-			//console.log(e.checked);
 			for (var i=0;i<16;i++){
 				if (Channels[i].type==0){
 					if (document.getElementById("ch_const"+i).checked){
 						sendGET("/set?manual"+i+"="+minValue[i]);
 					}
-					document.getElementById("ch_const"+i).disabled=false;
+					enableElement("ch_const"+i);
 					if (minValue[i]!=-1) {
 						document.getElementById("value_const"+i).value=minValue[i];
 						document.getElementById("const_value"+i).value=minValue[i];
@@ -3788,15 +3769,13 @@ function alarm(){
 		if (e.id=="sinwave"){
 			document.getElementById("input_sinwave").style.display='';
 			document.getElementById("input_4point").style.display='none';
-			document.getElementById("wizard").disabled=false;
-			//console.log(e.id);
+			enableElement("wizard");
 			return;
 		}
 		if (e.id=="4point"){
 			document.getElementById("input_sinwave").style.display='none';
 			document.getElementById("input_4point").style.display='';
-			document.getElementById("wizard").disabled=false;
-			//console.log(e.id);
+			enableElement("wizard");
 			return;
 		}
 		if (e.id.indexOf("value_const")==0){
@@ -3814,7 +3793,6 @@ function alarm(){
 			document.getElementById("value_const"+_ch).value=e.value;
 			document.getElementById("const_percent"+_ch).innerHTML=(e.value*100/4095).toFixed(2)+"%";
 			sendGET("/set?manual"+_ch+"="+e.value);
-			//console.log(document.getElementById("day").checked);
 			if (document.getElementById("day").checked) maxValue[_ch]=e.value;
 			else minValue[_ch]=e.value;
 			return;
@@ -3824,13 +3802,13 @@ function alarm(){
 			
 			if (e.checked==true){
 				
-				document.getElementById("value_const"+_ch).disabled=false;
-				document.getElementById("const_value"+_ch).disabled=false;
+				enableElement("value_const"+_ch);
+				enableElement("const_value"+_ch);
 				sendGET("/set?manual"+_ch+"="+document.getElementById("value_const"+_ch).value);
 			} else{
 				
-				document.getElementById("value_const"+_ch).disabled=true;
-				document.getElementById("const_value"+_ch).disabled=true;
+				disableElement("value_const"+_ch);
+				disableElement("const_value"+_ch);
 				minValue[_ch]=-1;
 				maxValue[_ch]=-1;
 				sendGET("/set?manual"+_ch+"=-1");
@@ -3842,11 +3820,9 @@ function alarm(){
 			var _ch=e.id.substring(8);
 			if (e.checked){
 				sendGET("/set?manual"+_ch+"="+document.getElementById("min_value"+_ch).value);
-				//fans[_ch].min_value=document.getElementById("min_value"+_ch).value;
 			} else
 				postReq("/set?","manual"+_ch+"=-1");
 			return;
-			//var _min_value=
 		}	
 		
 		
@@ -3857,8 +3833,6 @@ function alarm(){
 			var _value=parseInt(e.value.split(":")[0])*3600+parseInt(e.value.split(":")[1])*60;
 			if (e.value.split(":")[2]!=undefined) _value+=parseInt(e.value.split(":")[2]);
 			timers[_tm].tp[_tp]=_value;
-			//console.log("Time point->"+_tp+"<- for timer:"+_tm);
-			//console.log("/set?"+"tm="+_tm+"&t"+_tp+"="+_value);
 			postReq("/set?","tm="+_tm+"&t"+_tp+"="+_value);
 			return;
 		}
@@ -3868,19 +3842,14 @@ function alarm(){
 			var _value=parseInt(e.value.split(":")[0])*3600+parseInt(e.value.split(":")[1])*60;
 			if (e.value.split(":")[2]!=undefined) _value+=parseInt(e.value.split(":")[2]);
 			timers[_tm].duration[_dr]=_value;
-			//console.log("[2]---"+e.value.split(":")[2]);
-			//console.log("Duration->"+_dr+"<- for timer:"+_tm);
-			//console.log("="+_value);
 			postReq("/set?","tm="+_tm+"&v"+_dr+"="+_value);
 			if (document.getElementById("dosing_error").innerHTML!="") {
-				//console.log("need recalc");
 				recalcDosing();
 			
 			} 
 			return;
 		}
 		if (e.id.indexOf("sens_id")==0){
-			//console.log("sens_id="+e.value);
 			var _ch=e.id.substring(7);
 			postReq("/set?","fn_dsid"+_ch+"="+e.value);
 			fans[_ch].ds_id=e.value;
@@ -3888,14 +3857,12 @@ function alarm(){
 			return;
 		}
 		if (e.id.indexOf("tmin")==0){
-			//console.log("sens_id="+e.value);
 			var _ch=e.id.substring(4);
 			postReq("/set?","min_temp"+_ch+"="+e.value);
 			fans[_ch].min_temp=e.value;
 			return;
 		}
 		if (e.id.indexOf("min_value")==0){
-			//console.log("sens_id="+e.value);
 			var _ch=e.id.substring(9);
 			postReq("/set?","min_value"+_ch+"="+e.value);
 			fans[_ch].min_value=e.value;
@@ -3904,7 +3871,6 @@ function alarm(){
 			return;
 		}
 		if (e.id.indexOf("tmax")==0){
-			//console.log("sens_id="+e.value);
 			var _ch=e.id.substring(4);
 			postReq("/set?","max_temp"+_ch+"="+e.value);
 			fans[_ch].max_temp=e.value;
@@ -3913,7 +3879,6 @@ function alarm(){
 		if (e.id.indexOf("s_name")==0){
 			var _ch=e.id.substring(6);
 			var s_name=e.value;
-			//console.log("s_name:"+s_name);
 			postReq("/set?","ds_name"+_ch+"="+e.value);
 			sensors[_ch].name=e.value;
 			return;
@@ -3922,7 +3887,6 @@ function alarm(){
 		if (e.id.indexOf("color")==0){
 			var _ch=e.id.substring(5);
 			var s_color=e.value.substring(1);
-			//console.log(s_color);
 			postReq("/set?","s_color"+_ch+"="+s_color);
 			Channels[_ch].s_color=s_color;
 			Color[_ch]="#"+s_color;
@@ -3933,26 +3897,19 @@ function alarm(){
 		
 		
 		if (e.id.indexOf("inv")==0){
-			//console.log(e.id);
-  		  	var _ch=e.id.substring(3);
-			
+			var _ch=e.id.substring(3);
 			if (e.checked) Channels[_ch].inv=1;
 			else Channels[_ch].inv=0;
-			
-		  	postReq("/set?","inv"+_ch+"="+Channels[_ch].inv);
-  		  	//postReq("/set?","name"+_ch+"="+document.getElementById("gpio_name"+_ch).value);
-  		  	//Channels[_ch].inv=document.getElementById("inv"+_ch).checked;
-		  	return;
+			postReq("/set?","inv"+_ch+"="+Channels[_ch].inv);
+  		  	return;
 			
 		}
 		
 		
 		
 		if (e.id.indexOf("freq")==0){
-			//console.log(e.id);
-  		  	var _ch=e.id.substring(4);
+			var _ch=e.id.substring(4);
 		  	postReq("/set?","freq"+_ch+"="+e.value);
-  		  	//postReq("/set?","name"+_ch+"="+document.getElementById("gpio_name"+_ch).value);
   		  	Channels[_ch].freq=e.value;
 		  	return;
 			
@@ -3961,61 +3918,45 @@ function alarm(){
 		
 		
 		if (e.id.indexOf("gr_name")==0) {
-			//console.log(e.id);
-  		  var _ch=e.id.substring(7);
-		  //console.log("/set?gr_name"+_ch+"="+e.value);
-  		  postReq("/set?","gr_name"+_ch+"="+e.value);
+		  var _ch=e.id.substring(7);
+		  postReq("/set?","gr_name"+_ch+"="+e.value);
   		  group[_ch].name=e.value;
 		  return;
 	  	
   	  	}
 		if (e.id.indexOf("gpio_name")==0) {
   		  var _ch=e.id.substring(9);
-		  //console.log("/set?","name"+_ch+"="+e.value);
-  		  postReq("/set?","name"+_ch+"="+e.value);
+		  postReq("/set?","name"+_ch+"="+e.value);
   		  Channels[_ch].name=e.value;
 		  return;
 	  	
   	  	}
         
-      //console.log(e.value);
-      //console.log(e.id);
       if (e.id.indexOf("type")==0) {
           var _ch=parseInt(e.id.substring(4));
     		postReq("/set?","type"+_ch+"="+e.value);
     		Channels[_ch].type=e.value;		
-           //console.log(e.selectedIndex);
-        	//console.log(e.id.substring(4));
-        
-        
-			if ((e.value!=0) & (e.value!=1)) {
-          
-            //console.log(_ch);
-            	document.getElementById("freq"+e.id.substring(4)).disabled=true;
-            	document.getElementById("dept"+e.id.substring(4)).disabled=true;
+          	if ((e.value!=0) & (e.value!=1)) {
+               	disableElement("freq"+e.id.substring(4));
+            	disableElement("dept"+e.id.substring(4));
 				postReq("/set?","group"+_ch+"=255");
 				Channels[_ch].group=255;
           	} else {
-            	document.getElementById("freq"+e.id.substring(4)).disabled=false;
-            	document.getElementById("dept"+e.id.substring(4)).disabled=true;
+            	enableElement("freq"+e.id.substring(4));
+            	disableElement("dept"+e.id.substring(4));
           	}
 		  
 		  if ((Channels[_ch].type==2)&(e.value!=2)){
 		  	postReq("/set?","dp_chid"+_ch+"=-1");
-			//dosing[_ch].ch_id=-1;  
-		  }
+		}
 		  if (e.value==2){
 		  	postReq("/set?","dp_chid"+_ch+"="+_ch);
-			//dosing[_ch].ch_id=_ch;
-		  }
+		}
 		  if (e.value==1){
 			  postReq("/set?","fn_chid"+_ch+"="+_ch);
-			  //fans[_ch].ch_id=_ch;
-		   
 		  }
 		  if ((Channels[_ch].type==1)&(e.value!=1)){
 			  postReq("/set?","fn_chid"+_ch+"=255");
-			  //fans[_ch].ch_id=255;
 		  }
 		  
       }
@@ -4031,94 +3972,31 @@ function alarm(){
     
     }
 	function dosing_send(_ch){
-		//var ch_id=parseInt(document.getElementById("ch_id"+_ch).selectedIndex)-1;
-		//var dname=document.getElementById("dname"+_ch).value;
 		var power=document.getElementById("power"+_ch).value;
 		var value=document.getElementById("value"+_ch).value;
 		var cap=document.getElementById("cap"+_ch).value;
-		//var volume=document.getElementById("volume"+_ch).value;
-		//console.log(ch_id);
-		//console.log(dname);
-		//console.log(power);
-		//console.log(value);
-		//console.log(cap);
 		postReq("/set?","dp_power"+_ch+"="+power+"&dp_value"+_ch+"="+value+"&dp_volume"+_ch+"="+cap);
 		dosing[_ch].power=power;
 		dosing[_ch].value=value;
 		dosing[_ch].volume=cap;
 		var t_value=parseInt(document.getElementById("t_value"+_ch).value);
 		var currentDate = new Date().getFullYear()+"-"+parseInt(new Date().getMonth()+1) +"-"+new Date().getDate();
-		if (parseInt(t_value)!=NaN){
-			//console.log(currentDate);
-		}
-		//dosing[_ch].volume=;
-		
-		
-		/*
-				<td><select id="ch_id0">
-						<option value=-1>None</option>
-						<option value=0>Channel 0</option>
-						<option value=1>Channel 1</option>
-						<option value=2>Channel 2</option>
-						<option value=3>Channel 3</option>
-						<option value=4>Channel 4</option>
-						<option value=5>Channel 5</option>
-						<option value=6>Channel 6</option>
-						<option value=7>Channel 7</option>
-						<option value=8>Channel 8</option>
-						<option value=9>Channel 9</option>
-						<option value=10>Channel 10</option>
-						<option value=11>Channel 11</option>
-						<option value=12>Channel 12</option>
-						<option value=13>Channel 13</option>
-						<option value=14>Channel 14</option>
-						<option value=15>Channel 15</option>
-					</select>
-				<td><input id="dname0" type="text" size="32">
-				<td><input min=0 value=1000 id="power0" type="number">	
-				<td><input min=0 value=100 id="value0" type="number">
-				<td><input min=0 value=5000 id="cap0" type="number">
-		
-		*/
 	}
 	function addToGroup(d){
   					
 	            var c=document.getElementById("sc");
 	            var a=c.value;
-	            //var b=d.value;
 	            d=document.getElementById("addToGroup");
-  						
-  					
-	  					//console.log("add to group:"+d.value);
-	  					//console.log("Channel:"+Current_ch);
-							//return;
-	  //get_gr();
-	            //if(d.value!=-2){
-	            //  Channels[a].group=d.value
-	            //}
-	            //console.log("a="+a);
-	            //console.log("d="+d.value);
-	            sendGET("/set?group"+Current_ch+"="+d.value);
-	  					Channels[Current_ch].group=d.value;
-	  					fillChannel(Current_gr);
-	            //redrawChannel(a,b);
-	            //setChannels();
-	            //fillTime(a);
-	            //changeGroup(b);
-	            //d.value=-2
+  				sendGET("/set?group"+Current_ch+"="+d.value);
+	  			Channels[Current_ch].group=d.value;
+	  			fillChannel(Current_gr);
 	}
 	function cRTime(e){
 	  isRT=e.checked;
 	}
 	function fillTime(c){
-	  					//console.log("c="+c);
-	  					//console.log(Channels);
-	  					//Channels[c]=get_rest("c="+c,_ip);
-	  					//console.log(Channels[c]);
-	            var a=document.getElementById("st");
-	            while(a.length!=0){
-	              a.remove(a.lengt)
-	            }
+				var a=document.getElementById("st");
+	  			clearSelect(a);
 	            var b=document.createElement("option");
 	            b.text="Current time";
 	            b.value=-2;
@@ -4148,18 +4026,13 @@ function alarm(){
 	            lastTp=a.length-3
 	}
 	function fillGroup(){
-            
-	            //group=(get_rest("groups=all",_ip));
-            
-	            var a=document.getElementById("ch_gr");
-	            while(a.length!=0){
-	              a.remove(a.lengt)
-	            }
-	  					var b=document.createElement("option");
-	  					b.text="All Channels";
-	  					b.value=255;
-	  					a.add(b);
-	  					for (var i=0;i<8;i++){
+				var a=document.getElementById("ch_gr");
+                clearSelect(a);
+	            var b=document.createElement("option");
+	  			b.text="All Channels";
+	  			b.value=255;
+	  			a.add(b);
+	  			for (var i=0;i<8;i++){
 	              var b=document.createElement("option");
 	              b.value=i;
 	              if (group[i].name!="") 
@@ -4169,38 +4042,15 @@ function alarm(){
 	              a.add(b);
               	
 	            }
-	  					//console.log(a);
-	  					//for (var i=8;i=0;i--) a.remove(i);	
-  
-  
-	           // var b=document.createElement("option");
-	           // for(var i=0;i<group.length;i++){
-	           //   if(group[i].name=="") 
-	            //    group[i].name="Group "+i;
-	            //  var b=document.createElement("option");
-	           //   b.text=group[i].name;
-	           //   b.value=i;
-	           //   a.add(b)
-              
-	            //}
 	            a=document.getElementById("addToGroup");
-	  					while(a.length!=0){
-	              a.remove(a.lengt);
-	            }
-	            //b=document.createElement("option");
-	            //b.text="Remove from group";
-	            //b.value=250;
-	            //a.add(b);
-	            console.log
-				for(var i=0;i<group.length;i++){
-	              //console.log(i);
+	  			clearSelect(a);
+	            for(var i=0;i<group.length;i++){
 	              if(group[i].name=="") group[i].name="Group "+i;
 				  document.getElementById("gr_name"+i).value=group[i].name;
 				  document.getElementById("gr_step"+i).value=group[i].step;
 				  document.getElementById("gr_int"+i).value=group[i].interval;
 				  document.getElementById("gr_tresh"+i).value=group[i].temp;
-				  //console.log(group[i].name);
-	              var b=document.createElement("option");
+				  var b=document.createElement("option");
 	              b.text=group[i].name;
 	              b.value=i;
 	              a.add(b);
@@ -4208,25 +4058,19 @@ function alarm(){
 	            }
 	  					b.text="Remove from group";
 	            b.value=255;
-	  					//console.log(b);
-	            a.add(b);
+	  			a.add(b);
 	  					a.value=Current_gr;
 				
 	}
 	function fillChannel(a){
-	  					//console.log("fillCh a="+a);
-	  					if (a==undefined) a=255;
-	  					//console.log(Channels);
-	            var b=document.getElementById("sc");
-	            while(b.length!=0){
-	              b.remove(b.lengt)
-	            }
+	  			if (a==undefined) a=255;
+	  			var b=document.getElementById("sc");
+	            clearSelect(b);
   					
 	  					for (var i=0;i<16;i++){
 	              var c=document.createElement("option");
 	              c.value=i;
 	              c.text=Channels[i].name;
-	              //console.log(Channels);
 	              if (Channels[i].group==255){
 					   
 	                if (Channels[i].type==0) c.text+="/ no group";
@@ -4242,14 +4086,13 @@ function alarm(){
 	                b.add(c);
 	              } else {
 	                if (Channels[i].group==a) {
-	                  //console.log(Channels[i].group);
-	                  b.add(c);
+	                   b.add(c);
 	                }
 	              }
               
-	              //b.add(c);
+	              
 	            }
-	  					return; //sslac32
+	  					return; 
   
   
   
@@ -4267,12 +4110,11 @@ function alarm(){
 	                  Current_ch=0
 	                }
 	                var c=document.createElement("option");
-	                //console.log("c="+c);
 	                c.text=i+")"+Channels[i].name;
                 
 	                if(Channels[i].group !=255){
                 
-	                  //console.log("group name="+group[Channels[i].group].name);
+	                 
 	                  c.text+="/"+group[Channels[i].group].name;
 	                }
 	                c.value=i;
@@ -4286,16 +4128,32 @@ function alarm(){
 	                b.add(c)
 	              }
 	            }
-				//console.log(".selectedIndex:"+b.selectedIndex);
+				
 	}
 	function get_ch(b){
 	            Current_ch=parseInt(b.value);
+				if ((info.RunMode==1) & (info.sync_channels[Current_ch]!=0)) {
+					disableElement("_addTimePoint");
+					disableElement("setdef");
+					disableElement("st");
+					disableElement("cc");
+					disableElement("move");
+					disableElement("addToGroup");
+					disableElement("delTimePoint");
+					disableElement("RTime");
+				} else{
+					enableElement("_addTimePoint");
+					enableElement("setdef");
+					enableElement("st");
+					enableElement("cc");
+					enableElement("move");
+					enableElement("addToGroup");
+					enableElement("delTimePoint");
+					enableElement("RTime");
+					
+				}
 	            isCurrentTime=true;
 	            var d=parseInt(Channels[Current_ch].group);
-	            //if(parseInt(d)!=parseInt(Current_gr)){
-	            //  Current_gr=d;
-	            //  changeGroup(Current_gr)
-	            //}
 	            setColor(b.value);
 	            fillTime(b.value);
 	            var c=document.getElementById("idSVG");
@@ -4303,13 +4161,13 @@ function alarm(){
 	            for(var i=0;i<16;i++){
 	              a=c.getElementById("ch"+i);
 	              if(a!=null){
-	                //a.setAttribute("style","fill:none;stroke-width:1;stroke:"+Channels[i].color)
+	                
 	                a.setAttribute("style","fill:none;stroke-width:1;stroke:"+Color[i])
 	              }
 	            }
 	            a=c.getElementById("ch"+b.value);
 	            if(a!=null){
-	              //a.setAttribute("style","fill:none;stroke-width:5;stroke:"+Channels[b.value].color)
+	              
 	              a.setAttribute("style","fill:none;stroke-width:5;stroke:"+Color[b.value])
 	            }
 	}
@@ -4319,9 +4177,7 @@ function alarm(){
 	            for(var i=0;i<16;i++){
 	              redrawChannel(i,Current_gr)
 	            }
-	            //if(Current_tp!=0){
-	            //  set_rest("playTime="+Current_gr,_ip)
-	            //}
+	            
 	}
 	function setColor(b){
 	            var a=document.getElementById("cc");
@@ -4330,49 +4186,36 @@ function alarm(){
 	
 	function show_page(e,elem){
 		renew=1;
-		/*
-		if (elem!=undefined){
+		var _ch=255;
+		if (elem!=undefined) {
 			
-			
-			
-			if (elem.id.indexOf("chid"==0))	{
-				//console.log("elem.id:"+elem.id);
-				//console.log("chid substring:"+elem.id.substring(4));
-				Current_ch=elem.id.substring(4);
+			console.log("elem:",elem.id);
+			if (elem.id.indexOf("chid")==0){
+				_ch=parseInt(elem.id.substring(4));
 			}
-			
-			if (elem.id.indexOf("ch_"==0)) {
-				//console.log("elem.id:"+elem.id);
-				//console.log("ch_ substring:"+elem.id.substring(3));
-				Current_ch=parseInt(elem.id.substring(3));
+			if (elem.id.indexOf("ch_")==0){
+				_ch=parseInt(elem.id.substring(3));
 				
 			}
-			
-			if (elem.id.indexOf("n"==0)) {
-				//console.log("elem.id:"+elem.id);
-				//console.log("n substring:"+elem.id.substring(1));
-				Current_ch=elem.id.substring(1);
+			if (elem.id.indexOf("n")==0){
+				_ch=parseInt(elem.id.substring(1));
 				
 			}
-			if (elem.id.indexOf("v"==0)){
-				//console.log("elem.id:"+elem.id);
-				//console.log("v substring:"+elem.id.substring(1));
-				Current_ch=elem.id.substring(1);
+			if (elem.id.indexOf("v")==0){
+				_ch=parseInt(elem.id.substring(1));
+				
 			}
+			console.log("_ch:",_ch);
+			Current_ch=_ch;		
 			
-			
-			//console.log("Current_ch:"+Current_ch);
-
-
-		} 
-		*/
+		}
 		
 		var x = document.getElementsByClassName("pages");
 		var i;
 		for (i = 0; i < x.length; i++) {
-		    //console.log("x.id:"+x[i].id+" -> e:"+e);
+		    
 			if (x[i].id==e) {
-				//console.log("class id:"+x[i].id+"-> block");
+				
 				
 				x[i].style.display ='block';
 				if (x[i].id=="schedule") {
@@ -4386,12 +4229,24 @@ function alarm(){
 		            fillTime(Current_ch);
 		        	fillChannel();
 					createGrid();
-					//console.log(".selectedIndex="+document.getElementById("sc").selectedIndex);
-					//Current_ch=document.getElementById("sc").selectedIndex;
-					//console.log("schedule:"+x[i].id)
+					document.getElementById("sc").value=Current_ch;
+					
 					redrawChannel();
 					
 				}
+				
+				if (x[i].id=="single_setup"){
+					console.log("single fill");
+					
+						document.getElementById("single_ch").innerHTML="<h3>Setup channel ID:"+_ch+"</h3>";
+						document.getElementById("single_name").value=Channels[_ch].name;
+						document.getElementById("single_type").value=Channels[_ch].type;
+						document.getElementById("single_freq").value=Channels[_ch].freq;
+						
+								
+					
+				}
+				
 				if (x[i].id=="timers") {
 					if (Channels.length!=16){
 						alert("Chnnels data not retriver\n Try latter");
@@ -4403,16 +4258,17 @@ function alarm(){
 						x[i].style.display ='none';
 						return;
 					}
-					for (j=0;j<16;j++){
-						if (Channels[j].type==3) fillTimers(j);
-					}
+					fillTimers(_ch);
+					fillTimersPoint(_ch);
+					document.getElementById("s_timer").value=_ch;
+					
 				}
 				if (x[i].id=="gpio_setup"){
 					getCh();
 					fillGPIO();
 				}
 				if (x[i].id=="temperature"){
-					//console.log("temperature")
+					
 					getFans();
 					getSensors();
 					setFans();
@@ -4426,14 +4282,13 @@ function alarm(){
 				}
 				
 				if (x[i].id=="sensors_page"){
-					//console.log("sensors_length:"+sensors.length);
+					
 					
 					for (j=0;j<sensors.length;j++){
-						//console.log(sensors[j].addr);
+						
 						var _sensors="";
 						if (JSON.stringify(sensors[j].addr) !=JSON.stringify([0,0,0,0,0,0,0,0])) {
 							document.getElementById("_sens"+j).style.display='';
-							//console.log(sensors[j].name);
 							
 							if (sensors[j].isExist==0){ 
 								document.getElementById("isexist"+j).innerHTML="FAIL";
@@ -4463,7 +4318,7 @@ function alarm(){
 					
 				}
 			} else { 
-				//console.log("class id:"+x[i].id+"-> none");
+				
 				x[i].style.display ='none';
 			}
 		}
@@ -4478,7 +4333,7 @@ function alarm(){
 	}
 	function createGrid(){
 	            var b=document.getElementById("idSVG");
-				//console.log(idSVG);
+				
 	            b.setAttributeNS(null,"width",SVG_w);
 	            b.setAttributeNS(null,"height",SVG_h);
 	            for(var i=0;i<17;i++){
@@ -4515,17 +4370,18 @@ function alarm(){
 	              b.appendChild(a)
 	            }
 	            offset=b.getClientRects()[0];
-				//console.log(offset);
+				
 	            offset.top=Math.round(offset.top);
 	            offset.left=Math.round(offset.left);
-	            // get_info();
+	           
 				
 				var b=document.getElementById("currentTime");
 	            b=document.getElementById("TimeSlider");
 	            if(Current_tp==-2){
 	              b.value=getTime(info.cMillis).substring(0,5);
+				  enableElement("TimeSlider");
 	              b.disabled=false;
-	              //b.value=info[2][0]*60+info[2][1];
+	              
 	              b.value=info.cMillis/1000;
 	              b.disabled=true
 	            }
@@ -4534,29 +4390,22 @@ function alarm(){
 	            getChannelsData();
 	            fillTime(Current_ch);
 	            fillGroup(Current_ch);
-	            //req_temp(); sslac32
-	            //setInterval(req_temp,5000) sslac32
+	            
 	} 
 	function getChannelsData(){
-	            //var e=document.getElementById("idSVG");
-	            //var c=e.getElementsByTagName("*");
-	            //var b=(get_rest("info=",_ip));
-	            //Channels=get_rest("channels=all",_ip);
-	            //console.log(d);
+	            
 	            for(a=0;a<16;a++){
 	               redrawChannel(a)
 	            }
 	}
 	function get_gr(a){
-	  					//console.log("get_gr a="+a.value);
+	  			
 	            if(a!=null){
 	              changeGroup(a.value)
 	            }
 	}
 	function redrawChannel(b,c){
-	  					//console.log("redraw b:"+b+" c="+c);
-	  					//console.log(Channels);
-	  					//console.log("start redraw");
+	  					
 	            if(c==undefined){
 	              c=Current_gr
 	            }
@@ -4564,7 +4413,7 @@ function alarm(){
 	              b=Current_ch
 	            }
 	            if(Channels[b].type!=0){
-	              //console.log("exit");
+	             
 	              return;
 	            }
 	            var d=document.getElementById("idSVG");
@@ -4572,9 +4421,9 @@ function alarm(){
 	            if(a!=null){
 	              d.removeChild(a)
 	            }
-	  					//console.log("redraw 1");
+	  					
 	            if((Channels[b].group==c)||(c==255)){
-	              //console.log(Channels[b].value[0]/4096);
+	              
 	              a=document.createElementNS(svgNS,"polyline");
 	              a.setAttributeNS(null,"id","ch"+b);
 	              _points="";
@@ -4588,50 +4437,34 @@ function alarm(){
                    
 	                  _points+=" "+Math.round(shift+Channels[b].tp[j]/120)+",";
 	                  _points+=Math.round(shift+256-256*Channels[b].value[j]/4096);
-					  //console.log("points="+_points);
-					   
-						    //console.log("0b="+b);
-					  	 	//console.log("0point="+_points);
-	 					    //console.log("0tp="+Channels[b].tp);
-	 					    //console.log("0value="+Channels[b].value);
-							
-						
+					  
 	                }else{
-	                  //console.log(shift+256-256*Channels[b].value[j-1]/4096);	
+	                  
 	                  _points+=" "+(shift+720)+",";
-					  //console.log("--- "+(shift+720)+",")
-					  //console.log("j="+j);
-					  //console.log("value: "+Math.round(shift+256-256*Channels[b].value[j-1]/4096));
+					  
 					  
 	                  _points+=Math.round(shift+256-256*Channels[b].value[j-1]/4096);
 				   
 					  break;
 	                }
 	              }
-	              //console.log(_points);
-				  //console.log("b="+b);
+	             
 	              a.setAttributeNS(null,"points",_points);
 	              if(b==Current_ch){
-	                //console.log("color="+Color[b]);
+	             
 	                a.setAttributeNS(null,"style","fill:none;stroke:"+Color[b]+";stroke-width:5")
 	              }else{
-	                //console.log("color="+Color[b]);
+	              
 	                a.setAttributeNS(null,"style","fill:none;stroke:"+Color[b]+";stroke-width:1")
 	              }
 	              d.appendChild(a)
 	            }
 	}
 	function getGr(){
-		//console.log("req group");
-		/*
-		if ((Channels.length==16) & (renew==0)){
-			getInfo();
-			return;
-		}
-		*/
+		
 	 	var xhr = new XMLHttpRequest();
 		xhr.timeout=500;
-		//console.log(url+"/get?channels=all");
+		
 		xhr.open("GET", url+"/get?groups=all", true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
@@ -4640,23 +4473,17 @@ function alarm(){
 	    		return;
 	  	  	}
 	  	    group=JSON.parse(this.responseText);
-			//renew=0;
+			
 		} 
 	}
 	function setDosing(){
-		//console.log(dosing.length);
+		
 		for (var i=0;i<16;i++){
-			//console.log("Set dosing value");
+			
 			document.getElementById("ch_id"+i).innerHTML=i+"/"+Channels[i].gpio;
-			//console.log(document.getElementById("dname"+i));
-			//console.log(Channels[i].name);
+			
 			document.getElementById("dname"+i).innerHTML=Channels[i].name;
-			//if (dosing[i].ch_id>-1){
-				//document.getElementById("dosing"+i).style.display="none";
-			//	console.log(Channels[dosing[i].ch_id].name);
-			//	document.getElementById("dname"+i).value=Channels[dosing[i].ch_id].name;
-			//}
-			//console.log("style:"+document.getElementById("dosing"+i).style.display);
+			
 			if (Channels[i].type!=2) 
 				document.getElementById("dosing"+i).style.display="none";
 			else
@@ -4671,42 +4498,47 @@ function alarm(){
 		
 	}
 	function getDosing(){
-		//console.log("req dosing");
+		
 		var xhr = new XMLHttpRequest();
 		xhr.timeout=500;
-		//console.log(url+"/get?channels=all");
+		
 		xhr.open("GET", url+"/get?dosing=all", true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			
 			if (this.readyState != 4) return;
 	  	  	if (this.status != 200) {
 	    		return;
 	  	  	}
 	  	    dosing=JSON.parse(this.responseText);
-			//console.log(dosing);
+			
 		} 
 	}
 	function fillFanTemp(){
+		if (fans.length==0) return;
 		for (var j=0;j<16;j++){
 			if (Channels[j].type==1){
-				//console.log ("Channel"+j+" is Fan");
+				
+			
 				var sensor_id=fans[j].ds_id;
-				if (sensor_id!=255) document.getElementById("sens_temp"+j).innerHTML=sensors[sensor_id].tempC+"&deg";
+				
+				if (sensor_id!=255) {
+					if (document.getElementById("sens_temp"+j)==undefined ) return;
+					document.getElementById("sens_temp"+j).innerHTML=sensors[sensor_id].tempC+"&deg";
+				}
 			}
 		}
 	}
 	
 	function getSensors(){
-		//console.log("req Sensors");
-		//console.log(Channels[Current_ch].tp);
+		
 		var xhr = new XMLHttpRequest();
 		xhr.timeout=500;
-		//console.log(url+"/get?channels=all");
+		
 		xhr.open("GET", url+"/get?ds18b20=all", true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			
 			if (this.readyState != 4) return;
 	  	  	if (this.status != 200) {
 	    		return;
@@ -4726,27 +4558,23 @@ function alarm(){
 			for (var i=0;i<sensors.length;i++){
 				var a=document.getElementById("tempc"+i);
 				if (sensors[i].isExist==1) {
-					//var a=document.getElementById("tempc"+i);
+					
 					if (a!=null) a.innerHTML=sensors[i].tempC+"&deg";
-					//a=document.getElementById("s_name"+i);
-					//if (a!=null) a.disabled=false;
+					
 				} else {
 					if (a!=null) a.innerHTML="-127.00&deg";
 				}
-				//else document.getElementById("s_name"+i).disabled=true;
+				
 				fillFanTemp();
 			}
-			//console.log(dosing);
+			
 		} 
 	}
 	
 	function fillSense(select_id){
 		var a=document.getElementById(select_id);
-		//console.log(a);
-		//console.log(a.length);
-        while(a.length!=0){
-          a.remove(a.lengt)
-        }
+		
+        clearSelect(a);
       	for (j=0;j<sensors.length;j++) {
 			
 			if (sensors[j].name!="") {
@@ -4766,7 +4594,7 @@ function alarm(){
 	}
 	
 	function setFans(){
-		//console.log(dosing.length);
+		
 		
 		
 		
@@ -4779,39 +4607,10 @@ function alarm(){
 			else {
 				document.getElementById("_fan"+i).style.display="";
 				fillSense("sens_id"+i);
-				
-				// удалить все select для датчиков у данного канала
-/******************************************************************************				
-				var a=document.getElementById("sens_id"+i);
-				//console.log(a);
-				//console.log(a.length);
-		        while(a.length!=0){
-		          a.remove(a.lengt)
-		        }
-              	for (j=0;j<sensors.length;j++) {
-					
-					if (sensors[j].name!="") {
-						var b=document.createElement("option");
-              			b.text=sensors[j].name;
-						b.value=j;
-              			if (sensors[j].isExist==0) b.disabled=true;
-						a.add(b);
-					}
-						
-				}
-******************************************************************************/
-				
-				
+
 				document.getElementById("tmin"+i).value=fans[i].min_temp;
 				document.getElementById("tmax"+i).value=fans[i].max_temp;
-				document.getElementById("min_value"+i).value=fans[i].min_value;
-/*				
-				var b=document.createElement("option");
-          		b.text="No sensor";
-          		b.value=255;
-          		a.add(b);
-				
-*/				
+	
 				var a=document.getElementById("sens_id"+i);
 				if (fans[i].ds_id!=255) a.selectedIndex=fans[i].ds_id; else a.selectedIndex=a.length-1;
 			}
@@ -4822,25 +4621,24 @@ function alarm(){
 		
 	}
 	function getFans(){
-		//console.log("req fans");
+		
 		var xhr = new XMLHttpRequest();
 		xhr.timeout=500;
-		//console.log(url+"/get?channels=all");
+		
 		xhr.open("GET", url+"/get?fans=all", true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-			//console.log ("this.readyState:"+this.readyState+", this.status:"+this.status);
+			
 			if (this.readyState != 4) return;
 	  	  	if (this.status != 200) {
 	    		return;
 	  	  	}
 	  	    fans=JSON.parse(this.responseText);
-			//console.log(dosing);
+			
 		} 
 	}
 	function getCh(){
-		//console.log()
-		//console.log("req channels");
+		
 		var xhr = new XMLHttpRequest();
 		xhr.timeout=500;
 		
@@ -4859,12 +4657,10 @@ function alarm(){
 	  	  	
 			var _span=1;
 	    	for (var i=0;i<16;i++){
-				document.getElementById("ch_"+i).onclick=function() {show_page('gpio_setup')};
-				document.getElementById("v"+i).onclick=function() {show_page('gpio_setup')};
-				document.getElementById("n"+i).onclick=function() {show_page('gpio_setup')};
+				document.getElementById("ch_"+i).onclick=function() {show_page('gpio_setup',this)};
+				document.getElementById("v"+i).onclick=function() {show_page('gpio_setup',this)};
+				document.getElementById("n"+i).onclick=function() {show_page('gpio_setup',this)};
 				
-				//maxValue[i]=getMaxOfArray(Channels[i].value);
-				//minValue[i]=getMinOfArray(Channels[i].value);
 				
 	        	if (Channels[i].s_color!="") Color[i]="#"+Channels[i].s_color;
 	      		if (Channels[i].name=="") {
@@ -4878,47 +4674,41 @@ function alarm(){
 				
 				if (Channels[i].type==0){
 					
-					document.getElementById("ch_"+i).onclick=function() {show_page('schedule')};
-					document.getElementById("v"+i).onclick=function() {show_page('schedule')};
-					document.getElementById("n"+i).onclick=function() {show_page('schedule')};
-					document.getElementById("chid"+i).onclick=function() {show_page('schedule')};
+					document.getElementById("ch_"+i).onclick=function() {show_page('schedule',this)};
+					document.getElementById("v"+i).onclick=function() {show_page('schedule',this)};
+					document.getElementById("n"+i).onclick=function() {show_page('schedule',this)};
+					document.getElementById("chid"+i).onclick=function() {show_page('schedule',this)};
 					document.getElementById("const"+i).style.display="";
 					document.getElementById("const_name"+i).innerHTML=Channels[i].name;
 					_span++;
-					//console.log("_span:"+_span);
+					
 					document.getElementById("const_span").rowSpan = _span;
-					//maxValue[i]=getMaxOfArray([1,2,3,4,5,6,7]);
+					
 					maxValue[i]=getMaxOfArray(Channels[i].value);
 					minValue[i]=getMinOfArray(Channels[i].value);
 					
 				}
 				if (Channels[i].type==1){
-					document.getElementById("ch_"+i).onclick=function() {show_page('temperature')};
-					document.getElementById("v"+i).onclick=function() {show_page('temperature')};
-					document.getElementById("n"+i).onclick=function() {show_page('temperature')};
+					document.getElementById("ch_"+i).onclick=function() {show_page('temperature',this)};
+					document.getElementById("v"+i).onclick=function() {show_page('temperature',this)};
+					document.getElementById("n"+i).onclick=function() {show_page('temperature',this)};
 					
 					
 				}
 				if (Channels[i].type==2){
-					document.getElementById("ch_"+i).onclick=function() {show_page('dosing')};
-					document.getElementById("v"+i).onclick=function() {show_page('dosing')};
-					document.getElementById("n"+i).onclick=function() {show_page('dosing')};
+					document.getElementById("ch_"+i).onclick=function() {show_page('dosing',this)};
+					document.getElementById("v"+i).onclick=function() {show_page('dosing',this)};
+					document.getElementById("n"+i).onclick=function() {show_page('dosing',this)};
 					
 				}
 				if (Channels[i].type==3){
-					document.getElementById("ch_"+i).onclick=function() {show_page('timers')};
-					document.getElementById("v"+i).onclick=function() {show_page('timers')};
-					document.getElementById("n"+i).onclick=function() {show_page('timers')};
+					//var _timer="ch"+i
+					document.getElementById("ch_"+i).onclick=function() {show_page('timers',this)};
+					document.getElementById("v"+i).onclick=function() {show_page('timers',this)};
+					document.getElementById("n"+i).onclick=function() {show_page('timers',this)};
 					
 				}
-				/*
-				if (Channels[i].type==255){
-					document.getElementById("ch_"+i).onclick=function() {show_page('gpio_setup')};
-					document.getElementById("v"+i).onclick=function() {show_page('gpio_setup')};
-					document.getElementById("n"+i).onclick=function() {show_page('gpio_setup')};
-					
-				}
-        		*/
+				
 	    	}
     
 	  		
@@ -4928,9 +4718,7 @@ function alarm(){
 		
 	}
 	function getPWM(g,d){
-	  					//g - chanell ID
-	  					//d - current time in second
-	            var e=0,c=0,f;
+	  			var e=0,c=0,f;
 	            f=Channels[g].value[0];
 	            for(var i=0;i<Channels[g].tp.length-1;i++){
 	              if(d==Channels[g].tp[i]){
@@ -4969,36 +4757,70 @@ function alarm(){
 			moveInput("from disable timeslider----");
 	  }
 	  if (info.RunMode==1){
-		  //console.log("slave runmode");
-		  document.getElementById("b_constructor").disabled=true;
-		  document.getElementById("_addTimePoint").disabled=true;
-		  document.getElementById("setdef").disabled=true;
-		  document.getElementById("st").disabled=true;
-		  document.getElementById("ch_gr").disabled=true;
-		  document.getElementById("sc").disabled=true;
-		  document.getElementById("cc").disabled=true;
-		  document.getElementById("move").disabled=true;
-		  document.getElementById("addToGroup").disabled=true;
-		  document.getElementById("TimeSlider").disabled=true;
-		  document.getElementById("currentTime").disabled=true;
-		  document.getElementById("chValue").disabled=true;
-		  document.getElementById("chValueR").disabled=true;
+		  if (info.sync_channels[Current_ch]!=0) {
+		  		console.log("Current CH runmode",Current_ch);
+				console.log("Sync_ch",info.sync_channels);
+		  	  	disableElement("b_constructor");
+		  	  	disableElement("_addTimePoint");
+		  	  	disableElement("setdef");
+		  	  	disableElement("st");
+		  	  	disableElement("cc");
+		  	  	disableElement("move");
+		  	  	disableElement("addToGroup");
+		  	  	disableElement("TimeSlider");
+		  	  	disableElement("currentTime");
+		  	  	disableElement("chValue");
+		  	  	disableElement("chValueR");
+				
+				disableElement("gr_name"+Channels[Current_ch].group);
+				disableElement("gr_step"+Channels[Current_ch].group);
+				disableElement("gr_int"+Channels[Current_ch].group);
+				disableElement("gr_tresh"+Channels[Current_ch].group);
+				
+			}else {
+		  	  	enableElement("b_constructor");
+		  	  	enableElement("_addTimePoint");
+		  	  	enableElement("setdef");
+		  	  	enableElement("st");
+		  	  	enableElement("ch_gr");
+		  	  	enableElement("sc");
+		  	  	enableElement("cc");
+		  	  	enableElement("move");
+		  	  	enableElement("addToGroup");
+		  	  	enableElement("currentTime");
+		  	  	enableElement("chValue");
+		  	  	enableElement("gr_name"+Channels[Current_ch].group);
+				enableElement("gr_step"+Channels[Current_ch].group);
+				enableElement("gr_int"+Channels[Current_ch].group);
+				enableElement("gr_tresh"+Channels[Current_ch].group);
+				
+				
+				
+	  	  }
 	  } else {
-		  document.getElementById("b_constructor").disabled=false;
-		  document.getElementById("_addTimePoint").disabled=false;
-		  document.getElementById("setdef").disabled=false;
-		  document.getElementById("st").disabled=false;
-		  document.getElementById("ch_gr").disabled=false;
-		  document.getElementById("sc").disabled=false;
-		  document.getElementById("cc").disabled=false;
-		  document.getElementById("move").disabled=false;
-		  document.getElementById("addToGroup").disabled=false;
-		  //document.getElementById("TimeSlider").disabled=false;
-		  document.getElementById("currentTime").disabled=false;
-		  document.getElementById("chValue").disabled=false;
-		  //document.getElementById("chValueR").disabled=false;
+  	  	enableElement("b_constructor");
+  	  	enableElement("_addTimePoint");
+  	  	enableElement("setdef");
+  	  	enableElement("st");
+  	  	enableElement("ch_gr");
+  	  	enableElement("sc");
+  	  	enableElement("cc");
+  	  	enableElement("move");
+  	  	enableElement("addToGroup");
+  	  	enableElement("currentTime");
+  	  	enableElement("chValue");
+  	  	enableElement("gr_name"+Channels[Current_ch].group);
+		enableElement("gr_step"+Channels[Current_ch].group);
+		enableElement("gr_int"+Channels[Current_ch].group);
+		enableElement("gr_tresh"+Channels[Current_ch].group);
 	  }
             
+	}
+	function disableElement(id){
+		if (document.getElementById(id)!=undefined) document.getElementById(id).disabled=true;
+	}
+	function enableElement(id){
+		if (document.getElementById(id)!=undefined) document.getElementById(id).disabled=false;
 	}
 	function chRange(a){
 		var _add="";
@@ -5017,8 +4839,6 @@ function alarm(){
 			Channels[Current_ch].value[0]=a.value;
 			_add="&v0="+a.value;
 		}
-		//console.log("Current_tp:"+Current_tp);
-		//console.log("lastTP:"+lastTp);
 		redrawChannel(Current_ch);
 		sendGET("/set?ch="+Current_ch+"&v"+(Current_tp)+"="+a.value+_add);
 		if (isRT) sendGET("/set?manual"+Current_ch+"="+a.value);
@@ -5026,8 +4846,7 @@ function alarm(){
 		
 		
 	            if(Current_tp>-1){
-					//console.log("lastTp:"+lastTp);	
-	              if(Current_tp==lastTp){
+					if(Current_tp==lastTp){
 	                Channels[Current_ch].value[0]=a.value;
 					redrawChannel(Current_ch);
 	                if (isRT) sendGet("/set?manual"+Current_ch+"="+a.value);
@@ -5040,13 +4859,9 @@ function alarm(){
 	              }
 	              
 	              Channels[Current_ch].value[Current_tp]=a.value;
-				  //redrawChannel(Current_ch);
-	              //if (chRange.caller.name=="onchange"){ 
 				  if (isRT) sendGet("/set?manual"+Current_ch+"="+a.value);
 					  sendGET("/set?ch="+Current_ch+"&v"+(Current_tp)+"="+a.value);
-				//	  console.log("onchamge method");
-					  //}
-				  redrawChannel(Current_ch);	  
+				redrawChannel(Current_ch);	  
 	            }
 				
 	}
@@ -5054,19 +4869,13 @@ function alarm(){
             var a="/set?";
             for(j=0;j<16;j++){
               if((Current_gr==255)&(Channels[j].type==0)){
-                //console.log("PWM+"+getPWM(j,c));
                 a+="manual"+j+"="+getPWM(j,c)+"&";
-                //console.log("a="+a);
-                // Channels[j].pwm[j]=getPWM(j,c); //sslac32
-              }else{
+			}else{
                 if((Channels[j].group==Current_gr)&(Channels[j].type==0)){
                   a+="manual"+j+"="+getPWM(j,c)+"&";
-                  //console.log("a="+a);
-                  //Channels.pwm[j]=getPWM(j,c)
-                }
+			  }
               }
             }
-            //console.log("a="+a);
             sendGET(a);
 	}
 	function timeInput(c){
@@ -5075,37 +4884,29 @@ function alarm(){
 		
 		
 		Current_tp=document.getElementById("st").value;
-  		//console.log("c.id="+c.id);
-		var timeLine=document.getElementById("timeLine");
+  		var timeLine=document.getElementById("timeLine");
 		var cTime=document.getElementById("cTime");
 		var cValue=document.getElementById("cValue");
 		if (Current_tp>-2) {
-			document.getElementById("TimeSlider").disabled=false;
+			enableElement("TimeSlider");
         }
 	  	if ((Current_tp>-1)&(c.id=="st")){
 			
-			if (isRT){
-				//console.log("Need manual mode activated");
-			}
-			
-			
-	    //	console.log(c.id);
-	        document.getElementById("TimeSlider").disabled=false;
-	        document.getElementById("chValue").disabled=false;
-	        document.getElementById("chValueR").disabled=false;
+			enableElement("TimeSlider");
+	        enableElement("chValue");
+	        enableElement("chValueR");
 	        document.getElementById("chValueR").value=Channels[Current_ch].value[Current_tp];
 	        document.getElementById("chValue").value=Channels[Current_ch].value[Current_tp];
-	        document.getElementById("currentTime").disabled=false;
-	        //console.log(Channels[Current_ch].tp[Current_tp]);
-	    	document.getElementById("currentTime").value=getTime(Channels[Current_ch].tp[Current_tp]*1000);
+	        enableElement("currentTime");
+	        document.getElementById("currentTime").value=getTime(Channels[Current_ch].tp[Current_tp]*1000);
 	    	if (c.id=="st") { 
 	        	document.getElementById("TimeSlider").value=Channels[Current_ch].tp[Current_tp]/60;
 	        }
 		}
 	  	if (Current_tp==-2){
-	    	document.getElementById("TimeSlider").disabled=true;
-	        document.getElementById("chValue").readOnly=true;
-	        document.getElementById("chValueR").disabled=true;
+	    	disableElement("TimeSlider");
+	        disableElement("chValue");
+	        disableElement("chValueR");
 	        var a="";
 	        for (var i=0;i<16;i++) {
 	        	a+="manual"+i+"=-1&";
@@ -5122,19 +4923,15 @@ function alarm(){
 				sendGET("/set?ch="+Current_ch+"&t"+(Current_tp)+"="+c.value*60);
 			}
 	        if (Current_tp==-1){
-	        	//console.log("Play Time="+c.value*60);
-	            document.getElementById("chValue").value=getPWM(Current_ch,c.value*60);
+	        	document.getElementById("chValue").value=getPWM(Current_ch,c.value*60);
 	            getAllPWM(c.value*60);
 	        }
                 
                 
-	              // getAllPWM(c.value*60,Current_gr); //sslac 32
-		}
+	    }
 	    if(c.id=="currentTime"){
-	    	//console.log("c.value="+c.value);
-	        var e=new Date("Jan 1, 1971 "+c.value);
+	    	var e=new Date("Jan 1, 1971 "+c.value);
 	        var a=(e.getHours()*60+e.getMinutes())*60;
-	        //console.log("a="+a);
 	        if (Current_tp!=-1) Channels[Current_ch].tp[Current_tp]=a;
 	        redrawChannel(Current_ch);
 	        if(Current_tp>-1){
@@ -5143,13 +4940,10 @@ function alarm(){
 		}
 		timeLine.setAttributeNS(null,"x1",shift-0+document.getElementById("TimeSlider").value/2);
         timeLine.setAttributeNS(null,"x2",shift-0+document.getElementById("TimeSlider").value/2);
-		moveInput("from time input---"); //тут работает
+		moveInput("from time input---");
 		
   	}
 	function moveInput(sss){
-		//console.log(sss)
-		//console.log("TimeLine:"+document.getElementById("TimeSlider").value);
-		//console.log("Channels[Current_ch].tp[Current_tp]/120:"+Channels[Current_ch].tp[Current_tp]/120);
 		var a=document.getElementById("chValue");
 		a.style.left=shift-90+document.getElementById("TimeSlider").value/2+"px";
 		a=document.getElementById("currentTime");
@@ -5157,17 +4951,10 @@ function alarm(){
 	}
 	function asyncGET (req) {
 		var xhr = new XMLHttpRequest();
-		//xhr.timeout=500;
-		
 		xhr.open("GET", url+req, false);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-			//console.log("readyState:"+this.readyState+" - this.status:"+this.status);
-			if ((this.readyState == 4)&(this.status == 0)) {
-				//console.log("req:"+req);
-				//sendGET(req);
-			}
-	  	  	if (this.readyState != 4) return;
+			if (this.readyState != 4) return;
 	  	  	if (this.status != 200) {
 	    		return;
 	  	  	}
@@ -5177,15 +4964,10 @@ function alarm(){
 	
 		
 		var xhr = new XMLHttpRequest();
-		//xhr.timeout=500;
-		
 		xhr.open("GET", url+req, false);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-			//console.log("readyState:"+this.readyState+" - this.status:"+this.status);
 			if ((this.readyState == 4)&(this.status == 0)) {
-				//console.log("req:"+req);
-				//console.log("flag:"+flag);
 				if (flag) sendGET(req);
 			}
 	  	  	if (this.readyState != 4) return;
@@ -5219,9 +5001,19 @@ function alarm(){
 	        if (s<10) _ret+="0"+s; else _ret+=s;
 	        return _ret;
     }
-	function cursor(x) {
-	  	if (x==0) document.body.style.cursor = "pointer";
+	function cursor(x,elem,bcolor0,bcolor1) {
+		if (x==0) document.body.style.cursor = "pointer";
 	  	if (x==1) document.body.style.cursor = "default";
+		if ((elem!=undefined) & (bcolor0!=undefined) & (bcolor1!=undefined)){
+			console.log("elem:",elem);
+			if (x==0){
+				elem.style.backgroundColor = bcolor0;
+			}
+			if (x==1){
+				elem.style.backgroundColor = bcolor1;
+				
+			}
+		}
 	}
 	function cursorMove(a){
 	            mouse_x=a.clientX-offset.left;
@@ -5231,8 +5023,7 @@ function alarm(){
 	            var e=document.getElementById("cursor1");
 	            e.setAttributeNS(null,"x",mouse_x);
 	            e.setAttributeNS(null,"y",mouse_y);
-	  					//console.log((mouse_x-shift)*120);
-	            var d=returnDate((mouse_x-shift)*120);
+	  			var d=returnDate((mouse_x-shift)*120);
 	            if((c>0)&(c<1440*60+1)){
 	              e.textContent=d
 	            }
@@ -5257,53 +5048,24 @@ function alarm(){
 	}
 	function getAll(){
 		setTimeout(getInfo,250);
-		//console.log("Channels.length:"+Channels.length);
-		//console.log("group.length:"+group.length);
-		//console.log("dosing.length:"+dosing.length);
-		
 		if (Channels.length==0) {
-			//disableElem("b_ligth",'#4CAF50','#808080',true);
-			//disableElem("b_dosing",'#4CAF50','#808080',true);
 			disableElem("b_gpio",'#4CAF50','#808080',true);
 			disableElem("b_group",'#4CAF50','#808080',true);
-			//disableElem("b_fans",'#4CAF50','#808080',true);
 			getCh();
 			return;
 		} else disableElem("b_gpio",'#4CAF50','#808080',false);
 		
 		if (group.length==0) {
-			//document.getElementById("b_ligth").disabled=true;
-			
 			getGr();
 			return;
 		} else disableElem("b_group",'#4CAF50','#808080',false);
-		
-		if ((Channels.length==16)&(group.length==8)){
-			
-			//disableElem("b_ligth",'#4CAF50','#808080',false);
-					
-		}else 
-			//disableElem("b_ligth",'#4CAF50','#808080',true);
-		
-		if ((Channels.length==16)&(fans.length==16)&(sensors.length==16)){
-			
-				//disableElem("b_fans",'#4CAF50','#808080',false);
-					
-		}else 
-				//disableElem("b_fans",'#4CAF50','#808080',true);
-		
-		
 		if (sensors.length!=16) getSensors();
 		if (fans.length!=16) getFans();
 		
 		if (dosing.length==0){
-			//disableElem("b_dosing",'#4CAF50','#808080',true);
-			
 			getDosing();
 			
-		} else { 
-					//disableElem("b_dosing",'#4CAF50','#808080',false);
-		}
+		} 
 		if (timers.length!=16) getTimers();
 		
 	}
@@ -5311,45 +5073,26 @@ function alarm(){
 	 		var d= new Date();
 			
 	    	var _s=d.getHours()*3600+d.getMinutes()*60+d.getSeconds()+"&yy="+d.getFullYear()+"&mm="+parseInt(d.getMonth()+1)+"&dd="+d.getDate();
-			//console.log(_s);
-	    	postReq("/set?","time="+_s); 
-	  		//console.log(d.getFullYear());
-	  		//console.log(d.getMonth());
-	  		//console.log(d.getDate());
-			//kkkkkkk
-	  		//setURL("/set?yy="+d.getFullYear()+"&mm="+d.getMonth()+"&dd="+d.getDate());
-	}
+			postReq("/set?","time="+_s); 
+		}
 	function getInfo(){
 		if (!canGetInfo) return;
-		//console.log(document.getElementById("setup").style.display)
-		//console.log(upTime(info.uptime));
 		var xhr = new XMLHttpRequest();
 		setPimp("red");
 		xhr.timeout=500;
 	  	xhr.open("GET", url+"/get?info=", true);
 	  	xhr.send();
-		/*
-		if ((info.selfIP!=_ip) & (info.length!=0)& (info.selfIP!="0.0.0.0")) {
-			_ip=info.selfIP;
-			url="http://"+_ip;
-			
-		}*/
-	  	xhr.onreadystatechange = function (){
+		xhr.onreadystatechange = function (){
 	  		if (this.readyState != 4) return;
 	    	if (this.status != 200) {
 	      		return;
 	    	}
-	    	//console.log(this.responseText);
 	    	info=JSON.parse(this.responseText);
-			//alarm();
-			//console.log ("sender:",sender.source);
-			//alarm();
+			if (info.RunMode==0) document.getElementById("show0").innerHTML="MASTER";
+			if (info.RunMode==1) document.getElementById("show0").innerHTML="SLAVE";
+			if (info.RunMode==2) document.getElementById("show0").innerHTML="StandAlone";
 			if (sender.source!=undefined) sender.source.postMessage(info, "*");
 			setPimp("green");
-			//console.log("block:"+document.getElementById("setup").style.display);
-			
-			
-			//console.log("RSSI:"+info.isConnected);
 			document.getElementById("c_descr").innerHTML=info.c_descr;
 			if (info.RunMode==0){
 				document.getElementById("isMaster").style.display="none";
@@ -5358,7 +5101,7 @@ function alarm(){
 			if (info.RunMode==1){
 				document.getElementById("isMaster").style.display="none";
 				document.getElementById("isSlave").style.display="none";
-				document.getElementById("select_master").disabled=false;
+				enableElement("select_master");
 				
 			}
 			if (info.RunMode==2){
@@ -5374,16 +5117,13 @@ function alarm(){
 				document.getElementById("ipaddr").value=info.selfIP;
 				document.getElementById("gateway").value=info.gw_sta;
 				document.getElementById("subnet").value=info.netmask_sta;
-				//var password=document.getElementById("password").value;
-				//document.getElementById("dns").value;
-				
 				if (info.IPV4_type=="dhcp") document.getElementById("ipv4").value="DHCP";
 				else{ 
 					document.getElementById("ipv4").value="Manual";
-					document.getElementById("ipaddr").disabled=false;
-					document.getElementById("gateway").disabled=false;
-					document.getElementById("subnet").disabled=false;
-					document.getElementById("dns").disabled=false;
+					enableElement("ipaddr");
+					enableElement("gateway");
+					enableElement("subnet");
+					enableElement("dns");
 				}
 					
 				document.getElementById("ssid").value=info.SSID;
@@ -5396,18 +5136,46 @@ function alarm(){
 			if (info.isConnected) document.getElementById("RSSI").style.fill="lime";
 			disableTimeSlider();
 			for (var i=0;i<16;i++){
-				document.getElementById("v"+i).textContent=info.cValue[i];
+				
+				
+			  if (Channels[i].type==1){
+			  	if ((fans.length!=0)&(sensors.length!=0)){
+					if (fans[i].ds_id!=255){
+						document.getElementById("n"+i).textContent="\""+Channels[i].name+"\""+"/"+sensors[fans[i].ds_id].tempC+"C";
+					} else{
+						document.getElementById("n"+i).textContent="\""+Channels[i].name+"\""+"/no sens";
+					}
+				}
+				
+				
+			  }
+			  document.getElementById("v"+i).textContent=info.cValue[i];
+			  
+				
+				
+				
+				if (info.RunMode!=1){
+					disableElement("sync_channels"+i);
+				}else {
+					enableElement("sync_channels"+i);
+					document.getElementById("sync_channels"+i).value=info.sync_channels[i];
+				}
 			}
-			//console.log(info.cvalue.length);
-			//console.log(info);
-	        //console.log(resp);
-	      	if (info["isRTC"]!=0){
-	        	document.getElementById("RTC").textContent="RTC: Present";
-	        	document.getElementById("RTC").setAttribute("fill", "black");
-	      	} else {
+			if (info["isRTC"]==0){
 	        	document.getElementById("RTC").textContent="RTC: Not present";
 	        	document.getElementById("RTC").setAttribute("fill", "red");
+				
+			}
+	      	if (info["isRTC"]==1){
+	        	document.getElementById("RTC").textContent="RTC: Present";
+	        	document.getElementById("RTC").setAttribute("fill", "black");
+	      	} 
+	      	if (info["isRTC"]==255){
+	        	document.getElementById("RTC").textContent="RTC: on Master";
+	        	document.getElementById("RTC").setAttribute("fill", "blue");
 	      	}
+			
+	      	
 	    	if (info["isTime"]==0)
 				setTime();
 	      	else {
@@ -5422,7 +5190,6 @@ function alarm(){
 			stamp_d+=info.TimeStamp[1]+"-"
 			if (info.TimeStamp[2]<10) stamp_d+="0";
 			stamp_d+=info.TimeStamp[2];
-			//console.log(stamp_d);
 			var stamp_t="";
 			if (info.TimeStamp[3]!="Stable"){
 				if (info.TimeStamp[3]<10) stamp_t+="0";
@@ -5444,28 +5211,14 @@ function alarm(){
 	        	a.setAttribute("fill", "grey");
 	        	a=document.getElementById("st3");
 	        	a.setAttribute("fill", "red");
-	        //console.log(resp["master_ip"]);
-	        	/*
-				if (info["master_ip"].indexOf("255")!=-1) {
-	          	  	a.textContent="";
-	        		a.setAttribute("fill", "green");
-	        	} else {  
-	        		a.textContent="SSLAC16 master:"+info["master_ip"];
-	        		a.setAttribute("fill", "red");
-	        	}
-      	  		*/
-      
-	        //a.textContent="SSLAC16 master:"+resp["master_ip"];
-	      }else {
+	        }else {
 	  			a.textContent=info["SSID"];
 	        	a.setAttribute("fill", "white");
 	    		a=document.getElementById("st2");
 	    		a.textContent=info["selfIP"];
 	        	a.setAttribute("fill", "white");
 	        	a=document.getElementById("st3");
-	        //console.log(resp["master_ip"]);
-	        	
-	      }
+	        }
 		  if (info.length!=0){
 			  var uniqueItems = Array.from(new Set(info.networks));
 			  info.networks=uniqueItems;
@@ -5479,6 +5232,8 @@ function alarm(){
 			  for (var i=0;i<16;i++){
 				  if (Channels[i].type==1){
 				  	document.getElementById("ch_"+i).style.fill = '#ccffff';
+									
+					
 				  }
 				  if (Channels[i].type==2){
 				  	document.getElementById("ch_"+i).style.fill = '#e6ccff';
